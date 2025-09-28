@@ -40,6 +40,53 @@
 #ifndef PI
 #define PI              3.14159265358979323846
 #endif
+
+/* Define missing constants for C89 compatibility */
+#ifndef NAN
+#define NAN (0.0/0.0)
+#endif
+
+#ifndef INFINITY
+#define INFINITY (1.0/0.0)
+#endif
+
+#ifndef HUGE_VALF
+#define HUGE_VALF (3.402823466e+38f)
+#endif
+
+#ifndef FLT_MAX
+#define FLT_MAX (3.402823466e+38f)
+#endif
+
+#ifndef HUGE_VALL
+#define HUGE_VALL (1.7976931348623157e+308L)
+#endif
+
+#ifndef LDBL_MAX
+#define LDBL_MAX (1.7976931348623157e+308L)
+#endif
+
+/* POSIX types for better portability */
+#ifndef double_t
+#define double_t double
+#endif
+
+#ifndef float_t
+#define float_t float
+#endif
+
+/* Long double fallback to double for C89 compatibility */
+#ifndef long_double_t
+#define long_double_t double
+#endif
+
+#ifndef sqrtl
+#define sqrtl(x) sqrt((double)(x))
+#endif
+
+#ifndef logl
+#define logl(x) log((double)(x))
+#endif
 #define TWOPI           (2.0 * PI)
 #define HALFPI          (PI / 2.0)
 #define FOURTHPI        (PI / 4.0)
@@ -97,14 +144,26 @@ struct exception {
 };
 
 /*
- * Error types
+ * Error types - only define if not already defined
  */
+#ifndef DOMAIN
 #define DOMAIN          1
+#endif
+#ifndef SING
 #define SING            2
+#endif
+#ifndef OVERFLOW
 #define OVERFLOW        3
+#endif
+#ifndef UNDERFLOW
 #define UNDERFLOW       4
+#endif
+#ifndef TLOSS
 #define TLOSS           5
+#endif
+#ifndef PLOSS
 #define PLOSS           6
+#endif
 
 #define MAX_ERRORS      8
 

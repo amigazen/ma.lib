@@ -2,7 +2,7 @@
 #	SMakefile for ma.lib - C99 Math Library Extensions for Amiga and SAS/C
 #
 #	Copyright (c) 2025 amigazen project
-#			    All rights reserved.
+#	All rights reserved.
 #
 
 DEST = /SDK/lib/
@@ -10,82 +10,46 @@ DEST = /SDK/lib/
 RM = delete QUIET
 CP = copy CLONE QUIET
 CC = sc
+CXX = sc
 AR = oml
 AS = asm
 
 # Math function objects - C99/POSIX extensions
 MATH_OBJS = \
 	acosh.o asinh.o atanh.o \
-	acos.o asin.o atan.o atan2.o \
-	cos.o cosh.o sin.o sinh.o tan.o tanh.o \
-	exp.o log.o log10.o pow.o sqrt.o \
-	floor.o ceil.o frexp.o ldexp.o \
-	expm1.o log1p.o \
-	rint.o remainder.o remquo.o \
-	cbrt.o hypot.o \
-	copysign.o nextafter.o scalbn.o scalb.o logb.o ilogb.o significand.o \
-	finite.o isnan.o isinf.o fpclassify.o isfinite.o isnormal.o signbit.o \
-	erf.o erfc.o \
-	tgamma.o lgamma.o gamma_r.o lgamma_r.o \
-	j0.o j1.o jn.o y0.o y1.o yn.o \
-	fmin.o fmax.o fdim.o fma.o \
-	nan.o nanf.o nanl.o \
-	matherr.o
+	expm1.o \
+	rint.o \
+	hypot.o \
+	matherr.o \
+	ldexp.o frexp.o cbrt.o
 
-# Complex number function objects
+# Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
 	cabs.o carg.o conj.o \
 	cadd.o csub.o cmul.o cdiv.o \
-	cacos.o casin.o catan.o ccos.o csin.o ctan.o \
-	cacosh.o casinh.o catanh.o ccosh.o csinh.o ctanh.o \
-	cexp.o clog.o clog10.o cpow.o csqrt.o cproj.o
+	ccos.o csin.o \
+	ccosh.o csinh.o \
+	cexp.o clog.o cpow.o csqrt.o \
+	cmod.o cneg.o
 
 # Float variants (f suffix)
 FLOAT_OBJS = \
-	acoshf.o asinhf.o atanhf.o \
-	expm1f.o log1pf.o \
-	rintf.o remainderf.o remquof.o \
-	cbrtf.o hypotf.o \
-	copysignf.o nextafterf.o scalbnf.o scalbf.o logbf.o ilogbf.o significandf.o \
-	finitef.o isnanf.o isinff.o fpclassifyf.o isfinitef.o isnormalf.o signbitf.o \
-	erff.o erfcf.o \
-	tgammaf.o lgammaf.o gamma_rf.o lgamma_rf.o \
-	j0f.o j1f.o jnf.o y0f.o y1f.o ynf.o \
-	fminf.o fmaxf.o fdimf.o fmaf.o \
-	nanf.o
+	acoshf.o asinhf.o atanhf.o
 
 # Long double variants (l suffix)  
 LONGDOUBLE_OBJS = \
-	acoshl.o asinhl.o atanhl.o \
-	expm1l.o log1pl.o \
-	rintl.o remainderl.o remquol.o \
-	cbrtl.o hypotl.o \
-	copysignl.o nextafterl.o scalbnl.o scalbl.o logbl.o ilogbl.o significandl.o \
-	finitel.o isnanl.o isinfl.o fpclassifyl.o isfinitel.o isnormall.o signbitl.o \
-	erfl.o erfcl.o \
-	tgammal.o lgammal.o gamma_rl.o lgamma_rl.o \
-	j0l.o j1l.o jnl.o y0l.o y1l.o ynl.o \
-	fminl.o fmaxl.o fdiml.o fmal.o \
-	nanl.o
+	acoshl.o asinhl.o atanhl.o
 
-# Complex float variants
-COMPLEXF_OBJS = \
-	cabsf.o cargf.o crealf.o cimagf.o conjf.o \
-	cacosf.o casinf.o catanf.o ccosf.o csinf.o ctanf.o \
-	cacoshf.o casinhf.o catanhf.o ccoshf.o csinhf.o ctanhf.o \
-	cexpf.o clogf.o clog10f.o cpowf.o csqrtf.o cprojf.o
+# Complex float variants (not implemented yet)
+COMPLEXF_OBJS = 
 
-# Complex long double variants
-COMPLEXL_OBJS = \
-	cabsl.o cargl.o creall.o cimagl.o conjl.o \
-	cacosl.o casinl.o catanl.o ccosl.o csinl.o ctanl.o \
-	cacoshl.o casinhl.o catanhl.o ccoshl.o csinhl.o ctanhl.o \
-	cexpl.o clogl.o clog10l.o cpowl.o csqrtl.o cprojl.o
+# Complex long double variants (not implemented yet)
+COMPLEXL_OBJS = 
 
 # Amiga math library integration objects
-AMIGA_MATH_OBJS = \
-	amiga_math_init.o amiga_math_cleanup.o \
-	amiga_math_ffp.o amiga_math_ieee.o amiga_math_trans.o
+AMIGA_MATH_OBJS = 
+#	amiga_math_init.o amiga_math_cleanup.o \
+#	amiga_math_ffp.o amiga_math_ieee.o amiga_math_trans.o
 
 # All objects combined
 ALL_OBJS = $(MATH_OBJS) $(COMPLEX_OBJS) $(FLOAT_OBJS) $(LONGDOUBLE_OBJS) \
@@ -93,101 +57,38 @@ ALL_OBJS = $(MATH_OBJS) $(COMPLEX_OBJS) $(FLOAT_OBJS) $(LONGDOUBLE_OBJS) \
 
 # Debug objects - need to list each one individually
 DOBJS = acosh.do asinh.do atanh.do \
-	acos.do asin.do atan.do atan2.do \
-	cos.do cosh.do sin.do sinh.do tan.do tanh.do \
-	exp.do log.do log10.do pow.do sqrt.do \
-	floor.do ceil.do frexp.do ldexp.do \
-	expm1.do log1p.do rint.do remainder.do remquo.do \
-	cbrt.do hypot.do copysign.do nextafter.do scalbn.do scalb.do logb.do ilogb.do significand.do \
-	finite.do isnan.do isinf.do fpclassify.do isfinite.do isnormal.do signbit.do \
-	erf.do erfc.do tgamma.do lgamma.do gamma_r.do lgamma_r.do \
-	j0.do j1.do jn.do y0.do y1.do yn.do fmin.do fmax.do fdim.do fma.do \
-	nan.do nanf.do nanl.do matherr.do \
+	expm1.do rint.do hypot.do matherr.do \
+	ldexp.do frexp.do cbrt.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
-	cacos.do casin.do catan.do ccos.do csin.do ctan.do \
-	cacosh.do casinh.do catanh.do ccosh.do csinh.do ctanh.do \
-	cexp.do clog.do clog10.do cpow.do csqrt.do cproj.do \
-	acoshf.do asinhf.do atanhf.do expm1f.do log1pf.do rintf.do remainderf.do remquof.do \
-	cbrtf.do hypotf.do copysignf.do nextafterf.do scalbnf.do scalbf.do logbf.do ilogbf.do significandf.do \
-	finitef.do isnanf.do isinff.do fpclassifyf.do isfinitef.do isnormalf.do signbitf.do \
-	erff.do erfcf.do tgammaf.do lgammaf.do gamma_rf.do lgamma_rf.do \
-	j0f.do j1f.do jnf.do y0f.do y1f.do ynf.do fminf.do fmaxf.do fdimf.do fmaf.do \
-	nanf.do acoshl.do asinhl.do atanhl.do expm1l.do log1pl.do rintl.do remainderl.do remquol.do \
-	cbrtl.do hypotl.do copysignl.do nextafterl.do scalbnl.o scalbl.do logbl.do ilogbl.do significandl.do \
-	finitel.do isnanl.do isinfl.do fpclassifyl.do isfinitel.do isnormall.do signbitl.do \
-	erfl.do erfcl.do tgammal.do lgammal.do gamma_rl.do lgamma_rl.do \
-	j0l.do j1l.do jnl.do y0l.do y1l.do ynl.do fminl.do fmaxl.do fdiml.do fmal.do \
-	nanl.do cabsf.do cargf.do crealf.do cimagf.do conjf.do \
-	cacosf.do casinf.do catanf.do ccosf.do csinf.do ctanf.do \
-	cacoshf.do casinhf.do catanhf.do ccoshf.do csinhf.do ctanhf.do \
-	cexpf.do clogf.do clog10f.do cpowf.do csqrtf.do cprojf.do \
-	cabsl.do cargl.do creall.do cimagl.do conjl.do \
-	cacosl.do casinl.do catanl.do ccosl.do csinl.do ctanl.do \
-	cacoshl.do casinhl.do catanhl.do ccoshl.do csinhl.do ctanhl.do \
-	cexpl.do clogl.do clog10l.do cpowl.do csqrtl.do cprojl.do \
-	amiga_math_init.do amiga_math_cleanup.do amiga_math_ffp.do amiga_math_ieee.do amiga_math_trans.do
+	ccos.do csin.do \
+	ccosh.do csinh.do \
+	cexp.do clog.do cpow.do csqrt.do \
+	cmod.do cneg.do \
+	acoshf.do asinhf.do atanhf.do \
+	acoshl.do asinhl.do atanhl.do
 
-NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo log1p.nbo rint.nbo remainder.nbo remquo.nbo \
-	cbrt.nbo hypot.nbo copysign.nbo nextafter.nbo scalbn.nbo scalb.nbo logb.nbo ilogb.nbo significand.nbo \
-	finite.nbo isnan.nbo isinf.nbo fpclassify.nbo isfinite.nbo isnormal.nbo signbit.nbo \
-	erf.nbo erfc.nbo tgamma.nbo lgamma.nbo gamma_r.nbo lgamma_r.nbo \
-	j0.nbo j1.nbo jn.nbo y0.nbo y1.nbo yn.nbo fmin.nbo fmax.nbo fdim.nbo fma.nbo \
-	nan.nbo nanf.nbo nanl.nbo cabs.nbo carg.nbo conj.nbo \
+NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo rint.nbo hypot.nbo matherr.nbo \
+	ldexp.nbo frexp.nbo cbrt.nbo \
+	cabs.nbo carg.nbo conj.nbo \
 	cadd.nbo csub.nbo cmul.nbo cdiv.nbo \
-	cacos.nbo casin.nbo catan.nbo ccos.nbo csin.nbo ctan.nbo \
-	cacosh.nbo casinh.nbo catanh.nbo ccosh.nbo csinh.nbo ctanh.nbo \
-	cexp.nbo clog.nbo clog10.nbo cpow.nbo csqrt.nbo cproj.nbo \
-	acoshf.nbo asinhf.nbo atanhf.nbo expm1f.nbo log1pf.nbo rintf.nbo remainderf.nbo remquof.nbo \
-	cbrtf.nbo hypotf.nbo copysignf.nbo nextafterf.nbo scalbnf.nbo scalbf.nbo logbf.nbo ilogbf.nbo significandf.nbo \
-	finitef.nbo isnanf.nbo isinff.nbo fpclassifyf.nbo isfinitef.nbo isnormalf.nbo signbitf.nbo \
-	erff.nbo erfcf.nbo tgammaf.nbo lgammaf.nbo gamma_rf.nbo lgamma_rf.nbo \
-	j0f.nbo j1f.nbo jnf.nbo y0f.nbo y1f.nbo ynf.nbo fminf.nbo fmaxf.nbo fdimf.nbo fmaf.nbo \
-	nanf.nbo acoshl.nbo asinhl.nbo atanhl.nbo expm1l.nbo log1pl.nbo rintl.nbo remainderl.nbo remquol.nbo \
-	cbrtl.nbo hypotl.nbo copysignl.nbo nextafterl.nbo scalbnl.nbo scalbl.nbo logbl.nbo ilogbl.nbo significandl.nbo \
-	finitel.nbo isnanl.nbo isinfl.nbo fpclassifyl.nbo isfinitel.nbo isnormall.nbo signbitl.nbo \
-	erfl.nbo erfcl.nbo tgammal.nbo lgammal.nbo gamma_rl.nbo lgamma_rl.nbo \
-	j0l.nbo j1l.nbo jnl.nbo y0l.nbo y1l.nbo ynl.nbo fminl.nbo fmaxl.nbo fdiml.nbo fmal.nbo \
-	nanl.nbo cabsf.nbo cargf.nbo crealf.nbo cimagf.nbo conjf.nbo \
-	cacosf.nbo casinf.nbo catanf.nbo ccosf.nbo csinf.nbo ctanf.nbo \
-	cacoshf.nbo casinhf.nbo catanhf.nbo ccoshf.nbo csinhf.nbo ctanhf.nbo \
-	cexpf.nbo clogf.nbo clog10f.nbo cpowf.nbo csqrtf.nbo cprojf.nbo \
-	cabsl.nbo cargl.nbo creall.nbo cimagl.nbo conjl.nbo \
-	cacosl.nbo casinl.nbo catanl.nbo ccosl.nbo csinl.nbo ctanl.nbo \
-	cacoshl.nbo casinhl.nbo catanhl.nbo ccoshl.nbo csinhl.nbo ctanhl.nbo \
-	cexpl.nbo clogl.nbo clog10l.nbo cpowl.nbo csqrtl.nbo cprojl.nbo \
-	amiga_math_init.nbo amiga_math_cleanup.nbo amiga_math_ffp.nbo amiga_math_ieee.nbo amiga_math_trans.nbo \
-	cadd.nbo csub.nbo cmul.nbo cdiv.nbo cmod.nbo carg.nbo cneg.nbo cscale.nbo
+	ccos.nbo csin.nbo \
+	ccosh.nbo csinh.nbo \
+	cexp.nbo clog.nbo cpow.nbo csqrt.nbo \
+	cmod.nbo cneg.nbo \
+	acoshf.nbo asinhf.nbo atanhf.nbo \
+	acoshl.nbo asinhl.nbo atanhl.nbo
 
-DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo log1p.dnbo rint.dnbo remainder.dnbo remquo.dnbo \
-	cbrt.dnbo hypot.dnbo copysign.dnbo nextafter.dnbo scalbn.dnbo scalb.dnbo logb.dnbo ilogb.dnbo significand.dnbo \
-	finite.dnbo isnan.dnbo isinf.dnbo fpclassify.dnbo isfinite.dnbo isnormal.dnbo signbit.dnbo \
-	erf.dnbo erfc.dnbo tgamma.dnbo lgamma.dnbo gamma_r.dnbo lgamma_r.dnbo \
-	j0.dnbo j1.dnbo jn.dnbo y0.dnbo y1.dnbo yn.dnbo fmin.dnbo fmax.dnbo fdim.dnbo fma.dnbo \
-	nan.dnbo nanf.dnbo nanl.dnbo cabs.dnbo carg.dnbo conj.dnbo \
+DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo rint.dnbo hypot.dnbo matherr.dnbo \
+	ldexp.dnbo frexp.dnbo cbrt.dnbo \
+	cabs.dnbo carg.dnbo conj.dnbo \
 	cadd.dnbo csub.dnbo cmul.dnbo cdiv.dnbo \
-	cacos.dnbo casin.dnbo catan.dnbo ccos.dnbo csin.dnbo ctan.dnbo \
-	cacosh.dnbo casinh.dnbo catanh.dnbo ccosh.dnbo csinh.dnbo ctanh.dnbo \
-	cexp.dnbo clog.dnbo clog10.dnbo cpow.dnbo csqrt.dnbo cproj.dnbo \
-	acoshf.dnbo asinhf.dnbo atanhf.dnbo expm1f.dnbo log1pf.dnbo rintf.dnbo remainderf.dnbo remquof.dnbo \
-	cbrtf.dnbo hypotf.dnbo copysignf.dnbo nextafterf.dnbo scalbnf.dnbo scalbf.dnbo logbf.dnbo ilogbf.dnbo significandf.dnbo \
-	finitef.dnbo isnanf.dnbo isinff.dnbo fpclassifyf.dnbo isfinitef.dnbo isnormalf.dnbo signbitf.dnbo \
-	erff.dnbo erfcf.dnbo tgammaf.dnbo lgammaf.dnbo gamma_rf.dnbo lgamma_rf.dnbo \
-	j0f.dnbo j1f.dnbo jnf.dnbo y0f.dnbo y1f.dnbo ynf.dnbo fminf.dnbo fmaxf.dnbo fdimf.dnbo fmaf.dnbo \
-	nanf.dnbo acoshl.dnbo asinhl.dnbo atanhl.dnbo expm1l.dnbo log1pl.dnbo rintl.dnbo remainderl.dnbo remquol.dnbo \
-	cbrtl.dnbo hypotl.dnbo copysignl.dnbo nextafterl.dnbo scalbnl.dnbo scalbl.dnbo logbl.dnbo ilogbl.dnbo significandl.dnbo \
-	finitel.dnbo isnanl.dnbo isinfl.dnbo fpclassifyl.dnbo isfinitel.dnbo isnormall.dnbo signbitl.dnbo \
-	erfl.dnbo erfcl.dnbo tgammal.dnbo lgammal.dnbo gamma_rl.dnbo lgamma_rl.dnbo \
-	j0l.dnbo j1l.dnbo jnl.dnbo y0l.dnbo y1l.dnbo ynl.dnbo fminl.dnbo fmaxl.dnbo fdiml.dnbo fmal.dnbo \
-	nanl.dnbo cabsf.dnbo cargf.dnbo crealf.dnbo cimagf.dnbo conjf.dnbo \
-	cacosf.dnbo casinf.dnbo catanf.dnbo ccosf.dnbo csinf.dnbo ctanf.dnbo \
-	cacoshf.dnbo casinhf.dnbo catanhf.dnbo ccoshf.dnbo csinhf.dnbo ctanhf.dnbo \
-	cexpf.dnbo clogf.dnbo clog10f.dnbo cpowf.dnbo csqrtf.dnbo cprojf.dnbo \
-	cabsl.dnbo cargl.dnbo creall.dnbo cimagl.dnbo conjl.dnbo \
-	cacosl.dnbo casinl.dnbo catanl.dnbo ccosl.dnbo csinl.dnbo ctanl.dnbo \
-	cacoshl.dnbo casinhl.dnbo catanhl.dnbo ccoshl.dnbo csinhl.dnbo ctanhl.dnbo \
-	cexpl.dnbo clogl.dnbo clog10l.dnbo cpowl.dnbo csqrtl.dnbo cprojl.dnbo \
-	amiga_math_init.dnbo amiga_math_cleanup.dnbo amiga_math_ffp.dnbo amiga_math_ieee.dnbo amiga_math_trans.dnbo
+	ccos.dnbo csin.dnbo \
+	ccosh.dnbo csinh.dnbo \
+	cexp.dnbo clog.dnbo cpow.dnbo csqrt.dnbo \
+	cmod.dnbo cneg.dnbo \
+	acoshf.dnbo asinhf.dnbo atanhf.dnbo \
+	acoshl.dnbo asinhl.dnbo atanhl.dnbo
 
 DEFS = DEF __USE_SYSBASE=1
 
@@ -195,7 +96,7 @@ IDIRS = IDIR=include IDIR=include/internal IDIR=include: IDIR=netinclude:
 
 SCOPTIONS = NOVER NOICONS CPU=ANY PARMS=BOTH NOSTKCHK IDLEN=100 \
 	    AFP MCCONS STREQ UTILLIB MATH=IEEE OPTTIME OPTSCHED \
-	    $(DEFS) $(IDIRS) IGNORE=74,92,101,104,306,317
+	    $(DEFS) $(IDIRS) IGNORE=74,92,101,104,306,315,316,317
 
 OFLAGS = OPTIMIZE
 DFLAGS = NOOPTIMIZE DEBUG=SF
@@ -386,6 +287,151 @@ $(DNBOBJS)
 	$(CC) $(CFLAGS_NB) $(OFLAGS) $*.c OBJNAME=$*.nbo
 .c.dnbo:
 	$(CC) $(CFLAGS_NB) $(DFLAGS) $*.c OBJNAME=$*.dnbo
+
+# Explicit targets for C++ complex functions
+cabs.o: cabs.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cabs.cpp
+carg.o: carg.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) carg.cpp
+conj.o: conj.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) conj.cpp
+cadd.o: cadd.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cadd.cpp
+csub.o: csub.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) csub.cpp
+cmul.o: cmul.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cmul.cpp
+cdiv.o: cdiv.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cdiv.cpp
+ccos.o: ccos.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) ccos.cpp
+csin.o: csin.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) csin.cpp
+ccosh.o: ccosh.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) ccosh.cpp
+csinh.o: csinh.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) csinh.cpp
+cexp.o: cexp.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cexp.cpp
+clog.o: clog.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) clog.cpp
+cpow.o: cpow.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cpow.cpp
+csqrt.o: csqrt.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) csqrt.cpp
+cmod.o: cmod.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cmod.cpp
+cneg.o: cneg.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cneg.cpp
+
+# Debug targets for C++ complex functions
+cabs.do: cabs.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cabs.cpp OBJNAME=cabs.do
+carg.do: carg.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) carg.cpp OBJNAME=carg.do
+conj.do: conj.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) conj.cpp OBJNAME=conj.do
+cadd.do: cadd.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cadd.cpp OBJNAME=cadd.do
+csub.do: csub.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) csub.cpp OBJNAME=csub.do
+cmul.do: cmul.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cmul.cpp OBJNAME=cmul.do
+cdiv.do: cdiv.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cdiv.cpp OBJNAME=cdiv.do
+ccos.do: ccos.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) ccos.cpp OBJNAME=ccos.do
+csin.do: csin.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) csin.cpp OBJNAME=csin.do
+ccosh.do: ccosh.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) ccosh.cpp OBJNAME=ccosh.do
+csinh.do: csinh.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) csinh.cpp OBJNAME=csinh.do
+cexp.do: cexp.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cexp.cpp OBJNAME=cexp.do
+clog.do: clog.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) clog.cpp OBJNAME=clog.do
+cpow.do: cpow.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cpow.cpp OBJNAME=cpow.do
+csqrt.do: csqrt.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) csqrt.cpp OBJNAME=csqrt.do
+cmod.do: cmod.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cmod.cpp OBJNAME=cmod.do
+cneg.do: cneg.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cneg.cpp OBJNAME=cneg.do
+
+# NBO targets for C++ complex functions
+cabs.nbo: cabs.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cabs.cpp OBJNAME=cabs.nbo
+carg.nbo: carg.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) carg.cpp OBJNAME=carg.nbo
+conj.nbo: conj.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) conj.cpp OBJNAME=conj.nbo
+cadd.nbo: cadd.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cadd.cpp OBJNAME=cadd.nbo
+csub.nbo: csub.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) csub.cpp OBJNAME=csub.nbo
+cmul.nbo: cmul.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cmul.cpp OBJNAME=cmul.nbo
+cdiv.nbo: cdiv.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cdiv.cpp OBJNAME=cdiv.nbo
+ccos.nbo: ccos.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) ccos.cpp OBJNAME=ccos.nbo
+csin.nbo: csin.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) csin.cpp OBJNAME=csin.nbo
+ccosh.nbo: ccosh.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) ccosh.cpp OBJNAME=ccosh.nbo
+csinh.nbo: csinh.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) csinh.cpp OBJNAME=csinh.nbo
+cexp.nbo: cexp.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cexp.cpp OBJNAME=cexp.nbo
+clog.nbo: clog.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) clog.cpp OBJNAME=clog.nbo
+cpow.nbo: cpow.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cpow.cpp OBJNAME=cpow.nbo
+csqrt.nbo: csqrt.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) csqrt.cpp OBJNAME=csqrt.nbo
+cmod.nbo: cmod.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cmod.cpp OBJNAME=cmod.nbo
+cneg.nbo: cneg.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cneg.cpp OBJNAME=cneg.nbo
+
+# DNBO targets for C++ complex functions
+cabs.dnbo: cabs.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cabs.cpp OBJNAME=cabs.dnbo
+carg.dnbo: carg.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) carg.cpp OBJNAME=carg.dnbo
+conj.dnbo: conj.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) conj.cpp OBJNAME=conj.dnbo
+cadd.dnbo: cadd.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cadd.cpp OBJNAME=cadd.dnbo
+csub.dnbo: csub.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) csub.cpp OBJNAME=csub.dnbo
+cmul.dnbo: cmul.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cmul.cpp OBJNAME=cmul.dnbo
+cdiv.dnbo: cdiv.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cdiv.cpp OBJNAME=cdiv.dnbo
+ccos.dnbo: ccos.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) ccos.cpp OBJNAME=ccos.dnbo
+csin.dnbo: csin.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) csin.cpp OBJNAME=csin.dnbo
+ccosh.dnbo: ccosh.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) ccosh.cpp OBJNAME=ccosh.dnbo
+csinh.dnbo: csinh.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) csinh.cpp OBJNAME=csinh.dnbo
+cexp.dnbo: cexp.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cexp.cpp OBJNAME=cexp.dnbo
+clog.dnbo: clog.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) clog.cpp OBJNAME=clog.dnbo
+cpow.dnbo: cpow.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cpow.cpp OBJNAME=cpow.dnbo
+csqrt.dnbo: csqrt.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) csqrt.cpp OBJNAME=csqrt.dnbo
+cmod.dnbo: cmod.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cmod.cpp OBJNAME=cmod.dnbo
+cneg.dnbo: cneg.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cneg.cpp OBJNAME=cneg.dnbo
+
 
 # Installation
 install: all

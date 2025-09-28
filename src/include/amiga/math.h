@@ -12,12 +12,10 @@
 #define _AMIGA_MATH_H
 
 /* Include AmigaOS math library headers */
-#include <libraries/mathffp.h>
-#include <libraries/mathieeesingbas.h>
-#include <libraries/mathieeedoubbas.h>
-#include <libraries/mathieeesingtrans.h>
-#include <libraries/mathieeedoubtrans.h>
-#include <libraries/mathtrans.h>
+/* #include <libraries/mathffp.h> */
+/* #include <libraries/mathieeesp.h> */
+/* #include <libraries/mathieeedp.h> */
+#include <libraries/mathlibrary.h>
 
 #include <proto/mathffp.h>
 #include <proto/mathieeesingbas.h>
@@ -25,6 +23,9 @@
 #include <proto/mathieeesingtrans.h>
 #include <proto/mathieeedoubtrans.h>
 #include <proto/mathtrans.h>
+
+/* Include complex number types */
+#include <complex.h>
 
 /* Math library initialization/cleanup */
 int amiga_math_init(void);
@@ -115,14 +116,18 @@ double amiga_y1(double x);
 double amiga_yn(int n, double x);
 
 /* Complex number functions using AmigaOS libraries */
-double amiga_cabs(double complex z);
-double amiga_carg(double complex z);
-double amiga_creal(double complex z);
-double amiga_cimag(double complex z);
-double complex amiga_conj(double complex z);
-double complex amiga_cexp(double complex z);
-double complex amiga_clog(double complex z);
-double complex amiga_cpow(double complex z, double complex c);
-double complex amiga_csqrt(double complex z);
+/* Note: These functions are commented out as they use unsupported complex syntax */
+/* Users should use the standard complex functions from complex.h instead */
+/*
+double amiga_cabs(complex_double z);
+double amiga_carg(complex_double z);
+double amiga_creal(complex_double z);
+double amiga_cimag(complex_double z);
+complex_double amiga_conj(complex_double z);
+complex_double amiga_cexp(complex_double z);
+complex_double amiga_clog(complex_double z);
+complex_double amiga_cpow(complex_double z, complex_double c);
+complex_double amiga_csqrt(complex_double z);
+*/
 
 #endif /* _AMIGA_MATH_H */
