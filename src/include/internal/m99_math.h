@@ -1,5 +1,5 @@
 /*
- * m99 Math Library Internal Header
+ * ma.lib Math Library Internal Header
  * 
  * This file gets included with all of the floating point math
  * library routines when they are compiled. Note that
