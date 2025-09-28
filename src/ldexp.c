@@ -1,11 +1,13 @@
 /*
- * m99 Math Library - ldexp function
+ * ma.lib Math Library - ldexp function
  * 
- * C99/POSIX ldexp function for m99.lib
+ * C99/POSIX ldexp function for ma.lib
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
+#ifndef _WITH_SCLIB
 
 #include <stdio.h>
 #include <math.h>
@@ -54,3 +56,6 @@ double ldexp(double value, int exp)
         return number.dval;
     }
 }
+
+#endif /* _WITH_SCLIB */
+

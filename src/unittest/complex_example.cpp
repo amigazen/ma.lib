@@ -1,8 +1,8 @@
 /*
- * Complex Number Usage Example for m99.lib
+ * Complex Number Usage Example for ma.lib
  * 
  * This example demonstrates how to use the C99-compatible complex number
- * API provided by m99.lib, which wraps SAS/C's C++ complex class.
+ * API provided by ma.lib, which wraps SAS/C's C++ complex class.
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause

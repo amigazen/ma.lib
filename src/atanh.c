@@ -1,7 +1,7 @@
 /*
- * m99 Math Library - atanh function
+ * ma.lib Math Library - atanh function
  * 
- * C99/POSIX atanh function for m99.lib
+ * C99/POSIX atanh function for ma.lib
  * Simple implementation using the standard formula:
  * atanh(x) = 0.5 * log((1+x)/(1-x))
  * 

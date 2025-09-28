@@ -1,11 +1,13 @@
 /*
- * m99 Math Library - frexp function
+ * ma.lib Math Library - frexp function
  * 
- * C99/POSIX frexp function for m99.lib
+ * C99/POSIX frexp function for ma.lib
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
+#ifndef _WITH_SCLIB
 
 #include <stdio.h>
 #include <math.h>
@@ -57,3 +59,6 @@ double frexp(double value, int *eptr)
         return number.dval;
     }
 }
+
+#endif /* _WITH_SCLIB */
+

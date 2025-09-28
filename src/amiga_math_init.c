@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  * 
  * This file handles initialization and cleanup of AmigaOS math libraries
- * for optimal performance in m99.lib.
+ * for optimal performance in ma.lib.
  */
 
 #ifndef _AMIGA_MATH_INIT_C

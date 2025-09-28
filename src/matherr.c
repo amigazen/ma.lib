@@ -1,7 +1,7 @@
 /*
- * m99 Math Library Error Handler
+ * ma.lib Math Library Error Handler
  * 
- * Provides error handling for m99.lib math functions.
+ * Provides error handling for ma.lib math functions.
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause

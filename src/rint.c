@@ -1,7 +1,7 @@
 /*
- * m99 Math Library - rint function
+ * ma.lib Math Library - rint function
  * 
- * C99/POSIX rint function for m99.lib
+ * C99/POSIX rint function for ma.lib
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause

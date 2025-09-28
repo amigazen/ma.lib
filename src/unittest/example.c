@@ -1,11 +1,11 @@
 /*
- * example.c - Example program demonstrating m99.lib functions
+ * example.c - Example program demonstrating ma.lib functions
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
  * 
  * This program demonstrates the use of C99 and POSIX.1 math functions
- * provided by m99.lib.
+ * provided by ma.lib.
  */
 
 #include <stdio.h>

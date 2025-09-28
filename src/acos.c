@@ -1,7 +1,7 @@
 /*
- * m99 Math Library - acos function
+ * ma.lib Math Library - acos function
  * 
- * C99/POSIX acos function for m99.lib
+ * C99/POSIX acos function for ma.lib
  * Copyright Abandoned, 1987, Fred Fish - Public Domain
  * 
  * Copyright (c) 2025 amigazen project
