@@ -2,48 +2,31 @@
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
  * 
- *	Function	ComMod
- *	Programmer	N.d'Alterio
- *	Date		
- *
- *  Synopsis:	This function calculate the modulus of a complex number and
- *  		returns the result.
- *
- *  Arguments:	COMPLEX first	-	complex number
- *
- *  Returns:	double		-	the modulus
- *
- *  Variables:	pow()		-	standard power function
- *          	sqrt()		-	standard square root function
- * 
- *  Functions:
- *
- *  $VER: ComMod.c 1.1 (10.07.95) $
- *  $Log: ComMod.c $
- * Revision 1.1  1995/07/10  18:12:04  daltern
- * Initial revision
- *
- *
+ *  Function:    cmod
+ *  Synopsis:    Calculate the modulus (absolute value) of a complex number
+ *  Arguments:   z - complex number
+ *  Returns:     double - the modulus
+ *  Description: cmod(z) = sqrt(real(z)^2 + imag(z)^2)
+ *               This is equivalent to cabs(z) but provided for completeness
  */
 
 #include <math.h>
 #include "include/internal/complex_internal.h"
 
-double ComMod(complex_double first)
+double cmod(double_complex z)
 {
     double mod;
 
     /*
-     *  Calculate the modulus.
+     *  Calculate the modulus using the C99 complex number structure
      */
-    mod = sqrt(pow(first.re, 2.0) + pow(first.im, 2.0));
+    mod = sqrt(z.re * z.re + z.im * z.im);
 
     /*
-     *  Return the answer.
+     *  Return the answer
      */
     return mod;
-
-}   /* end function ComMod */
+}
 
 /*========================================================================*
                                    END

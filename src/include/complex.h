@@ -95,6 +95,11 @@ double_complex clog_c99(double_complex z);
 double_complex cpow(double_complex z, double_complex w);
 double_complex csqrt(double_complex z);
 
+/* Utility Functions */
+double cmod(double_complex z);
+double_complex cneg(double_complex z);
+double_complex cscale(double_complex z, double scale);
+
 /* Projection and Classification */
 double_complex cproj(double_complex z);
 

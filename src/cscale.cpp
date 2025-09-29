@@ -2,38 +2,28 @@
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
  * 
- *	Function	ComScale
- *	Programmer	N.d'Alterio (adapted)
- *	Date		31/10/94
- *
- *  Synopsis:	This function scales a complex number by a real factor.
- *
- *  Arguments:	COMPLEX z	-	complex number to scale
- *              double scale	-	scaling factor
- *
- *  Returns:	COMPLEX		-	scaled complex number
- *
- *  Variables:	result		-	the scaled complex number
- *      	z		-	input complex number
- *              scale		-	scaling factor
- *
+ *  Function:    cscale
+ *  Synopsis:    Scale a complex number by a real factor
+ *  Arguments:   z - complex number to scale
+ *               scale - scaling factor
+ *  Returns:     double_complex - scaled complex number
+ *  Description: cscale(z, scale) = (scale * real(z), scale * imag(z))
  */
 
 #include "include/internal/complex_internal.h"
 
-COMPLEX ComScale(COMPLEX z, double scale)
+double_complex cscale(double_complex z, double scale)
 {
-    COMPLEX result;
+    double_complex result;
 
     /*
-     *  Scale both real and imaginary parts.
+     *  Scale both real and imaginary parts
      */
-    result.Real = z.Real * scale;
-    result.Imag = z.Imag * scale;
+    result.re = z.re * scale;
+    result.im = z.im * scale;
 
     /*
-     *  Return the result.
+     *  Return the result
      */
     return result;
-
-}   /* end function ComScale */
+}

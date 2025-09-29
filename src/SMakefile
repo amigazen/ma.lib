@@ -30,7 +30,7 @@ COMPLEX_OBJS = \
 	ccos.o csin.o \
 	ccosh.o csinh.o \
 	cexp.o clog.o cpow.o csqrt.o \
-	cmod.o cneg.o
+	cmod.o cneg.o cscale.o
 
 # Float variants (f suffix)
 FLOAT_OBJS = \
@@ -64,7 +64,7 @@ DOBJS = acosh.do asinh.do atanh.do \
 	ccos.do csin.do \
 	ccosh.do csinh.do \
 	cexp.do clog.do cpow.do csqrt.do \
-	cmod.do cneg.do \
+	cmod.do cneg.do cscale.do \
 	acoshf.do asinhf.do atanhf.do \
 	acoshl.do asinhl.do atanhl.do
 
@@ -75,7 +75,7 @@ NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo rint.nbo hypot.nbo matherr.nbo 
 	ccos.nbo csin.nbo \
 	ccosh.nbo csinh.nbo \
 	cexp.nbo clog.nbo cpow.nbo csqrt.nbo \
-	cmod.nbo cneg.nbo \
+	cmod.nbo cneg.nbo cscale.nbo \
 	acoshf.nbo asinhf.nbo atanhf.nbo \
 	acoshl.nbo asinhl.nbo atanhl.nbo
 
@@ -86,7 +86,7 @@ DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo rint.dnbo hypot.dnbo mathe
 	ccos.dnbo csin.dnbo \
 	ccosh.dnbo csinh.dnbo \
 	cexp.dnbo clog.dnbo cpow.dnbo csqrt.dnbo \
-	cmod.dnbo cneg.dnbo \
+	cmod.dnbo cneg.dnbo cscale.dnbo \
 	acoshf.dnbo asinhf.dnbo atanhf.dnbo \
 	acoshl.dnbo asinhl.dnbo atanhl.dnbo
 
@@ -323,6 +323,8 @@ cmod.o: cmod.cpp
 	$(CXX) $(CFLAGS) $(OFLAGS) cmod.cpp
 cneg.o: cneg.cpp
 	$(CXX) $(CFLAGS) $(OFLAGS) cneg.cpp
+cscale.o: cscale.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cscale.cpp
 
 # Debug targets for C++ complex functions
 cabs.do: cabs.cpp
@@ -359,6 +361,8 @@ cmod.do: cmod.cpp
 	$(CXX) $(CFLAGS) $(DFLAGS) cmod.cpp OBJNAME=cmod.do
 cneg.do: cneg.cpp
 	$(CXX) $(CFLAGS) $(DFLAGS) cneg.cpp OBJNAME=cneg.do
+cscale.do: cscale.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cscale.cpp OBJNAME=cscale.do
 
 # NBO targets for C++ complex functions
 cabs.nbo: cabs.cpp
@@ -395,6 +399,8 @@ cmod.nbo: cmod.cpp
 	$(CXX) $(CFLAGS_NB) $(OFLAGS) cmod.cpp OBJNAME=cmod.nbo
 cneg.nbo: cneg.cpp
 	$(CXX) $(CFLAGS_NB) $(OFLAGS) cneg.cpp OBJNAME=cneg.nbo
+cscale.nbo: cscale.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cscale.cpp OBJNAME=cscale.nbo
 
 # DNBO targets for C++ complex functions
 cabs.dnbo: cabs.cpp
@@ -431,6 +437,8 @@ cmod.dnbo: cmod.cpp
 	$(CXX) $(CFLAGS_NB) $(DFLAGS) cmod.cpp OBJNAME=cmod.dnbo
 cneg.dnbo: cneg.cpp
 	$(CXX) $(CFLAGS_NB) $(DFLAGS) cneg.cpp OBJNAME=cneg.dnbo
+cscale.dnbo: cscale.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cscale.cpp OBJNAME=cscale.dnbo
 
 
 # Installation
