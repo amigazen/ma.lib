@@ -22,7 +22,8 @@ MATH_OBJS = \
 	hypot.o \
 	matherr.o \
 	ldexp.o frexp.o cbrt.o \
-	finite.o isnan.o isinf.o copysign.o
+	finite.o isnan.o isinf.o copysign.o \
+	nextafter.o scalbn.o logb.o ilogb.o
 
 # Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
@@ -40,13 +41,15 @@ COMPLEX_OBJS = \
 FLOAT_OBJS = \
 	acoshf.o asinhf.o atanhf.o \
 	log1pf.o \
-	finitef.o isnanf.o isinff.o copysignf.o
+	finitef.o isnanf.o isinff.o copysignf.o \
+	nextafterf.o scalbnf.o logbf.o ilogbf.o
 
 # Long double variants (l suffix)  
 LONGDOUBLE_OBJS = \
 	acoshl.o asinhl.o atanhl.o \
 	log1pl.o \
-	finitel.o isnanl.o isinfl.o copysignl.o
+	finitel.o isnanl.o isinfl.o copysignl.o \
+	nextafterl.o scalbnl.o logbl.o ilogbl.o
 
 # Complex float variants (not implemented yet)
 COMPLEXF_OBJS = 
@@ -68,6 +71,7 @@ DOBJS = acosh.do asinh.do atanh.do \
 	expm1.do log1p.do rint.do hypot.do matherr.do \
 	ldexp.do frexp.do cbrt.do \
 	finite.do isnan.do isinf.do copysign.do \
+	nextafter.do scalbn.do logb.do ilogb.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
 	ccos.do csin.do ctan.do \
@@ -79,8 +83,10 @@ DOBJS = acosh.do asinh.do atanh.do \
 	creal.do cimag.do \
 	acoshf.do asinhf.do atanhf.do log1pf.do \
 	finitef.do isnanf.do isinff.do copysignf.do \
+	nextafterf.do scalbnf.do logbf.do ilogbf.do \
 	acoshl.do asinhl.do atanhl.do log1pl.do \
-	finitel.do isnanl.do isinfl.do copysignl.do
+	finitel.do isnanl.do isinfl.do copysignl.do \
+	nextafterl.do scalbnl.do logbl.do ilogbl.do
 
 NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo log1p.nbo rint.nbo hypot.nbo matherr.nbo \
 	ldexp.nbo frexp.nbo cbrt.nbo \
@@ -688,6 +694,117 @@ copysignl.nbo: copysignl.c
 	$(CC) $(CFLAGS_NB) $(OFLAGS) copysignl.c OBJNAME=copysignl.nbo
 copysignl.dnbo: copysignl.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) copysignl.c OBJNAME=copysignl.dnbo
+
+# Next batch of math function targets
+nextafter.o: nextafter.c
+	$(CC) $(CFLAGS) $(OFLAGS) nextafter.c
+nextafter.do: nextafter.c
+	$(CC) $(CFLAGS) $(DFLAGS) nextafter.c OBJNAME=nextafter.do
+nextafter.nbo: nextafter.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) nextafter.c OBJNAME=nextafter.nbo
+nextafter.dnbo: nextafter.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) nextafter.c OBJNAME=nextafter.dnbo
+
+scalbn.o: scalbn.c
+	$(CC) $(CFLAGS) $(OFLAGS) scalbn.c
+scalbn.do: scalbn.c
+	$(CC) $(CFLAGS) $(DFLAGS) scalbn.c OBJNAME=scalbn.do
+scalbn.nbo: scalbn.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) scalbn.c OBJNAME=scalbn.nbo
+scalbn.dnbo: scalbn.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) scalbn.c OBJNAME=scalbn.dnbo
+
+logb.o: logb.c
+	$(CC) $(CFLAGS) $(OFLAGS) logb.c
+logb.do: logb.c
+	$(CC) $(CFLAGS) $(DFLAGS) logb.c OBJNAME=logb.do
+logb.nbo: logb.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) logb.c OBJNAME=logb.nbo
+logb.dnbo: logb.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) logb.c OBJNAME=logb.dnbo
+
+ilogb.o: ilogb.c
+	$(CC) $(CFLAGS) $(OFLAGS) ilogb.c
+ilogb.do: ilogb.c
+	$(CC) $(CFLAGS) $(DFLAGS) ilogb.c OBJNAME=ilogb.do
+ilogb.nbo: ilogb.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) ilogb.c OBJNAME=ilogb.nbo
+ilogb.dnbo: ilogb.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) ilogb.c OBJNAME=ilogb.dnbo
+
+# Float variants
+nextafterf.o: nextafterf.c
+	$(CC) $(CFLAGS) $(OFLAGS) nextafterf.c
+nextafterf.do: nextafterf.c
+	$(CC) $(CFLAGS) $(DFLAGS) nextafterf.c OBJNAME=nextafterf.do
+nextafterf.nbo: nextafterf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) nextafterf.c OBJNAME=nextafterf.nbo
+nextafterf.dnbo: nextafterf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) nextafterf.c OBJNAME=nextafterf.dnbo
+
+scalbnf.o: scalbnf.c
+	$(CC) $(CFLAGS) $(OFLAGS) scalbnf.c
+scalbnf.do: scalbnf.c
+	$(CC) $(CFLAGS) $(DFLAGS) scalbnf.c OBJNAME=scalbnf.do
+scalbnf.nbo: scalbnf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) scalbnf.c OBJNAME=scalbnf.nbo
+scalbnf.dnbo: scalbnf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) scalbnf.c OBJNAME=scalbnf.dnbo
+
+logbf.o: logbf.c
+	$(CC) $(CFLAGS) $(OFLAGS) logbf.c
+logbf.do: logbf.c
+	$(CC) $(CFLAGS) $(DFLAGS) logbf.c OBJNAME=logbf.do
+logbf.nbo: logbf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) logbf.c OBJNAME=logbf.nbo
+logbf.dnbo: logbf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) logbf.c OBJNAME=logbf.dnbo
+
+ilogbf.o: ilogbf.c
+	$(CC) $(CFLAGS) $(OFLAGS) ilogbf.c
+ilogbf.do: ilogbf.c
+	$(CC) $(CFLAGS) $(DFLAGS) ilogbf.c OBJNAME=ilogbf.do
+ilogbf.nbo: ilogbf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) ilogbf.c OBJNAME=ilogbf.nbo
+ilogbf.dnbo: ilogbf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) ilogbf.c OBJNAME=ilogbf.dnbo
+
+# Long double variants
+nextafterl.o: nextafterl.c
+	$(CC) $(CFLAGS) $(OFLAGS) nextafterl.c
+nextafterl.do: nextafterl.c
+	$(CC) $(CFLAGS) $(DFLAGS) nextafterl.c OBJNAME=nextafterl.do
+nextafterl.nbo: nextafterl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) nextafterl.c OBJNAME=nextafterl.nbo
+nextafterl.dnbo: nextafterl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) nextafterl.c OBJNAME=nextafterl.dnbo
+
+scalbnl.o: scalbnl.c
+	$(CC) $(CFLAGS) $(OFLAGS) scalbnl.c
+scalbnl.do: scalbnl.c
+	$(CC) $(CFLAGS) $(DFLAGS) scalbnl.c OBJNAME=scalbnl.do
+scalbnl.nbo: scalbnl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) scalbnl.c OBJNAME=scalbnl.nbo
+scalbnl.dnbo: scalbnl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) scalbnl.c OBJNAME=scalbnl.dnbo
+
+logbl.o: logbl.c
+	$(CC) $(CFLAGS) $(OFLAGS) logbl.c
+logbl.do: logbl.c
+	$(CC) $(CFLAGS) $(DFLAGS) logbl.c OBJNAME=logbl.do
+logbl.nbo: logbl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) logbl.c OBJNAME=logbl.nbo
+logbl.dnbo: logbl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) logbl.c OBJNAME=logbl.dnbo
+
+ilogbl.o: ilogbl.c
+	$(CC) $(CFLAGS) $(OFLAGS) ilogbl.c
+ilogbl.do: ilogbl.c
+	$(CC) $(CFLAGS) $(DFLAGS) ilogbl.c OBJNAME=ilogbl.do
+ilogbl.nbo: ilogbl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) ilogbl.c OBJNAME=ilogbl.nbo
+ilogbl.dnbo: ilogbl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) ilogbl.c OBJNAME=ilogbl.dnbo
 
 
 # Installation
