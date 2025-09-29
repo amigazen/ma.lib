@@ -26,10 +26,12 @@ MATH_OBJS = \
 	nextafter.o scalbn.o logb.o ilogb.o \
 	fabs.o fmod.o modf.o remainder.o ceil.o floor.o \
 	erf.o erfc.o gamma.o lgamma.o gamma_r.o lgamma_r.o \
-	j0.o j1.o sin.o cos.o tan.o atan.o atan2.o \
+	j0.o j1.o jn.o y0.o y1.o yn.o sin.o cos.o tan.o atan.o atan2.o \
 	log.o log10.o sqrt.o pow.o exp.o \
 	cosh.o sinh.o tanh.o asin.o acos.o \
-	signgam.o lib_version.o
+	signgam.o lib_version.o \
+	significand.o scalb.o tgamma.o \
+	fmin.o fmax.o fdim.o fma.o nan.o fpclassify.o remquo.o
 
 # Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
@@ -80,9 +82,11 @@ DOBJS = acosh.do asinh.do atanh.do \
 	nextafter.do scalbn.do logb.do ilogb.do \
 	fabs.do fmod.do modf.do remainder.do ceil.do floor.do \
 	erf.do erfc.do gamma.do lgamma.do gamma_r.do lgamma_r.do \
-	j0.do j1.do sin.do cos.do tan.do atan.do atan2.do \
+	j0.do j1.do jn.do y0.do y1.do yn.do sin.do cos.do tan.do atan.do atan2.do \
 	log.do log10.do sqrt.do pow.do exp.do \
 	cosh.do sinh.do tanh.do asin.do acos.do signgam.do lib_version.do \
+	significand.do scalb.do tgamma.do \
+	fmin.do fmax.do fdim.do fma.do nan.do fpclassify.do remquo.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
 	ccos.do csin.do ctan.do \
@@ -1118,6 +1122,132 @@ j1.nbo: j1.c
 	$(CC) $(CFLAGS_NB) $(OFLAGS) j1.c OBJNAME=j1.nbo
 j1.dnbo: j1.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) j1.c OBJNAME=j1.dnbo
+
+jn.o: jn.c
+	$(CC) $(CFLAGS) $(OFLAGS) jn.c
+jn.do: jn.c
+	$(CC) $(CFLAGS) $(DFLAGS) jn.c OBJNAME=jn.do
+jn.nbo: jn.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) jn.c OBJNAME=jn.nbo
+jn.dnbo: jn.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) jn.c OBJNAME=jn.dnbo
+
+y0.o: y0.c
+	$(CC) $(CFLAGS) $(OFLAGS) y0.c
+y0.do: y0.c
+	$(CC) $(CFLAGS) $(DFLAGS) y0.c OBJNAME=y0.do
+y0.nbo: y0.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) y0.c OBJNAME=y0.nbo
+y0.dnbo: y0.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) y0.c OBJNAME=y0.dnbo
+
+y1.o: y1.c
+	$(CC) $(CFLAGS) $(OFLAGS) y1.c
+y1.do: y1.c
+	$(CC) $(CFLAGS) $(DFLAGS) y1.c OBJNAME=y1.do
+y1.nbo: y1.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) y1.c OBJNAME=y1.nbo
+y1.dnbo: y1.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) y1.c OBJNAME=y1.dnbo
+
+yn.o: yn.c
+	$(CC) $(CFLAGS) $(OFLAGS) yn.c
+yn.do: yn.c
+	$(CC) $(CFLAGS) $(DFLAGS) yn.c OBJNAME=yn.do
+yn.nbo: yn.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) yn.c OBJNAME=yn.nbo
+yn.dnbo: yn.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) yn.c OBJNAME=yn.dnbo
+
+significand.o: significand.c
+	$(CC) $(CFLAGS) $(OFLAGS) significand.c
+significand.do: significand.c
+	$(CC) $(CFLAGS) $(DFLAGS) significand.c OBJNAME=significand.do
+significand.nbo: significand.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) significand.c OBJNAME=significand.nbo
+significand.dnbo: significand.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) significand.c OBJNAME=significand.dnbo
+
+scalb.o: scalb.c
+	$(CC) $(CFLAGS) $(OFLAGS) scalb.c
+scalb.do: scalb.c
+	$(CC) $(CFLAGS) $(DFLAGS) scalb.c OBJNAME=scalb.do
+scalb.nbo: scalb.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) scalb.c OBJNAME=scalb.nbo
+scalb.dnbo: scalb.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) scalb.c OBJNAME=scalb.dnbo
+
+tgamma.o: tgamma.c
+	$(CC) $(CFLAGS) $(OFLAGS) tgamma.c
+tgamma.do: tgamma.c
+	$(CC) $(CFLAGS) $(DFLAGS) tgamma.c OBJNAME=tgamma.do
+tgamma.nbo: tgamma.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) tgamma.c OBJNAME=tgamma.nbo
+tgamma.dnbo: tgamma.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) tgamma.c OBJNAME=tgamma.dnbo
+
+fmin.o: fmin.c
+	$(CC) $(CFLAGS) $(OFLAGS) fmin.c
+fmin.do: fmin.c
+	$(CC) $(CFLAGS) $(DFLAGS) fmin.c OBJNAME=fmin.do
+fmin.nbo: fmin.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fmin.c OBJNAME=fmin.nbo
+fmin.dnbo: fmin.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fmin.c OBJNAME=fmin.dnbo
+
+fmax.o: fmax.c
+	$(CC) $(CFLAGS) $(OFLAGS) fmax.c
+fmax.do: fmax.c
+	$(CC) $(CFLAGS) $(DFLAGS) fmax.c OBJNAME=fmax.do
+fmax.nbo: fmax.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fmax.c OBJNAME=fmax.nbo
+fmax.dnbo: fmax.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fmax.c OBJNAME=fmax.dnbo
+
+fdim.o: fdim.c
+	$(CC) $(CFLAGS) $(OFLAGS) fdim.c
+fdim.do: fdim.c
+	$(CC) $(CFLAGS) $(DFLAGS) fdim.c OBJNAME=fdim.do
+fdim.nbo: fdim.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fdim.c OBJNAME=fdim.nbo
+fdim.dnbo: fdim.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fdim.c OBJNAME=fdim.dnbo
+
+fma.o: fma.c
+	$(CC) $(CFLAGS) $(OFLAGS) fma.c
+fma.do: fma.c
+	$(CC) $(CFLAGS) $(DFLAGS) fma.c OBJNAME=fma.do
+fma.nbo: fma.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fma.c OBJNAME=fma.nbo
+fma.dnbo: fma.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fma.c OBJNAME=fma.dnbo
+
+nan.o: nan.c
+	$(CC) $(CFLAGS) $(OFLAGS) nan.c
+nan.do: nan.c
+	$(CC) $(CFLAGS) $(DFLAGS) nan.c OBJNAME=nan.do
+nan.nbo: nan.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) nan.c OBJNAME=nan.nbo
+nan.dnbo: nan.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) nan.c OBJNAME=nan.dnbo
+
+fpclassify.o: fpclassify.c
+	$(CC) $(CFLAGS) $(OFLAGS) fpclassify.c
+fpclassify.do: fpclassify.c
+	$(CC) $(CFLAGS) $(DFLAGS) fpclassify.c OBJNAME=fpclassify.do
+fpclassify.nbo: fpclassify.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fpclassify.c OBJNAME=fpclassify.nbo
+fpclassify.dnbo: fpclassify.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fpclassify.c OBJNAME=fpclassify.dnbo
+
+remquo.o: remquo.c
+	$(CC) $(CFLAGS) $(OFLAGS) remquo.c
+remquo.do: remquo.c
+	$(CC) $(CFLAGS) $(DFLAGS) remquo.c OBJNAME=remquo.do
+remquo.nbo: remquo.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) remquo.c OBJNAME=remquo.nbo
+remquo.dnbo: remquo.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) remquo.c OBJNAME=remquo.dnbo
 
 
 # Installation

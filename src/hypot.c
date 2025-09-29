@@ -11,7 +11,6 @@
 #include <math.h>
 #include <errno.h>
 #include <float.h>
-#include "include/internal/m99_math.h"
 
 #include <amiga/math.h>
 
