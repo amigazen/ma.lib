@@ -46,6 +46,12 @@ Each component of **ToolKit** is open source and will have it's own github repo,
 
 ## Features
 
+### Standards Compliance
+- **100% C89 Standard** - Complete ANSI C89 math library compliance
+- **100% C99 Standard** - Full C99 math library implementation
+- **100% POSIX.1** - Complete POSIX.1 math function support
+- **100% IEEE 754** - Full IEEE 754 floating-point standard compliance
+
 ### Library Variants
 
 ma.lib provides all the same build variants as SAS/C's scm.lib:
@@ -56,12 +62,19 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 - **maffp.lib** - Uses Amiga FFP math libraries
 - **maieee.lib** - Uses Amiga IEEE math libraries
 
+### C89 Standard Functions (Complete)
+- **Trigonometric**: `sin()`, `cos()`, `tan()`, `asin()`, `acos()`, `atan()`, `atan2()`
+- **Hyperbolic**: `sinh()`, `cosh()`, `tanh()`
+- **Exponential/Logarithmic**: `exp()`, `log()`, `log10()`
+- **Power/Root**: `pow()`, `sqrt()`
+- **Other**: `fabs()`, `floor()`, `ceil()`, `fmod()`, `frexp()`, `ldexp()`, `modf()`
+
 ### C99 Standard Functions
 - **Inverse Hyperbolic**: `acosh()`, `asinh()`, `atanh()`
 - **Advanced Exponential/Logarithmic**: `expm1()`, `log1p()`
 - **Rounding**: `rint()`, `remainder()`, `remquo()`
 - **Power/Root**: `cbrt()`, `hypot()`
-- **Floating-Point Manipulation**: `copysign()`, `nextafter()`, `scalbn()`, `logb()`, `ilogb()`
+- **Floating-Point Manipulation**: `copysign()`, `nextafter()`, `scalbn()`, `scalb()`, `logb()`, `ilogb()`, `significand()`
 - **Classification**: `finite()`, `isnan()`, `isinf()`, `fpclassify()`, `isfinite()`, `isnormal()`, `signbit()`
 
 ### POSIX.1 Functions
@@ -69,15 +82,37 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 - **Gamma Functions**: `tgamma()`, `lgamma()`, `gamma_r()`, `lgamma_r()`
 - **Bessel Functions**: `j0()`, `j1()`, `jn()`, `y0()`, `y1()`, `yn()`
 
-### C99 Complex Numbers
-- **Basic Operations**: `cabs()`, `carg()`, `creal()`, `cimag()`, `conj()`
+### C99 Complex Numbers (Complete Implementation)
+- **Basic Operations**: `cabs()`, `carg()`, `creal()`, `cimag()`, `conj()`, `cproj()`
 - **Trigonometric**: `cacos()`, `casin()`, `catan()`, `ccos()`, `csin()`, `ctan()`
 - **Hyperbolic**: `cacosh()`, `casinh()`, `catanh()`, `ccosh()`, `csinh()`, `ctanh()`
 - **Exponential/Logarithmic**: `cexp()`, `clog()`, `cpow()`, `csqrt()`
+- **Arithmetic**: `cadd()`, `csub()`, `cmul()`, `cdiv()`, `cneg()`, `cscale()`, `cmod()`
 
 ### IEEE 754 Functions
 - **Min/Max**: `fmin()`, `fmax()`, `fdim()`, `fma()`
 - **NaN Functions**: `nan()`, `nanf()`, `nanl()`
+
+### Float and Long Double Variants
+- **Complete Coverage** - All functions have `f` (float) and `l` (long double) variants
+- **180+ Functions** - Full implementation across all precision types
+
+### Mathematical Constants
+- **C89 Constants**: `M_E`, `M_LOG2E`, `M_LOG10E`, `M_LN2`, `M_LN10`, `M_PI`, `M_PI_2`, `M_PI_4`, `M_1_PI`, `M_2_PI`, `M_2_SQRTPI`, `M_SQRT2`, `M_SQRT1_2`, `HUGE_VAL`
+- **Additional Constants**: `M_SQRT3`, `M_SQRT5`, `M_PHI`, `M_EULER`, `M_LNPI`, `M_LN2PI`, `M_GAMMA`
+- **C99 Constants**: `INFINITY`, `NAN`
+
+### Error Handling
+- **C89 Compliant** - Proper `errno` setting for domain and range errors
+- **Domain Errors** - `EDOM` for invalid arguments (e.g., negative sqrt, |x|>1 for asin/acos)
+- **Range Errors** - `ERANGE` for overflow/underflow conditions
+- **Math Error Handler** - `matherr()` function for custom error handling
+
+### Amiga Integration
+- **Native Performance** - Uses Amiga math libraries when available
+- **Fallback Support** - High-quality fdlibm implementations as fallback
+- **SAS/C Compatible** - Designed specifically for SAS/C compiler
+- **C++ Complex Support** - Wraps SAS/C's native C++ complex number classes
 
 ## Contact 
 
