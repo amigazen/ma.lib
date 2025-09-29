@@ -21,7 +21,8 @@ MATH_OBJS = \
 	rint.o \
 	hypot.o \
 	matherr.o \
-	ldexp.o frexp.o cbrt.o
+	ldexp.o frexp.o cbrt.o \
+	finite.o isnan.o isinf.o copysign.o
 
 # Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
@@ -38,12 +39,14 @@ COMPLEX_OBJS = \
 # Float variants (f suffix)
 FLOAT_OBJS = \
 	acoshf.o asinhf.o atanhf.o \
-	log1pf.o
+	log1pf.o \
+	finitef.o isnanf.o isinff.o copysignf.o
 
 # Long double variants (l suffix)  
 LONGDOUBLE_OBJS = \
 	acoshl.o asinhl.o atanhl.o \
-	log1pl.o
+	log1pl.o \
+	finitel.o isnanl.o isinfl.o copysignl.o
 
 # Complex float variants (not implemented yet)
 COMPLEXF_OBJS = 
@@ -64,6 +67,7 @@ ALL_OBJS = $(MATH_OBJS) $(COMPLEX_OBJS) $(FLOAT_OBJS) $(LONGDOUBLE_OBJS) \
 DOBJS = acosh.do asinh.do atanh.do \
 	expm1.do log1p.do rint.do hypot.do matherr.do \
 	ldexp.do frexp.do cbrt.do \
+	finite.do isnan.do isinf.do copysign.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
 	ccos.do csin.do ctan.do \
@@ -74,7 +78,9 @@ DOBJS = acosh.do asinh.do atanh.do \
 	cmod.do cneg.do cscale.do cproj.do \
 	creal.do cimag.do \
 	acoshf.do asinhf.do atanhf.do log1pf.do \
-	acoshl.do asinhl.do atanhl.do log1pl.do
+	finitef.do isnanf.do isinff.do copysignf.do \
+	acoshl.do asinhl.do atanhl.do log1pl.do \
+	finitel.do isnanl.do isinfl.do copysignl.do
 
 NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo log1p.nbo rint.nbo hypot.nbo matherr.nbo \
 	ldexp.nbo frexp.nbo cbrt.nbo \
@@ -571,6 +577,117 @@ log1pl.nbo: log1pl.c
 	$(CC) $(CFLAGS_NB) $(OFLAGS) log1pl.c OBJNAME=log1pl.nbo
 log1pl.dnbo: log1pl.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) log1pl.c OBJNAME=log1pl.dnbo
+
+# Classification function targets
+finite.o: finite.c
+	$(CC) $(CFLAGS) $(OFLAGS) finite.c
+finite.do: finite.c
+	$(CC) $(CFLAGS) $(DFLAGS) finite.c OBJNAME=finite.do
+finite.nbo: finite.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) finite.c OBJNAME=finite.nbo
+finite.dnbo: finite.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) finite.c OBJNAME=finite.dnbo
+
+isnan.o: isnan.c
+	$(CC) $(CFLAGS) $(OFLAGS) isnan.c
+isnan.do: isnan.c
+	$(CC) $(CFLAGS) $(DFLAGS) isnan.c OBJNAME=isnan.do
+isnan.nbo: isnan.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) isnan.c OBJNAME=isnan.nbo
+isnan.dnbo: isnan.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) isnan.c OBJNAME=isnan.dnbo
+
+isinf.o: isinf.c
+	$(CC) $(CFLAGS) $(OFLAGS) isinf.c
+isinf.do: isinf.c
+	$(CC) $(CFLAGS) $(DFLAGS) isinf.c OBJNAME=isinf.do
+isinf.nbo: isinf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) isinf.c OBJNAME=isinf.nbo
+isinf.dnbo: isinf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) isinf.c OBJNAME=isinf.dnbo
+
+copysign.o: copysign.c
+	$(CC) $(CFLAGS) $(OFLAGS) copysign.c
+copysign.do: copysign.c
+	$(CC) $(CFLAGS) $(DFLAGS) copysign.c OBJNAME=copysign.do
+copysign.nbo: copysign.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) copysign.c OBJNAME=copysign.nbo
+copysign.dnbo: copysign.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) copysign.c OBJNAME=copysign.dnbo
+
+# Float variants
+finitef.o: finitef.c
+	$(CC) $(CFLAGS) $(OFLAGS) finitef.c
+finitef.do: finitef.c
+	$(CC) $(CFLAGS) $(DFLAGS) finitef.c OBJNAME=finitef.do
+finitef.nbo: finitef.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) finitef.c OBJNAME=finitef.nbo
+finitef.dnbo: finitef.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) finitef.c OBJNAME=finitef.dnbo
+
+isnanf.o: isnanf.c
+	$(CC) $(CFLAGS) $(OFLAGS) isnanf.c
+isnanf.do: isnanf.c
+	$(CC) $(CFLAGS) $(DFLAGS) isnanf.c OBJNAME=isnanf.do
+isnanf.nbo: isnanf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) isnanf.c OBJNAME=isnanf.nbo
+isnanf.dnbo: isnanf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) isnanf.c OBJNAME=isnanf.dnbo
+
+isinff.o: isinff.c
+	$(CC) $(CFLAGS) $(OFLAGS) isinff.c
+isinff.do: isinff.c
+	$(CC) $(CFLAGS) $(DFLAGS) isinff.c OBJNAME=isinff.do
+isinff.nbo: isinff.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) isinff.c OBJNAME=isinff.nbo
+isinff.dnbo: isinff.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) isinff.c OBJNAME=isinff.dnbo
+
+copysignf.o: copysignf.c
+	$(CC) $(CFLAGS) $(OFLAGS) copysignf.c
+copysignf.do: copysignf.c
+	$(CC) $(CFLAGS) $(DFLAGS) copysignf.c OBJNAME=copysignf.do
+copysignf.nbo: copysignf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) copysignf.c OBJNAME=copysignf.nbo
+copysignf.dnbo: copysignf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) copysignf.c OBJNAME=copysignf.dnbo
+
+# Long double variants
+finitel.o: finitel.c
+	$(CC) $(CFLAGS) $(OFLAGS) finitel.c
+finitel.do: finitel.c
+	$(CC) $(CFLAGS) $(DFLAGS) finitel.c OBJNAME=finitel.do
+finitel.nbo: finitel.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) finitel.c OBJNAME=finitel.nbo
+finitel.dnbo: finitel.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) finitel.c OBJNAME=finitel.dnbo
+
+isnanl.o: isnanl.c
+	$(CC) $(CFLAGS) $(OFLAGS) isnanl.c
+isnanl.do: isnanl.c
+	$(CC) $(CFLAGS) $(DFLAGS) isnanl.c OBJNAME=isnanl.do
+isnanl.nbo: isnanl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) isnanl.c OBJNAME=isnanl.nbo
+isnanl.dnbo: isnanl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) isnanl.c OBJNAME=isnanl.dnbo
+
+isinfl.o: isinfl.c
+	$(CC) $(CFLAGS) $(OFLAGS) isinfl.c
+isinfl.do: isinfl.c
+	$(CC) $(CFLAGS) $(DFLAGS) isinfl.c OBJNAME=isinfl.do
+isinfl.nbo: isinfl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) isinfl.c OBJNAME=isinfl.nbo
+isinfl.dnbo: isinfl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) isinfl.c OBJNAME=isinfl.dnbo
+
+copysignl.o: copysignl.c
+	$(CC) $(CFLAGS) $(OFLAGS) copysignl.c
+copysignl.do: copysignl.c
+	$(CC) $(CFLAGS) $(DFLAGS) copysignl.c OBJNAME=copysignl.do
+copysignl.nbo: copysignl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) copysignl.c OBJNAME=copysignl.nbo
+copysignl.dnbo: copysignl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) copysignl.c OBJNAME=copysignl.dnbo
 
 
 # Installation
