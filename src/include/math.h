@@ -59,6 +59,15 @@
 #define M_SQRT1_2      0.70710678118654752440  /* 1/sqrt(2) */
 #endif
 
+/* C99 Math constants */
+#ifndef INFINITY
+#define INFINITY       (1.0/0.0)
+#endif
+
+#ifndef NAN
+#define NAN            (0.0/0.0)
+#endif
+
 /* C99 Classification macros */
 #ifndef FP_NAN
 #define FP_NAN         0

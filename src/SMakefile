@@ -17,7 +17,7 @@ AS = asm
 # Math function objects - C99/POSIX extensions
 MATH_OBJS = \
 	acosh.o asinh.o atanh.o \
-	expm1.o \
+	expm1.o log1p.o \
 	rint.o \
 	hypot.o \
 	matherr.o \
@@ -37,11 +37,13 @@ COMPLEX_OBJS = \
 
 # Float variants (f suffix)
 FLOAT_OBJS = \
-	acoshf.o asinhf.o atanhf.o
+	acoshf.o asinhf.o atanhf.o \
+	log1pf.o
 
 # Long double variants (l suffix)  
 LONGDOUBLE_OBJS = \
-	acoshl.o asinhl.o atanhl.o
+	acoshl.o asinhl.o atanhl.o \
+	log1pl.o
 
 # Complex float variants (not implemented yet)
 COMPLEXF_OBJS = 
@@ -60,7 +62,7 @@ ALL_OBJS = $(MATH_OBJS) $(COMPLEX_OBJS) $(FLOAT_OBJS) $(LONGDOUBLE_OBJS) \
 
 # Debug objects - need to list each one individually
 DOBJS = acosh.do asinh.do atanh.do \
-	expm1.do rint.do hypot.do matherr.do \
+	expm1.do log1p.do rint.do hypot.do matherr.do \
 	ldexp.do frexp.do cbrt.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
@@ -71,10 +73,10 @@ DOBJS = acosh.do asinh.do atanh.do \
 	cexp.do clog.do cpow.do csqrt.do \
 	cmod.do cneg.do cscale.do cproj.do \
 	creal.do cimag.do \
-	acoshf.do asinhf.do atanhf.do \
-	acoshl.do asinhl.do atanhl.do
+	acoshf.do asinhf.do atanhf.do log1pf.do \
+	acoshl.do asinhl.do atanhl.do log1pl.do
 
-NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo rint.nbo hypot.nbo matherr.nbo \
+NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo log1p.nbo rint.nbo hypot.nbo matherr.nbo \
 	ldexp.nbo frexp.nbo cbrt.nbo \
 	cabs.nbo carg.nbo conj.nbo \
 	cadd.nbo csub.nbo cmul.nbo cdiv.nbo \
@@ -85,10 +87,10 @@ NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo rint.nbo hypot.nbo matherr.nbo 
 	cexp.nbo clog.nbo cpow.nbo csqrt.nbo \
 	cmod.nbo cneg.nbo cscale.nbo cproj.nbo \
 	creal.nbo cimag.nbo \
-	acoshf.nbo asinhf.nbo atanhf.nbo \
-	acoshl.nbo asinhl.nbo atanhl.nbo
+	acoshf.nbo asinhf.nbo atanhf.nbo log1pf.nbo \
+	acoshl.nbo asinhl.nbo atanhl.nbo log1pl.nbo
 
-DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo rint.dnbo hypot.dnbo matherr.dnbo \
+DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo log1p.dnbo rint.dnbo hypot.dnbo matherr.dnbo \
 	ldexp.dnbo frexp.dnbo cbrt.dnbo \
 	cabs.dnbo carg.dnbo conj.dnbo \
 	cadd.dnbo csub.dnbo cmul.dnbo cdiv.dnbo \
@@ -99,8 +101,8 @@ DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo rint.dnbo hypot.dnbo mathe
 	cexp.dnbo clog.dnbo cpow.dnbo csqrt.dnbo \
 	cmod.dnbo cneg.dnbo cscale.dnbo cproj.dnbo \
 	creal.dnbo cimag.dnbo \
-	acoshf.dnbo asinhf.dnbo atanhf.dnbo \
-	acoshl.dnbo asinhl.dnbo atanhl.dnbo
+	acoshf.dnbo asinhf.dnbo atanhf.dnbo log1pf.dnbo \
+	acoshl.dnbo asinhl.dnbo atanhl.dnbo log1pl.dnbo
 
 DEFS = DEF __USE_SYSBASE=1
 
@@ -539,6 +541,36 @@ casinh.dnbo: casinh.cpp
 	$(CXX) $(CFLAGS_NB) $(DFLAGS) casinh.cpp OBJNAME=casinh.dnbo
 catanh.dnbo: catanh.cpp
 	$(CXX) $(CFLAGS_NB) $(DFLAGS) catanh.cpp OBJNAME=catanh.dnbo
+
+# log1p function targets
+log1p.o: log1p.c
+	$(CC) $(CFLAGS) $(OFLAGS) log1p.c
+log1p.do: log1p.c
+	$(CC) $(CFLAGS) $(DFLAGS) log1p.c OBJNAME=log1p.do
+log1p.nbo: log1p.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) log1p.c OBJNAME=log1p.nbo
+log1p.dnbo: log1p.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) log1p.c OBJNAME=log1p.dnbo
+
+# log1pf function targets
+log1pf.o: log1pf.c
+	$(CC) $(CFLAGS) $(OFLAGS) log1pf.c
+log1pf.do: log1pf.c
+	$(CC) $(CFLAGS) $(DFLAGS) log1pf.c OBJNAME=log1pf.do
+log1pf.nbo: log1pf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) log1pf.c OBJNAME=log1pf.nbo
+log1pf.dnbo: log1pf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) log1pf.c OBJNAME=log1pf.dnbo
+
+# log1pl function targets
+log1pl.o: log1pl.c
+	$(CC) $(CFLAGS) $(OFLAGS) log1pl.c
+log1pl.do: log1pl.c
+	$(CC) $(CFLAGS) $(DFLAGS) log1pl.c OBJNAME=log1pl.do
+log1pl.nbo: log1pl.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) log1pl.c OBJNAME=log1pl.nbo
+log1pl.dnbo: log1pl.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) log1pl.c OBJNAME=log1pl.dnbo
 
 
 # Installation
