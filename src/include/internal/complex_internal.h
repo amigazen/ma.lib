@@ -24,11 +24,11 @@ class istream;
 /* Define SAS/C specific macros needed for complex class */
 #define _INLINE_FUNC(x) x
 
-/* Include the public complex.h for type definitions first */
-#include <complex.h>
-
 /* Include math.h for standard math functions */
 #include <math.h>
+
+/* Include our math constants header */
+#include "m99_math.h"
 
 /* Include SAS/C's C++ complex class support */
 #ifdef __cplusplus
@@ -36,6 +36,9 @@ class istream;
 #else
 #error This header should only be included in C++ files
 #endif
+
+/* Include the public complex.h for type definitions after C++ complex class */
+#include <complex.h>
 
 /*========================================================================*
  *                    INTERNAL COMPLEX IMPLEMENTATION TYPES

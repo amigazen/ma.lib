@@ -27,10 +27,13 @@ MATH_OBJS = \
 COMPLEX_OBJS = \
 	cabs.o carg.o conj.o \
 	cadd.o csub.o cmul.o cdiv.o \
-	ccos.o csin.o \
-	ccosh.o csinh.o \
+	ccos.o csin.o ctan.o \
+	ccosh.o csinh.o ctanh.o \
+	cacos.o casin.o catan.o \
+	cacosh.o casinh.o catanh.o \
 	cexp.o clog.o cpow.o csqrt.o \
-	cmod.o cneg.o cscale.o
+	cmod.o cneg.o cscale.o cproj.o \
+	creal.o cimag.o
 
 # Float variants (f suffix)
 FLOAT_OBJS = \
@@ -61,10 +64,13 @@ DOBJS = acosh.do asinh.do atanh.do \
 	ldexp.do frexp.do cbrt.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
-	ccos.do csin.do \
-	ccosh.do csinh.do \
+	ccos.do csin.do ctan.do \
+	ccosh.do csinh.do ctanh.do \
+	cacos.do casin.do catan.do \
+	cacosh.do casinh.do catanh.do \
 	cexp.do clog.do cpow.do csqrt.do \
-	cmod.do cneg.do cscale.do \
+	cmod.do cneg.do cscale.do cproj.do \
+	creal.do cimag.do \
 	acoshf.do asinhf.do atanhf.do \
 	acoshl.do asinhl.do atanhl.do
 
@@ -72,10 +78,13 @@ NBOBJS = acosh.nbo asinh.nbo atanh.nbo expm1.nbo rint.nbo hypot.nbo matherr.nbo 
 	ldexp.nbo frexp.nbo cbrt.nbo \
 	cabs.nbo carg.nbo conj.nbo \
 	cadd.nbo csub.nbo cmul.nbo cdiv.nbo \
-	ccos.nbo csin.nbo \
-	ccosh.nbo csinh.nbo \
+	ccos.nbo csin.nbo ctan.nbo \
+	ccosh.nbo csinh.nbo ctanh.nbo \
+	cacos.nbo casin.nbo catan.nbo \
+	cacosh.nbo casinh.nbo catanh.nbo \
 	cexp.nbo clog.nbo cpow.nbo csqrt.nbo \
-	cmod.nbo cneg.nbo cscale.nbo \
+	cmod.nbo cneg.nbo cscale.nbo cproj.nbo \
+	creal.nbo cimag.nbo \
 	acoshf.nbo asinhf.nbo atanhf.nbo \
 	acoshl.nbo asinhl.nbo atanhl.nbo
 
@@ -83,10 +92,13 @@ DNBOBJS = acosh.dnbo asinh.dnbo atanh.dnbo expm1.dnbo rint.dnbo hypot.dnbo mathe
 	ldexp.dnbo frexp.dnbo cbrt.dnbo \
 	cabs.dnbo carg.dnbo conj.dnbo \
 	cadd.dnbo csub.dnbo cmul.dnbo cdiv.dnbo \
-	ccos.dnbo csin.dnbo \
-	ccosh.dnbo csinh.dnbo \
+	ccos.dnbo csin.dnbo ctan.dnbo \
+	ccosh.dnbo csinh.dnbo ctanh.dnbo \
+	cacos.dnbo casin.dnbo catan.dnbo \
+	cacosh.dnbo casinh.dnbo catanh.dnbo \
 	cexp.dnbo clog.dnbo cpow.dnbo csqrt.dnbo \
-	cmod.dnbo cneg.dnbo cscale.dnbo \
+	cmod.dnbo cneg.dnbo cscale.dnbo cproj.dnbo \
+	creal.dnbo cimag.dnbo \
 	acoshf.dnbo asinhf.dnbo atanhf.dnbo \
 	acoshl.dnbo asinhl.dnbo atanhl.dnbo
 
@@ -325,6 +337,28 @@ cneg.o: cneg.cpp
 	$(CXX) $(CFLAGS) $(OFLAGS) cneg.cpp
 cscale.o: cscale.cpp
 	$(CXX) $(CFLAGS) $(OFLAGS) cscale.cpp
+cproj.o: cproj.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cproj.cpp
+creal.o: creal.c
+	$(CC) $(CFLAGS) $(OFLAGS) creal.c
+cimag.o: cimag.c
+	$(CC) $(CFLAGS) $(OFLAGS) cimag.c
+ctan.o: ctan.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) ctan.cpp
+ctanh.o: ctanh.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) ctanh.cpp
+cacos.o: cacos.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cacos.cpp
+casin.o: casin.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) casin.cpp
+catan.o: catan.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) catan.cpp
+cacosh.o: cacosh.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) cacosh.cpp
+casinh.o: casinh.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) casinh.cpp
+catanh.o: catanh.cpp
+	$(CXX) $(CFLAGS) $(OFLAGS) catanh.cpp
 
 # Debug targets for C++ complex functions
 cabs.do: cabs.cpp
@@ -363,6 +397,28 @@ cneg.do: cneg.cpp
 	$(CXX) $(CFLAGS) $(DFLAGS) cneg.cpp OBJNAME=cneg.do
 cscale.do: cscale.cpp
 	$(CXX) $(CFLAGS) $(DFLAGS) cscale.cpp OBJNAME=cscale.do
+cproj.do: cproj.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cproj.cpp OBJNAME=cproj.do
+creal.do: creal.c
+	$(CC) $(CFLAGS) $(DFLAGS) creal.c OBJNAME=creal.do
+cimag.do: cimag.c
+	$(CC) $(CFLAGS) $(DFLAGS) cimag.c OBJNAME=cimag.do
+ctan.do: ctan.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) ctan.cpp OBJNAME=ctan.do
+ctanh.do: ctanh.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) ctanh.cpp OBJNAME=ctanh.do
+cacos.do: cacos.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cacos.cpp OBJNAME=cacos.do
+casin.do: casin.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) casin.cpp OBJNAME=casin.do
+catan.do: catan.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) catan.cpp OBJNAME=catan.do
+cacosh.do: cacosh.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) cacosh.cpp OBJNAME=cacosh.do
+casinh.do: casinh.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) casinh.cpp OBJNAME=casinh.do
+catanh.do: catanh.cpp
+	$(CXX) $(CFLAGS) $(DFLAGS) catanh.cpp OBJNAME=catanh.do
 
 # NBO targets for C++ complex functions
 cabs.nbo: cabs.cpp
@@ -401,6 +457,28 @@ cneg.nbo: cneg.cpp
 	$(CXX) $(CFLAGS_NB) $(OFLAGS) cneg.cpp OBJNAME=cneg.nbo
 cscale.nbo: cscale.cpp
 	$(CXX) $(CFLAGS_NB) $(OFLAGS) cscale.cpp OBJNAME=cscale.nbo
+cproj.nbo: cproj.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cproj.cpp OBJNAME=cproj.nbo
+creal.nbo: creal.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) creal.c OBJNAME=creal.nbo
+cimag.nbo: cimag.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) cimag.c OBJNAME=cimag.nbo
+ctan.nbo: ctan.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) ctan.cpp OBJNAME=ctan.nbo
+ctanh.nbo: ctanh.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) ctanh.cpp OBJNAME=ctanh.nbo
+cacos.nbo: cacos.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cacos.cpp OBJNAME=cacos.nbo
+casin.nbo: casin.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) casin.cpp OBJNAME=casin.nbo
+catan.nbo: catan.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) catan.cpp OBJNAME=catan.nbo
+cacosh.nbo: cacosh.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) cacosh.cpp OBJNAME=cacosh.nbo
+casinh.nbo: casinh.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) casinh.cpp OBJNAME=casinh.nbo
+catanh.nbo: catanh.cpp
+	$(CXX) $(CFLAGS_NB) $(OFLAGS) catanh.cpp OBJNAME=catanh.nbo
 
 # DNBO targets for C++ complex functions
 cabs.dnbo: cabs.cpp
@@ -439,6 +517,28 @@ cneg.dnbo: cneg.cpp
 	$(CXX) $(CFLAGS_NB) $(DFLAGS) cneg.cpp OBJNAME=cneg.dnbo
 cscale.dnbo: cscale.cpp
 	$(CXX) $(CFLAGS_NB) $(DFLAGS) cscale.cpp OBJNAME=cscale.dnbo
+cproj.dnbo: cproj.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cproj.cpp OBJNAME=cproj.dnbo
+creal.dnbo: creal.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) creal.c OBJNAME=creal.dnbo
+cimag.dnbo: cimag.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) cimag.c OBJNAME=cimag.dnbo
+ctan.dnbo: ctan.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) ctan.cpp OBJNAME=ctan.dnbo
+ctanh.dnbo: ctanh.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) ctanh.cpp OBJNAME=ctanh.dnbo
+cacos.dnbo: cacos.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cacos.cpp OBJNAME=cacos.dnbo
+casin.dnbo: casin.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) casin.cpp OBJNAME=casin.dnbo
+catan.dnbo: catan.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) catan.cpp OBJNAME=catan.dnbo
+cacosh.dnbo: cacosh.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) cacosh.cpp OBJNAME=cacosh.dnbo
+casinh.dnbo: casinh.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) casinh.cpp OBJNAME=casinh.dnbo
+catanh.dnbo: catanh.cpp
+	$(CXX) $(CFLAGS_NB) $(DFLAGS) catanh.cpp OBJNAME=catanh.dnbo
 
 
 # Installation

@@ -18,7 +18,7 @@
  * 
  * This wraps SAS/C's C++ operator+ function.
  */
-double_complex cadd(double_complex a, double_complex b)
+complex_t cadd(complex_t a, complex_t b)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_a(a.re, a.im);
@@ -28,7 +28,7 @@ double_complex cadd(double_complex a, double_complex b)
     complex cpp_result = cpp_a + cpp_b;
     
     // Convert back to our struct
-    double_complex result;
+    complex_t result;
     result.re = real(cpp_result);
     result.im = imag(cpp_result);
     return result;

@@ -12,9 +12,9 @@
 
 #include "include/internal/complex_internal.h"
 
-double_complex cscale(double_complex z, double scale)
+complex_t cscale(complex_t z, double scale)
 {
-    double_complex result;
+    complex_t result;
 
     /*
      *  Scale both real and imaginary parts

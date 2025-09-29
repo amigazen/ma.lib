@@ -20,7 +20,7 @@
  * 
  * This wraps SAS/C's C++ abs() function.
  */
-double cabs(double_complex z)
+double cabs(complex_t z)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_z(z.re, z.im);

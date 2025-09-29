@@ -11,9 +11,9 @@
 
 #include "include/internal/complex_internal.h"
 
-double_complex cneg(double_complex z)
+complex_t cneg(complex_t z)
 {
-    double_complex result;
+    complex_t result;
 
     /*
      *  Negate both real and imaginary parts

@@ -20,7 +20,7 @@
  * 
  * This wraps SAS/C's C++ arg() function.
  */
-double carg(double_complex z)
+double carg(complex_t z)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_z(z.re, z.im);

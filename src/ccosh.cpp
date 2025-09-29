@@ -20,7 +20,7 @@
  * 
  * This wraps SAS/C's C++ cosh() function.
  */
-double_complex ccosh(double_complex z)
+complex_t ccosh(complex_t z)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_z(z.re, z.im);
@@ -29,7 +29,7 @@ double_complex ccosh(double_complex z)
     complex cpp_result = cosh(cpp_z);
     
     // Convert back to our struct
-    double_complex result;
+    complex_t result;
     result.re = real(cpp_result);
     result.im = imag(cpp_result);
     return result;

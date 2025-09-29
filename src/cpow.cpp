@@ -19,7 +19,7 @@
  * 
  * This wraps SAS/C's C++ pow() function.
  */
-double_complex cpow(double_complex z, double_complex w)
+complex_t cpow(complex_t z, complex_t w)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_z(z.re, z.im);
@@ -29,7 +29,7 @@ double_complex cpow(double_complex z, double_complex w)
     complex cpp_result = pow(cpp_z, cpp_w);
     
     // Convert back to our struct
-    double_complex result;
+    complex_t result;
     result.re = real(cpp_result);
     result.im = imag(cpp_result);
     return result;

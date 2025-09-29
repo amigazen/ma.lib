@@ -20,7 +20,7 @@
  * 
  * This wraps SAS/C's C++ sin() function.
  */
-double_complex csin(double_complex z)
+complex_t csin(complex_t z)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_z(z.re, z.im);
@@ -29,7 +29,7 @@ double_complex csin(double_complex z)
     complex cpp_result = sin(cpp_z);
     
     // Convert back to our struct
-    double_complex result;
+    complex_t result;
     result.re = real(cpp_result);
     result.im = imag(cpp_result);
     return result;

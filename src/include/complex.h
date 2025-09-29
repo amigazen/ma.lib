@@ -32,7 +32,13 @@ typedef struct { double re, im; } complex_double;
 typedef struct { float re, im; } complex_float;
 typedef struct { long double re, im; } complex_long_double;
 
-/* C99 complex number type definitions */
+/* POSIX-compliant complex number type definitions */
+/* Following Solaris/POSIX conventions */
+typedef complex_double complex_t;
+typedef complex_float float_complex_t;
+typedef complex_long_double long_double_complex_t;
+
+/* C99-compatible aliases for backward compatibility */
 typedef complex_double double_complex;
 typedef complex_float float_complex;
 typedef complex_long_double long_double_complex;
@@ -49,8 +55,7 @@ typedef complex_long_double long_double_complex;
 #define CMPLXL(real, imag)  ((struct complex_long_double){real, imag})
 
 /* Helper macros for struct-based complex numbers */
-#define creal(z) ((z).re)
-#define cimag(z) ((z).im)
+/* Note: creal and cimag are implemented as functions, not macros */
 
 /* C99-compatible complex number creation functions */
 /* Note: These are implemented as macros for C89 compatibility */
@@ -63,45 +68,47 @@ typedef complex_long_double long_double_complex;
  *========================================================================*/
 
 /* Basic Operations */
-double cabs(double_complex z);
-double carg(double_complex z);
-double_complex conj(double_complex z);
+double cabs(complex_t z);
+double carg(complex_t z);
+double creal(complex_t z);
+double cimag(complex_t z);
+complex_t conj(complex_t z);
 
 /* Trigonometric Functions */
-double_complex cacos(double_complex z);
-double_complex casin(double_complex z);
-double_complex catan(double_complex z);
-double_complex ccos(double_complex z);
-double_complex csin(double_complex z);
-double_complex ctan(double_complex z);
+complex_t cacos(complex_t z);
+complex_t casin(complex_t z);
+complex_t catan(complex_t z);
+complex_t ccos(complex_t z);
+complex_t csin(complex_t z);
+complex_t ctan(complex_t z);
 
 /* Hyperbolic Functions */
-double_complex cacosh(double_complex z);
-double_complex casinh(double_complex z);
-double_complex catanh(double_complex z);
-double_complex ccosh(double_complex z);
-double_complex csinh(double_complex z);
-double_complex ctanh(double_complex z);
+complex_t cacosh(complex_t z);
+complex_t casinh(complex_t z);
+complex_t catanh(complex_t z);
+complex_t ccosh(complex_t z);
+complex_t csinh(complex_t z);
+complex_t ctanh(complex_t z);
 
 /* Exponential and Logarithmic Functions */
-double_complex cexp(double_complex z);
+complex_t cexp(complex_t z);
 #ifndef __cplusplus
-double_complex clog(double_complex z);
+complex_t clog(complex_t z);
 #else
 /* In C++, clog conflicts with iostream, so we use a different name */
-double_complex clog_c99(double_complex z);
+complex_t clog_c99(complex_t z);
 #define clog clog_c99
 #endif
-double_complex cpow(double_complex z, double_complex w);
-double_complex csqrt(double_complex z);
+complex_t cpow(complex_t z, complex_t w);
+complex_t csqrt(complex_t z);
 
 /* Utility Functions */
-double cmod(double_complex z);
-double_complex cneg(double_complex z);
-double_complex cscale(double_complex z, double scale);
+double cmod(complex_t z);
+complex_t cneg(complex_t z);
+complex_t cscale(complex_t z, double scale);
 
 /* Projection and Classification */
-double_complex cproj(double_complex z);
+complex_t cproj(complex_t z);
 
 /* Float variants */
 float cabsf(float_complex z);

@@ -13,7 +13,7 @@
 #include <math.h>
 #include "include/internal/complex_internal.h"
 
-double cmod(double_complex z)
+double cmod(complex_t z)
 {
     double mod;
 

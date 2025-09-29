@@ -21,7 +21,7 @@
  * This wraps SAS/C's C++ log() function.
  */
 /* Internal implementation function to avoid clog conflict */
-double_complex clog_c99(double_complex z)
+complex_t clog_c99(complex_t z)
 {
     // Convert to SAS/C C++ complex class
     complex cpp_z(z.re, z.im);
@@ -30,7 +30,7 @@ double_complex clog_c99(double_complex z)
     complex cpp_result = log(cpp_z);
     
     // Convert back to our struct
-    double_complex result;
+    complex_t result;
     result.re = real(cpp_result);
     result.im = imag(cpp_result);
     return result;
