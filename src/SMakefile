@@ -23,7 +23,10 @@ MATH_OBJS = \
 	matherr.o \
 	ldexp.o frexp.o cbrt.o \
 	finite.o isnan.o isinf.o copysign.o \
-	nextafter.o scalbn.o logb.o ilogb.o
+	nextafter.o scalbn.o logb.o ilogb.o \
+	fabs.o fmod.o modf.o remainder.o ceil.o floor.o \
+	erf.o erfc.o gamma.o lgamma.o gamma_r.o lgamma_r.o \
+	j0.o sin.o signgam.o lib_version.o
 
 # Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
@@ -72,6 +75,9 @@ DOBJS = acosh.do asinh.do atanh.do \
 	ldexp.do frexp.do cbrt.do \
 	finite.do isnan.do isinf.do copysign.do \
 	nextafter.do scalbn.do logb.do ilogb.do \
+	fabs.do fmod.do modf.do remainder.do ceil.do floor.do \
+	erf.do erfc.do gamma.do lgamma.do gamma_r.do lgamma_r.do \
+	j0.do sin.do signgam.do lib_version.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
 	ccos.do csin.do ctan.do \
@@ -805,6 +811,151 @@ ilogbl.nbo: ilogbl.c
 	$(CC) $(CFLAGS_NB) $(OFLAGS) ilogbl.c OBJNAME=ilogbl.nbo
 ilogbl.dnbo: ilogbl.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) ilogbl.c OBJNAME=ilogbl.dnbo
+
+# Additional fdlibm function targets
+fabs.o: fabs.c
+	$(CC) $(CFLAGS) $(OFLAGS) fabs.c
+fabs.do: fabs.c
+	$(CC) $(CFLAGS) $(DFLAGS) fabs.c OBJNAME=fabs.do
+fabs.nbo: fabs.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fabs.c OBJNAME=fabs.nbo
+fabs.dnbo: fabs.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fabs.c OBJNAME=fabs.dnbo
+
+fmod.o: fmod.c
+	$(CC) $(CFLAGS) $(OFLAGS) fmod.c
+fmod.do: fmod.c
+	$(CC) $(CFLAGS) $(DFLAGS) fmod.c OBJNAME=fmod.do
+fmod.nbo: fmod.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) fmod.c OBJNAME=fmod.nbo
+fmod.dnbo: fmod.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) fmod.c OBJNAME=fmod.dnbo
+
+modf.o: modf.c
+	$(CC) $(CFLAGS) $(OFLAGS) modf.c
+modf.do: modf.c
+	$(CC) $(CFLAGS) $(DFLAGS) modf.c OBJNAME=modf.do
+modf.nbo: modf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) modf.c OBJNAME=modf.nbo
+modf.dnbo: modf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) modf.c OBJNAME=modf.dnbo
+
+remainder.o: remainder.c
+	$(CC) $(CFLAGS) $(OFLAGS) remainder.c
+remainder.do: remainder.c
+	$(CC) $(CFLAGS) $(DFLAGS) remainder.c OBJNAME=remainder.do
+remainder.nbo: remainder.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) remainder.c OBJNAME=remainder.nbo
+remainder.dnbo: remainder.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) remainder.c OBJNAME=remainder.dnbo
+
+ceil.o: ceil.c
+	$(CC) $(CFLAGS) $(OFLAGS) ceil.c
+ceil.do: ceil.c
+	$(CC) $(CFLAGS) $(DFLAGS) ceil.c OBJNAME=ceil.do
+ceil.nbo: ceil.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) ceil.c OBJNAME=ceil.nbo
+ceil.dnbo: ceil.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) ceil.c OBJNAME=ceil.dnbo
+
+floor.o: floor.c
+	$(CC) $(CFLAGS) $(OFLAGS) floor.c
+floor.do: floor.c
+	$(CC) $(CFLAGS) $(DFLAGS) floor.c OBJNAME=floor.do
+floor.nbo: floor.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) floor.c OBJNAME=floor.nbo
+floor.dnbo: floor.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) floor.c OBJNAME=floor.dnbo
+
+erf.o: erf.c
+	$(CC) $(CFLAGS) $(OFLAGS) erf.c
+erf.do: erf.c
+	$(CC) $(CFLAGS) $(DFLAGS) erf.c OBJNAME=erf.do
+erf.nbo: erf.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) erf.c OBJNAME=erf.nbo
+erf.dnbo: erf.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) erf.c OBJNAME=erf.dnbo
+
+erfc.o: erfc.c
+	$(CC) $(CFLAGS) $(OFLAGS) erfc.c
+erfc.do: erfc.c
+	$(CC) $(CFLAGS) $(DFLAGS) erfc.c OBJNAME=erfc.do
+erfc.nbo: erfc.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) erfc.c OBJNAME=erfc.nbo
+erfc.dnbo: erfc.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) erfc.c OBJNAME=erfc.dnbo
+
+gamma.o: gamma.c
+	$(CC) $(CFLAGS) $(OFLAGS) gamma.c
+gamma.do: gamma.c
+	$(CC) $(CFLAGS) $(DFLAGS) gamma.c OBJNAME=gamma.do
+gamma.nbo: gamma.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) gamma.c OBJNAME=gamma.nbo
+gamma.dnbo: gamma.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) gamma.c OBJNAME=gamma.dnbo
+
+lgamma.o: lgamma.c
+	$(CC) $(CFLAGS) $(OFLAGS) lgamma.c
+lgamma.do: lgamma.c
+	$(CC) $(CFLAGS) $(DFLAGS) lgamma.c OBJNAME=lgamma.do
+lgamma.nbo: lgamma.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) lgamma.c OBJNAME=lgamma.nbo
+lgamma.dnbo: lgamma.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) lgamma.c OBJNAME=lgamma.dnbo
+
+gamma_r.o: gamma_r.c
+	$(CC) $(CFLAGS) $(OFLAGS) gamma_r.c
+gamma_r.do: gamma_r.c
+	$(CC) $(CFLAGS) $(DFLAGS) gamma_r.c OBJNAME=gamma_r.do
+gamma_r.nbo: gamma_r.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) gamma_r.c OBJNAME=gamma_r.nbo
+gamma_r.dnbo: gamma_r.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) gamma_r.c OBJNAME=gamma_r.dnbo
+
+lgamma_r.o: lgamma_r.c
+	$(CC) $(CFLAGS) $(OFLAGS) lgamma_r.c
+lgamma_r.do: lgamma_r.c
+	$(CC) $(CFLAGS) $(DFLAGS) lgamma_r.c OBJNAME=lgamma_r.do
+lgamma_r.nbo: lgamma_r.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) lgamma_r.c OBJNAME=lgamma_r.nbo
+lgamma_r.dnbo: lgamma_r.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) lgamma_r.c OBJNAME=lgamma_r.dnbo
+
+j0.o: j0.c
+	$(CC) $(CFLAGS) $(OFLAGS) j0.c
+j0.do: j0.c
+	$(CC) $(CFLAGS) $(DFLAGS) j0.c OBJNAME=j0.do
+j0.nbo: j0.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) j0.c OBJNAME=j0.nbo
+j0.dnbo: j0.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) j0.c OBJNAME=j0.dnbo
+
+sin.o: sin.c
+	$(CC) $(CFLAGS) $(OFLAGS) sin.c
+sin.do: sin.c
+	$(CC) $(CFLAGS) $(DFLAGS) sin.c OBJNAME=sin.do
+sin.nbo: sin.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) sin.c OBJNAME=sin.nbo
+sin.dnbo: sin.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) sin.c OBJNAME=sin.dnbo
+
+signgam.o: signgam.c
+	$(CC) $(CFLAGS) $(OFLAGS) signgam.c
+signgam.do: signgam.c
+	$(CC) $(CFLAGS) $(DFLAGS) signgam.c OBJNAME=signgam.do
+signgam.nbo: signgam.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) signgam.c OBJNAME=signgam.nbo
+signgam.dnbo: signgam.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) signgam.c OBJNAME=signgam.dnbo
+
+lib_version.o: lib_version.c
+	$(CC) $(CFLAGS) $(OFLAGS) lib_version.c
+lib_version.do: lib_version.c
+	$(CC) $(CFLAGS) $(DFLAGS) lib_version.c OBJNAME=lib_version.do
+lib_version.nbo: lib_version.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) lib_version.c OBJNAME=lib_version.nbo
+lib_version.dnbo: lib_version.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) lib_version.c OBJNAME=lib_version.dnbo
 
 
 # Installation
