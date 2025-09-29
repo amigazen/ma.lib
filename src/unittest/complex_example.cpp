@@ -16,9 +16,9 @@
 int main(void)
 {
     /* Create complex numbers using different methods */
-    double_complex z1 = {3.0, 4.0};                    /* Direct struct initialization */
-    double_complex z2 = cpack(1.0, 2.0);              /* Using cpack function */
-    double_complex z3 = CMPLX(5.0, 6.0);              /* Using CMPLX macro */
+    complex_t z1 = {3.0, 4.0};                    /* Direct struct initialization */
+    complex_t z2 = cpack(1.0, 2.0);              /* Using cpack function */
+    complex_t z3 = CMPLX(5.0, 6.0);              /* Using CMPLX macro */
     
     /* Access real and imaginary parts */
     printf("z1 = %.2f + %.2fi\n", creal(z1), cimag(z1));
@@ -26,9 +26,9 @@ int main(void)
     printf("z3 = %.2f + %.2fi\n", creal(z3), cimag(z3));
     
     /* Basic operations */
-    double_complex sum = cadd(z1, z2);
-    double_complex product = cmul(z1, z2);
-    double_complex conjugate = conj(z1);
+    complex_t sum = cadd(z1, z2);
+    complex_t product = cmul(z1, z2);
+    complex_t conjugate = conj(z1);
     
     printf("\nOperations:\n");
     printf("z1 + z2 = %.2f + %.2fi\n", creal(sum), cimag(sum));
@@ -38,9 +38,9 @@ int main(void)
     /* Mathematical functions */
     double magnitude = cabs(z1);
     double argument = carg(z1);
-    double_complex exponential = cexp(z1);
-    double_complex logarithm = clog(z1);
-    double_complex square_root = csqrt(z1);
+    complex_t exponential = cexp(z1);
+    complex_t logarithm = clog(z1);
+    complex_t square_root = csqrt(z1);
     
     printf("\nMathematical functions:\n");
     printf("|z1| = %.2f\n", magnitude);

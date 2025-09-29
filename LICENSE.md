@@ -31,7 +31,7 @@ Some maths functions originally by the Fred Fish himself, released into the publ
 
 log1 family of functions are derived from Python 2.7's _math.c fallback implementations
 
-The following functions are derived from Sun Microsystem's 1995 release of fdlibm:
+The following functions are derived from Sun Microsystem's 1993 release of fdlibm:
 - finite(), finitef(), finitel() - Test if number is finite
 - isnan(), isnanf(), isnanl() - Test if number is NaN
 - isinf(), isinff(), isinfl() - Test if number is infinity
@@ -49,3 +49,16 @@ The following functions are derived from Sun Microsystem's 1995 release of fdlib
 - Bessel functions: j0() with complete fdlibm implementation
 - Trigonometric: sin() with complete kernel functions and argument reduction
 - Library support: signgam, lib_version globals
+- jn() - Bessel function of first kind, order n
+- y0(), y1(), yn() - Bessel functions of second kind (orders 0, 1, n)
+- scalb() - Scale by power of 2 (legacy function)
+- significand() - Extract significand from floating-point value
+- tgamma() - True gamma function (implemented as exp(lgamma()))
+
+The following functions are original works of amigazen project (2025)
+- fmin(), fmax() - Minimum/maximum of two values
+- fdim() - Positive difference (max(x-y, 0))
+- fma() - Fused multiply-add operation
+- nan() - Generate quiet NaN with optional tag
+- fpclassify() - Classify floating-point value
+- remquo() - Remainder with quotient

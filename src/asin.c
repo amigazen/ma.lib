@@ -22,6 +22,7 @@
  */
 
 #include <math.h>
+#include <errno.h>
 #include "include/internal/m99_math.h"
 
 /* Helper macros for accessing high/low parts of double */
@@ -91,5 +92,12 @@ static double __ieee754_asin(double x)
 
 double asin(double x)
 {
-    return __ieee754_asin(x);
+    double result = __ieee754_asin(x);
+    
+    /* Set errno for domain error (|x| > 1) */
+    if (x < -1.0 || x > 1.0) {
+        errno = EDOM;
+    }
+    
+    return result;
 }

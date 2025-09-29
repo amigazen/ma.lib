@@ -59,6 +59,29 @@
 #define M_SQRT1_2      0.70710678118654752440  /* 1/sqrt(2) */
 #endif
 
+/* Additional useful mathematical constants */
+#ifndef M_SQRT3
+#define M_SQRT3        1.73205080756887729353  /* sqrt(3) */
+#endif
+#ifndef M_SQRT5
+#define M_SQRT5        2.23606797749978969641  /* sqrt(5) */
+#endif
+#ifndef M_PHI
+#define M_PHI          1.61803398874989484820  /* golden ratio (1+sqrt(5))/2 */
+#endif
+#ifndef M_EULER
+#define M_EULER        0.57721566490153286061  /* Euler-Mascheroni constant */
+#endif
+#ifndef M_LNPI
+#define M_LNPI         1.14472988584940017414  /* ln(pi) */
+#endif
+#ifndef M_LN2PI
+#define M_LN2PI        1.83787706640934548356  /* ln(2*pi) */
+#endif
+#ifndef M_GAMMA
+#define M_GAMMA        0.57721566490153286061  /* Euler-Mascheroni constant (alias) */
+#endif
+
 /* C99 Math constants */
 #ifndef INFINITY
 #define INFINITY       (1.0/0.0)
@@ -66,6 +89,11 @@
 
 #ifndef NAN
 #define NAN            (0.0/0.0)
+#endif
+
+/* C89 required constants */
+#ifndef HUGE_VAL
+#define HUGE_VAL       (1.0/0.0)
 #endif
 
 /* C99 Classification macros */

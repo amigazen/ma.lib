@@ -15,6 +15,7 @@
  */
 
 #include <math.h>
+#include <errno.h>
 #include "include/internal/m99_math.h"
 
 /* Helper macros for accessing high/low parts of double */
@@ -89,5 +90,12 @@ static double __ieee754_log(double x)
 
 double log(double x)
 {
-    return __ieee754_log(x);
+    double result = __ieee754_log(x);
+    
+    /* Set errno for domain error (x <= 0) */
+    if (x <= 0.0) {
+        errno = EDOM;
+    }
+    
+    return result;
 }

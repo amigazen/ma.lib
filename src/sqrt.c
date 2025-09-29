@@ -15,6 +15,7 @@
  */
 
 #include <math.h>
+#include <errno.h>
 #include "include/internal/m99_math.h"
 
 /* Helper macros for accessing high/low parts of double */
@@ -124,5 +125,12 @@ static double __ieee754_sqrt(double x)
 
 double sqrt(double x)
 {
-    return __ieee754_sqrt(x);
+    double result = __ieee754_sqrt(x);
+    
+    /* Set errno for domain error (negative argument) */
+    if (x < 0.0) {
+        errno = EDOM;
+    }
+    
+    return result;
 }

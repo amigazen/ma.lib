@@ -17,6 +17,7 @@
  */
 
 #include <math.h>
+#include <errno.h>
 #include "include/internal/m99_math.h"
 
 /* Helper macros for accessing high/low parts of double */
@@ -84,5 +85,12 @@ static double __ieee754_acos(double x)
 
 double acos(double x)
 {
-    return __ieee754_acos(x);
+    double result = __ieee754_acos(x);
+    
+    /* Set errno for domain error (|x| > 1) */
+    if (x < -1.0 || x > 1.0) {
+        errno = EDOM;
+    }
+    
+    return result;
 }

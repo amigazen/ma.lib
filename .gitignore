@@ -1,0 +1,5 @@
+*.o
+*.lnk
+*.map
+output.txt
+src/*.lib
