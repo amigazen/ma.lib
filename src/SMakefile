@@ -26,7 +26,10 @@ MATH_OBJS = \
 	nextafter.o scalbn.o logb.o ilogb.o \
 	fabs.o fmod.o modf.o remainder.o ceil.o floor.o \
 	erf.o erfc.o gamma.o lgamma.o gamma_r.o lgamma_r.o \
-	j0.o sin.o signgam.o lib_version.o
+	j0.o j1.o sin.o cos.o tan.o atan.o atan2.o \
+	log.o log10.o sqrt.o pow.o exp.o \
+	cosh.o sinh.o tanh.o asin.o acos.o \
+	signgam.o lib_version.o
 
 # Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
@@ -77,7 +80,9 @@ DOBJS = acosh.do asinh.do atanh.do \
 	nextafter.do scalbn.do logb.do ilogb.do \
 	fabs.do fmod.do modf.do remainder.do ceil.do floor.do \
 	erf.do erfc.do gamma.do lgamma.do gamma_r.do lgamma_r.do \
-	j0.do sin.do signgam.do lib_version.do \
+	j0.do j1.do sin.do cos.do tan.do atan.do atan2.do \
+	log.do log10.do sqrt.do pow.do exp.do \
+	cosh.do sinh.do tanh.do asin.do acos.do signgam.do lib_version.do \
 	cabs.do carg.do conj.do \
 	cadd.do csub.do cmul.do cdiv.do \
 	ccos.do csin.do ctan.do \
@@ -956,6 +961,163 @@ lib_version.nbo: lib_version.c
 	$(CC) $(CFLAGS_NB) $(OFLAGS) lib_version.c OBJNAME=lib_version.nbo
 lib_version.dnbo: lib_version.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) lib_version.c OBJNAME=lib_version.dnbo
+
+# Additional trigonometric function targets
+cos.o: cos.c
+	$(CC) $(CFLAGS) $(OFLAGS) cos.c
+cos.do: cos.c
+	$(CC) $(CFLAGS) $(DFLAGS) cos.c OBJNAME=cos.do
+cos.nbo: cos.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) cos.c OBJNAME=cos.nbo
+cos.dnbo: cos.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) cos.c OBJNAME=cos.dnbo
+
+tan.o: tan.c
+	$(CC) $(CFLAGS) $(OFLAGS) tan.c
+tan.do: tan.c
+	$(CC) $(CFLAGS) $(DFLAGS) tan.c OBJNAME=tan.do
+tan.nbo: tan.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) tan.c OBJNAME=tan.nbo
+tan.dnbo: tan.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) tan.c OBJNAME=tan.dnbo
+
+atan.o: atan.c
+	$(CC) $(CFLAGS) $(OFLAGS) atan.c
+atan.do: atan.c
+	$(CC) $(CFLAGS) $(DFLAGS) atan.c OBJNAME=atan.do
+atan.nbo: atan.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) atan.c OBJNAME=atan.nbo
+atan.dnbo: atan.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) atan.c OBJNAME=atan.dnbo
+
+# Additional math function targets
+atan2.o: atan2.c
+	$(CC) $(CFLAGS) $(OFLAGS) atan2.c
+atan2.do: atan2.c
+	$(CC) $(CFLAGS) $(DFLAGS) atan2.c OBJNAME=atan2.do
+atan2.nbo: atan2.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) atan2.c OBJNAME=atan2.nbo
+atan2.dnbo: atan2.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) atan2.c OBJNAME=atan2.dnbo
+
+log.o: log.c
+	$(CC) $(CFLAGS) $(OFLAGS) log.c
+log.do: log.c
+	$(CC) $(CFLAGS) $(DFLAGS) log.c OBJNAME=log.do
+log.nbo: log.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) log.c OBJNAME=log.nbo
+log.dnbo: log.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) log.c OBJNAME=log.dnbo
+
+log10.o: log10.c
+	$(CC) $(CFLAGS) $(OFLAGS) log10.c
+log10.do: log10.c
+	$(CC) $(CFLAGS) $(DFLAGS) log10.c OBJNAME=log10.do
+log10.nbo: log10.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) log10.c OBJNAME=log10.nbo
+log10.dnbo: log10.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) log10.c OBJNAME=log10.dnbo
+
+sqrt.o: sqrt.c
+	$(CC) $(CFLAGS) $(OFLAGS) sqrt.c
+sqrt.do: sqrt.c
+	$(CC) $(CFLAGS) $(DFLAGS) sqrt.c OBJNAME=sqrt.do
+sqrt.nbo: sqrt.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) sqrt.c OBJNAME=sqrt.nbo
+sqrt.dnbo: sqrt.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) sqrt.c OBJNAME=sqrt.dnbo
+
+# Additional power and hyperbolic function targets
+pow.o: pow.c
+	$(CC) $(CFLAGS) $(OFLAGS) pow.c
+pow.do: pow.c
+	$(CC) $(CFLAGS) $(DFLAGS) pow.c OBJNAME=pow.do
+pow.nbo: pow.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) pow.c OBJNAME=pow.nbo
+pow.dnbo: pow.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) pow.c OBJNAME=pow.dnbo
+
+cosh.o: cosh.c
+	$(CC) $(CFLAGS) $(OFLAGS) cosh.c
+cosh.do: cosh.c
+	$(CC) $(CFLAGS) $(DFLAGS) cosh.c OBJNAME=cosh.do
+cosh.nbo: cosh.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) cosh.c OBJNAME=cosh.nbo
+cosh.dnbo: cosh.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) cosh.c OBJNAME=cosh.dnbo
+
+sinh.o: sinh.c
+	$(CC) $(CFLAGS) $(OFLAGS) sinh.c
+sinh.do: sinh.c
+	$(CC) $(CFLAGS) $(DFLAGS) sinh.c OBJNAME=sinh.do
+sinh.nbo: sinh.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) sinh.c OBJNAME=sinh.nbo
+sinh.dnbo: sinh.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) sinh.c OBJNAME=sinh.dnbo
+
+tanh.o: tanh.c
+	$(CC) $(CFLAGS) $(OFLAGS) tanh.c
+tanh.do: tanh.c
+	$(CC) $(CFLAGS) $(DFLAGS) tanh.c OBJNAME=tanh.do
+tanh.nbo: tanh.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) tanh.c OBJNAME=tanh.nbo
+tanh.dnbo: tanh.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) tanh.c OBJNAME=tanh.dnbo
+
+asin.o: asin.c
+	$(CC) $(CFLAGS) $(OFLAGS) asin.c
+asin.do: asin.c
+	$(CC) $(CFLAGS) $(DFLAGS) asin.c OBJNAME=asin.do
+asin.nbo: asin.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) asin.c OBJNAME=asin.nbo
+asin.dnbo: asin.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) asin.c OBJNAME=asin.dnbo
+
+# Additional inverse trigonometric and exponential function targets
+acos.o: acos.c
+	$(CC) $(CFLAGS) $(OFLAGS) acos.c
+acos.do: acos.c
+	$(CC) $(CFLAGS) $(DFLAGS) acos.c OBJNAME=acos.do
+acos.nbo: acos.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) acos.c OBJNAME=acos.nbo
+acos.dnbo: acos.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) acos.c OBJNAME=acos.dnbo
+
+exp.o: exp.c
+	$(CC) $(CFLAGS) $(OFLAGS) exp.c
+exp.do: exp.c
+	$(CC) $(CFLAGS) $(DFLAGS) exp.c OBJNAME=exp.do
+exp.nbo: exp.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) exp.c OBJNAME=exp.nbo
+exp.dnbo: exp.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) exp.c OBJNAME=exp.dnbo
+
+frexp.o: frexp.c
+	$(CC) $(CFLAGS) $(OFLAGS) frexp.c
+frexp.do: frexp.c
+	$(CC) $(CFLAGS) $(DFLAGS) frexp.c OBJNAME=frexp.do
+frexp.nbo: frexp.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) frexp.c OBJNAME=frexp.nbo
+frexp.dnbo: frexp.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) frexp.c OBJNAME=frexp.dnbo
+
+ldexp.o: ldexp.c
+	$(CC) $(CFLAGS) $(OFLAGS) ldexp.c
+ldexp.do: ldexp.c
+	$(CC) $(CFLAGS) $(DFLAGS) ldexp.c OBJNAME=ldexp.do
+ldexp.nbo: ldexp.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) ldexp.c OBJNAME=ldexp.nbo
+ldexp.dnbo: ldexp.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) ldexp.c OBJNAME=ldexp.dnbo
+
+j1.o: j1.c
+	$(CC) $(CFLAGS) $(OFLAGS) j1.c
+j1.do: j1.c
+	$(CC) $(CFLAGS) $(DFLAGS) j1.c OBJNAME=j1.do
+j1.nbo: j1.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) j1.c OBJNAME=j1.nbo
+j1.dnbo: j1.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) j1.c OBJNAME=j1.dnbo
 
 
 # Installation

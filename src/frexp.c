@@ -1,64 +1,50 @@
 /*
- * ma.lib Math Library - frexp function
- * 
- * C99/POSIX frexp function for ma.lib
- * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
+ * 
+ * Based on fdlibm/s_frexp.c
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ * 
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * 
+ * double frexp(double x, int *eptr)
+ * for non-zero x 
+ *	x = frexp(arg,&exp);
+ * return a double fp quantity x such that 0.5 <= |x| <1.0
+ * and the corresponding binary exponent "exp". That is
+ *	arg = x*2^exp.
  */
 
-#ifndef _WITH_SCLIB
-
-#include <stdio.h>
 #include <math.h>
 #include "include/internal/m99_math.h"
 
-/*
- * frexp - split floating-point value
- * 
- * Returns the significand of a double "value" as a double quantity,
- * "x", of magnitude less than 1 and stores an integer "n", indirectly
- * through "eptr", such that "value" = "x" * 2^"n"
- * 
- * For IEEE format the double precision word format is:
- * WORD N   =>    SEEEEEEEEEEEMMMM 
- * WORD N+1 =>    MMMMMMMMMMMMMMMM 
- * WORD N+2 =>    MMMMMMMMMMMMMMMM 
- * WORD N+3 =>    MMMMMMMMMMMMMMMM
- * 
- * Where:          S  =>   Sign bit 
- *                 E  =>   Exponent 
- *                 X  =>   Ignored (set to 0)
- *                 M  =>   Mantissa bit
- */
-#define MANT_MASK 0x800FFFFF    /* Mantissa extraction mask     */
-#define EXP_MASK 0x7FF00000     /* Mask for exponent            */
-#define EXP_SHIFTS 20           /* Shifts to get into LSB's     */
-#define EXP_BIAS 1022           /* Exponent bias                */
+/* Helper macros for accessing high/low parts of double */
+/* SAS/C uses big-endian, so high word is first */
+#define __HI(x) *(int*)&x
+#define __LO(x) *(1+(int*)&x)
 
-union dtol {
-    double dval;
-    int ival[2];
-};
+static const double
+two54 =  1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
 
-double frexp(double value, int *eptr)
+double frexp(double x, int *eptr)
 {
-    union dtol number;
-    int *iptr, exp;
-
-    if (value == 0.0) {
-        *eptr = 0;
-        return 0.0;
-    } else {
-        number.dval = value;
-        iptr = &number.ival[0];
-        *eptr = (((*iptr) & EXP_MASK) >> EXP_SHIFTS) - EXP_BIAS;
-        *iptr &= ~EXP_MASK;
-        exp = EXP_BIAS;
-        *iptr |= (exp << EXP_SHIFTS) & EXP_MASK;
-        return number.dval;
+    int  hx, ix, lx;
+    hx = __HI(x);
+    ix = 0x7fffffff&hx;
+    lx = __LO(x);
+    *eptr = 0;
+    if(ix>=0x7ff00000||((ix|lx)==0)) return x;	/* 0,inf,nan */
+    if (ix<0x00100000) {		/* subnormal */
+        x *= two54;
+        hx = __HI(x);
+        ix = hx&0x7fffffff;
+        *eptr = -54;
     }
+    *eptr += (ix>>20)-1022;
+    hx = (hx&0x800fffff)|0x3fe00000;
+    __HI(x) = hx;
+    return x;
 }
-
-#endif /* _WITH_SCLIB */
-
