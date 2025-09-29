@@ -1,11 +1,11 @@
 /*
- * C99 Complex Number Support for SAS/C
+ * POSIX Complex Number Support for SAS/C
  * 
- * This header provides C99-compliant complex number support by wrapping
+ * This header provides POSIX-compliant complex number support by wrapping
  * SAS/C's existing C++ complex class implementation.
  * 
  * Uses SAS/C's class complex for implementation while providing
- * standard C99 complex API for maximum compatibility.
+ * standard POSIX complex API for maximum compatibility.
  * 
  * Copyright (c) 2025 amigazen project
  * SPDX-License-Identifier: BSD-2-Clause
@@ -19,11 +19,11 @@ extern "C" {
 #endif
 
 /*========================================================================*
- *                    C99 COMPLEX NUMBER TYPES
+ *                    POSIX COMPLEX NUMBER TYPES
  *========================================================================*/
 
 /* 
- * C99 complex number types - SAS/C compatible implementation
+ * POSIX complex number types - SAS/C compatible implementation
  * These map to SAS/C's C++ complex class internally
  */
 
@@ -43,11 +43,23 @@ typedef complex_double double_complex;
 typedef complex_float float_complex;
 typedef complex_long_double long_double_complex;
 
+/* POSIX-compatible type aliases */
+/* Note: We can't use "double complex" syntax in C89, so we provide macros instead */
+#define double_complex_t complex_double
+#define float_complex_t complex_float
+#define long_double_complex_t complex_long_double
 
-/* C99 complex number macros */
-#ifndef I
-#define I              {0.0, 1.0}
+
+/* POSIX complex number macros */
+#ifndef _Complex_I
+#define _Complex_I     {0.0, 1.0}
 #endif
+
+#ifndef I
+#define I              _Complex_I
+#endif
+
+/* Note: We can't define 'complex' macro as it conflicts with C++ class complex */
 
 /* Complex number literals for struct-based types */
 #define CMPLXF(real, imag)  ((struct complex_float){real, imag})
@@ -64,7 +76,7 @@ typedef complex_long_double long_double_complex;
 #define cpackl(r, i) ((complex_long_double){(r), (i)})
 
 /*========================================================================*
- *                    C99 COMPLEX NUMBER FUNCTIONS
+ *                    POSIX COMPLEX NUMBER FUNCTIONS
  *========================================================================*/
 
 /* Basic Operations */
