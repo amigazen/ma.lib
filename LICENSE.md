@@ -25,6 +25,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Acknowledgements
 
-Some maths functions originally by Fred Fish, released into the public domain (1987)
+Complex maths functions are an original work of amigazen project, implementing C functions wrapping SAS/C's C++ complex number class and methods, with a little inspiration taken from Nick d'Alterio's complex number library for Amiga (1995)
 
-Some maths functions originally included in the 
+Some maths functions originally by the Fred Fish himself, released into the public domain (1987), obtained via the PDC C compiler math library
+
+log1 family of functions are derived from Python 2.7's _math.c fallback implementations
+
+The following functions are derived from Sun Microsystem's 1995 release of fdlibm:
+- finite(), finitef(), finitel() - Test if number is finite
+- isnan(), isnanf(), isnanl() - Test if number is NaN
+- isinf(), isinff(), isinfl() - Test if number is infinity
+- copysign(), copysignf(), copysignl() - Copy sign from one number to another
+- nextafter(), nextafterf(), nextafterl() - Next representable value toward target
+- scalbn(), scalbnf(), scalbnl() - Scale by power of 2 (exponent manipulation)
+- logb(), logbf(), logbl() - Extract binary exponent as double
+- ilogb(), ilogbf(), ilogbl() - Extract binary exponent as integer
+- Classification: finite(), isnan(), isinf() with float/long double variants
+- Sign manipulation: copysign() with float/long double variants  
+- Floating point operations: nextafter(), scalbn(), logb(), ilogb() with variants
+- Basic math: fabs(), fmod(), modf(), remainder(), ceil(), floor() with variants
+- Error functions: erf(), erfc() with complete fdlibm implementation
+- Gamma functions: gamma(), lgamma(), gamma_r(), lgamma_r() with variants
+- Bessel functions: j0() with complete fdlibm implementation
+- Trigonometric: sin() with complete kernel functions and argument reduction
+- Library support: signgam, lib_version globals
