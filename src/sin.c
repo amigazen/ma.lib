@@ -23,9 +23,9 @@
 #define __LO(x) *(1+(int*)&x)
 
 /* Internal functions for sin */
-static int __ieee754_rem_pio2(double x, double *y);
-static double __kernel_sin(double x, double y, int iy);
-static double __kernel_cos(double x, double y);
+int __ieee754_rem_pio2(double x, double *y);
+double __kernel_sin(double x, double y, int iy);
+double __kernel_cos(double x, double y);
 
 /* Kernel sin function constants */
 static const double
@@ -69,7 +69,7 @@ static const int npio2_hw[] = {
 0x404858EB, 0x404921FB,
 };
 
-static double __kernel_sin(double x, double y, int iy)
+double __kernel_sin(double x, double y, int iy)
 {
     double z, r, v;
     int ix;
@@ -83,7 +83,7 @@ static double __kernel_sin(double x, double y, int iy)
     else      return x-((z*(half*y-v*r)-y)-v*S1);
 }
 
-static double __kernel_cos(double x, double y)
+double __kernel_cos(double x, double y)
 {
     double a, hz, z, r, qx;
     int ix;
@@ -108,7 +108,7 @@ static double __kernel_cos(double x, double y)
     }
 }
 
-static int __ieee754_rem_pio2(double x, double *y)
+int __ieee754_rem_pio2(double x, double *y)
 {
     double z, w, t, r, fn;
     double tx[3];

@@ -118,7 +118,7 @@
 #endif
 
 #ifndef signbit
-#define signbit(x)     ((x) < 0.0)
+int signbit(double x);
 #endif
 
 /* C99 Comparison macros */

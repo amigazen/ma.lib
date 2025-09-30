@@ -22,7 +22,9 @@ static const double huge = 1.0e300;
 double trunc(double x)
 {
     int i0,i1,j0;
-    unsigned i,j;
+    unsigned i;
+    double result;
+    
     i0 =  __HI(x);
     i1 =  __LO(x);
     j0 = ((i0>>20)&0x7ff)-0x3ff;
@@ -49,7 +51,9 @@ double trunc(double x)
             i1 &= (~i);
         }
     }
-    __HI(x) = i0;
-    __LO(x) = i1;
-    return x;
+    
+    /* Reconstruct result with new high/low parts */
+    __HI(result) = i0;
+    __LO(result) = i1;
+    return result;
 }

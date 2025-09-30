@@ -27,6 +27,7 @@ long lround(double x)
     int i0,i1,j0;
     unsigned i,j;
     long result;
+    double temp;
     i0 =  __HI(x);
     i1 =  __LO(x);
     j0 = ((i0>>20)&0x7ff)-0x3ff;
@@ -49,7 +50,7 @@ long lround(double x)
             }
         }
     } else if (j0>51) {
-        if(j0==0x400) return x+x;   /* inf or NaN */
+        if(j0==0x400) return 0;   /* inf or NaN - return 0 for now */
         else return (long)x;              /* x is integral */
     } else {
         i = ((unsigned)(0xffffffff))>>(j0-20);
@@ -72,12 +73,14 @@ long lround(double x)
             }
         }
     }
-    __HI(x) = i0;
-    __LO(x) = i1;
+    
+    /* Reconstruct result with new high/low parts */
+    __HI(temp) = i0;
+    __LO(temp) = i1;
     
     /* Convert to long, checking for overflow */
-    if (x > (double)LONG_MAX) return LONG_MAX;
-    if (x < (double)LONG_MIN) return LONG_MIN;
+    if (temp > (double)LONG_MAX) return LONG_MAX;
+    if (temp < (double)LONG_MIN) return LONG_MIN;
     
-    return (long)x;
+    return (long)temp;
 }

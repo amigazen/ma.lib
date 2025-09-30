@@ -22,10 +22,10 @@ MATH_OBJS = \
 	hypot.o \
 	matherr.o \
 	ldexp.o frexp.o cbrt.o \
-	finite.o isnan.o isinf.o copysign.o \
+	finite.o isnan.o isinf.o copysign.o signbit.o \
 	nextafter.o nexttoward.o scalbn.o scalbln.o logb.o ilogb.o \
 	fabs.o fmod.o modf.o remainder.o ceil.o floor.o \
-	erf.o erfc.o gamma.o lgamma.o gamma_r.o lgamma_r.o \
+	erf.o gamma.o lgamma.o gamma_r.o lgamma_r.o \
 	j0.o j1.o jn.o y0.o y1.o yn.o sin.o cos.o tan.o atan.o atan2.o \
 	log.o log10.o sqrt.o pow.o exp.o \
 	cosh.o sinh.o tanh.o asin.o acos.o \
@@ -639,6 +639,15 @@ copysign.nbo: copysign.c
 copysign.dnbo: copysign.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) copysign.c OBJNAME=copysign.dnbo
 
+signbit.o: signbit.c
+	$(CC) $(CFLAGS) $(OFLAGS) signbit.c
+signbit.do: signbit.c
+	$(CC) $(CFLAGS) $(DFLAGS) signbit.c OBJNAME=signbit.do
+signbit.nbo: signbit.c
+	$(CC) $(CFLAGS_NB) $(OFLAGS) signbit.c OBJNAME=signbit.nbo
+signbit.dnbo: signbit.c
+	$(CC) $(CFLAGS_NB) $(DFLAGS) signbit.c OBJNAME=signbit.dnbo
+
 # Float variants
 finitef.o: finitef.c
 	$(CC) $(CFLAGS) $(OFLAGS) finitef.c
@@ -888,14 +897,6 @@ erf.nbo: erf.c
 erf.dnbo: erf.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) erf.c OBJNAME=erf.dnbo
 
-erfc.o: erfc.c
-	$(CC) $(CFLAGS) $(OFLAGS) erfc.c
-erfc.do: erfc.c
-	$(CC) $(CFLAGS) $(DFLAGS) erfc.c OBJNAME=erfc.do
-erfc.nbo: erfc.c
-	$(CC) $(CFLAGS_NB) $(OFLAGS) erfc.c OBJNAME=erfc.nbo
-erfc.dnbo: erfc.c
-	$(CC) $(CFLAGS_NB) $(DFLAGS) erfc.c OBJNAME=erfc.dnbo
 
 gamma.o: gamma.c
 	$(CC) $(CFLAGS) $(OFLAGS) gamma.c
@@ -1253,6 +1254,26 @@ remquo.dnbo: remquo.c
 	$(CC) $(CFLAGS_NB) $(DFLAGS) remquo.c OBJNAME=remquo.dnbo
 
 
+# Unit tests
+test_complex: test_complex.o $(MATH_OBJS) $(COMPLEX_OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o test_complex test_complex.o $(MATH_OBJS) $(COMPLEX_OBJS) $(LIBS)
+
+test_math: test_math.o $(MATH_OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o test_math test_math.o $(MATH_OBJS) $(LIBS)
+
+test_complex.o: unittest/test_complex.c
+	$(CC) $(CFLAGS) $(OFLAGS) unittest/test_complex.c OBJNAME=test_complex.o
+
+test_math.o: unittest/test_math.c
+	$(CC) $(CFLAGS) $(OFLAGS) unittest/test_math.c OBJNAME=test_math.o
+
+# Run unit tests
+test: test_complex test_math
+	@echo "Running complex number tests..."
+	./test_complex
+	@echo "Running math function tests..."
+	./test_math
+
 # Installation
 install: all
 	$(CP) $(LIBRARIES) $(DEST)
@@ -1264,6 +1285,7 @@ install: all
 clean:
 	$(RM) $(ALL_OBJS) $(DOBJS) $(NBOBJS) $(DNBOBJS)
 	$(RM) $(LIBRARIES) $(DEBUG_LIBRARIES) $(NB_LIBRARIES) $(NBD_LIBRARIES)
+	$(RM) test_complex test_math test_complex.o test_math.o
 
 # Dependencies
 depend:

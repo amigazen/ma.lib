@@ -10,19 +10,26 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
-/* Helper macros for accessing high/low parts of double */
-/* SAS/C uses big-endian, so high word is first */
-#define __HI(x) *(int*)&x
-#define __LO(x) *(1+(int*)&x)
+/* Helper macros are defined in m99_math.h */
 
 int isinf(double x)
 {
     int hx, lx;
     hx = __HI(x);
     lx = __LO(x);
-    hx &= 0x7fffffff;        /* mask off sign bit */
-    hx |= (unsigned)(lx|(-lx))>>31;  /* set lx|=0 if lx==0, else lx|=1 */
-    hx = 0x7ff00000 - hx;    /* now hx is 0 if x is infinite */
-    return ((unsigned)(hx))>>31;
+    
+    /* Check if exponent is all 1s (0x7ff) and mantissa is 0 */
+    if ((hx & 0x7ff00000) == 0x7ff00000) {
+        if ((hx & 0x000fffff) == 0 && lx == 0) {
+            return 1;  /* infinity */
+        }
+    }
+    
+    /* Also check for HUGE_VAL which is (1.0/0.0) */
+    if (x == HUGE_VAL || x == -HUGE_VAL) {
+        return 1;
+    }
+    
+    return 0;  /* not infinity */
 }
 

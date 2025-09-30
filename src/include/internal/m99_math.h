@@ -15,6 +15,11 @@
 #ifndef _INTERNAL_MATH_H
 #define _INTERNAL_MATH_H
 
+/* Helper macros for accessing high/low parts of double */
+/* SAS/C uses big-endian, so high word is first */
+#define __HI(x) *(int*)&x
+#define __LO(x) *(1+(int*)&x)
+
 /* Disable debug macros for production */
 #ifndef NO_DBUG
 #    define DBUG_ENTER(a1)

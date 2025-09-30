@@ -18,11 +18,6 @@
 #include <errno.h>
 #include "include/internal/m99_math.h"
 
-/* Helper macros for accessing high/low parts of double */
-/* SAS/C uses big-endian, so high word is first */
-#define __HI(x) *(int*)&x
-#define __LO(x) *(1+(int*)&x)
-
 static const double
 ln2_hi  =  6.93147180369123816490e-01,	/* 3fe62e42 fee00000 */
 ln2_lo  =  1.90821492927058770002e-10,	/* 3dea39ef 35793c76 */
@@ -90,12 +85,15 @@ static double __ieee754_log(double x)
 
 double log(double x)
 {
-    double result = __ieee754_log(x);
-    
-    /* Set errno for domain error (x <= 0) */
+    /* Handle special cases first */
     if (x <= 0.0) {
         errno = EDOM;
+        if (x == 0.0) {
+            return -INFINITY;
+        } else {
+            return NAN;  /* log of negative number */
+        }
     }
     
-    return result;
+    return __ieee754_log(x);
 }

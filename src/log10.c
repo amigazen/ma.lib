@@ -17,10 +17,7 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
-/* Helper macros for accessing high/low parts of double */
-/* SAS/C uses big-endian, so high word is first */
-#define __HI(x) *(int*)&x
-#define __LO(x) *(1+(int*)&x)
+/* Helper macros are defined in m99_math.h */
 
 static const double
 two54      =  1.80143985094819840000e+16, /* 0x43500000, 0x00000000 */
@@ -59,6 +56,16 @@ static double __ieee754_log10(double x)
 
 double log10(double x)
 {
+    /* Handle special cases first */
+    if (x <= 0.0) {
+        errno = EDOM;
+        if (x == 0.0) {
+            return -INFINITY;
+        } else {
+            return NAN;  /* log10 of negative number */
+        }
+    }
+    
     return __ieee754_log10(x);
 }
 

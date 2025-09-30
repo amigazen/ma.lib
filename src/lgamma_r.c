@@ -18,17 +18,16 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
-/* Helper macros for accessing high/low parts of double */
-/* SAS/C uses big-endian, so high word is first */
-#define __HI(x) *(int*)&x
-#define __LO(x) *(1+(int*)&x)
+/* Helper macros are defined in m99_math.h */
 
 /* Internal functions for lgamma_r */
 static double __ieee754_log(double x) { return log(x); }
 static double __ieee754_sin(double x) { return sin(x); }
 static double __ieee754_cos(double x) { return cos(x); }
-static double __kernel_sin(double x, double y, int iy) { return sin(x); }
-static double __kernel_cos(double x, double y) { return cos(x); }
+
+/* External functions from sin.c */
+extern double __kernel_sin(double x, double y, int iy);
+extern double __kernel_cos(double x, double y);
 
 static const double
 two52=  4.50359962737049600000e+15, /* 0x43300000, 0x00000000 */
