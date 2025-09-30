@@ -123,6 +123,41 @@ static double __ieee754_sqrt(double x)
     return z;
 }
 
+/****** ma.lib/sqrt *****************************************************
+* 
+*   NAME	
+* 	sqrt -- Return square root of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = sqrt(double x);
+*	  D0		   D0
+*	double sqrt(double x);
+*
+*   FUNCTION
+*	Compute the square root of x. For x >= 0, returns the non-negative
+*	square root. For x < 0, returns NaN and sets errno to EDOM.
+*	This implementation uses high-precision algorithms from fdlibm.
+* 
+*   INPUTS
+*	x - Input value. Must be non-negative for valid result.
+*	
+*   RESULT
+*	result - Square root of x if x >= 0, NaN if x < 0. Returns +0.0
+*	        if x is +0.0, returns +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	double value = 16.0;
+*	double root = sqrt(value); 
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM for negative arguments.
+* 
+*   SEE ALSO
+*	cbrt(), pow(), hypot(), math.h
+* 
+******************************************************************************/
+
 double sqrt(double x)
 {
     double result = __ieee754_sqrt(x);

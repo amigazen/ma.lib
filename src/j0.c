@@ -215,6 +215,41 @@ static double qzero(double x)
     return (-.125 + r/s)/x;
 }
 
+/****** ma.lib/j0 *******************************************************
+* 
+*   NAME	
+* 	j0 -- Return Bessel function of first kind, order 0. (V1.0)
+*
+*   SYNOPSIS
+*	double result = j0(double x);
+*	  D0		   D0
+*	double j0(double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the first kind of order zero.
+*	This function is used in various mathematical and physical applications,
+*	including wave propagation and signal processing.
+* 
+*   INPUTS
+*	x - Input value. Range is approximately [-1e9, 1e9] for accurate results.
+*	
+*   RESULT
+*	result - Bessel function J0(x). Returns 1.0 if x is 0.0, returns 0.0
+*	        for large |x|, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 2.0;
+*	double bessel = j0(x); 
+*
+*   NOTES
+*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+*	Uses high-precision algorithms from fdlibm.
+* 
+*   SEE ALSO
+*	j1(), jn(), y0(), y1(), yn(), math.h
+* 
+******************************************************************************/
+
 double j0(double x) 
 {
     double z, s, c, ss, cc, r, u, v;

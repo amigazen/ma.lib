@@ -290,6 +290,41 @@ static double qzero(double x)
     return (-.125 + r/s)/x;
 }
 
+/****** ma.lib/y0 *******************************************************
+* 
+*   NAME	
+* 	y0 -- Return Bessel function of second kind, order 0. (V1.0)
+*
+*   SYNOPSIS
+*	double result = y0(double x);
+*	  D0		   D0
+*	double y0(double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the second kind of order zero.
+*	This function is used in various mathematical and physical applications,
+*	including wave propagation and signal processing.
+* 
+*   INPUTS
+*	x - Input value. Must be positive for valid result.
+*	
+*   RESULT
+*	result - Bessel function Y0(x). Returns -Infinity if x is 0.0,
+*	        returns 0.0 for large x, returns NaN if x is negative or NaN.
+* 
+*   EXAMPLE
+*	double x = 2.0;
+*	double bessel = y0(x); 
+*
+*   NOTES
+*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+*	Uses high-precision algorithms from fdlibm.
+* 
+*   SEE ALSO
+*	y1(), yn(), j0(), j1(), jn(), math.h
+* 
+******************************************************************************/
+
 double y0(double x)
 {
     return __ieee754_y0(x);

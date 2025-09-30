@@ -26,6 +26,41 @@ static double __ieee754_gamma_r(double x, int *signgamp)
     return lgamma_r(x, signgamp);
 }
 
+/****** ma.lib/tgamma ***************************************************
+* 
+*   NAME	
+* 	tgamma -- Return true gamma function of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = tgamma(double x);
+*	  D0		   D0
+*	double tgamma(double x);
+*
+*   FUNCTION
+*	Compute the true gamma function of x. The gamma function is a
+*	generalization of the factorial function to real and complex numbers.
+*	For positive integers n, tgamma(n) = (n-1)!
+* 
+*   INPUTS
+*	x - Input value. Must be positive for valid result.
+*	
+*   RESULT
+*	result - Gamma function of x. Returns +Infinity if x is 0 or negative
+*	        integer, NaN if x is NaN, +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	double x = 5.0;
+*	double gamma = tgamma(x);  
+*
+*   NOTES
+*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+*	Uses high-precision algorithms from fdlibm.
+* 
+*   SEE ALSO
+*	lgamma(), gamma(), lgamma_r(), math.h
+* 
+******************************************************************************/
+
 double tgamma(double x)
 {
     double y;

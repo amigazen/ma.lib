@@ -71,15 +71,16 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 
 ### C99 Standard Functions
 - **Inverse Hyperbolic**: `acosh()`, `asinh()`, `atanh()`
-- **Advanced Exponential/Logarithmic**: `expm1()`, `log1p()`
-- **Rounding**: `rint()`, `remainder()`, `remquo()`
+- **Advanced Exponential/Logarithmic**: `expm1()`, `log1p()`, `exp2()`, `log2()`
+- **Rounding**: `rint()`, `remainder()`, `remquo()`, `trunc()`, `round()`, `nearbyint()`
+- **Integer Rounding**: `lround()`, `llround()`, `lrint()`, `llrint()`
 - **Power/Root**: `cbrt()`, `hypot()`
-- **Floating-Point Manipulation**: `copysign()`, `nextafter()`, `scalbn()`, `scalb()`, `logb()`, `ilogb()`, `significand()`
+- **Floating-Point Manipulation**: `copysign()`, `nextafter()`, `nexttoward()`, `scalbn()`, `scalbln()`, `scalb()`, `logb()`, `ilogb()`, `significand()`
 - **Classification**: `finite()`, `isnan()`, `isinf()`, `fpclassify()`, `isfinite()`, `isnormal()`, `signbit()`
 
 ### POSIX.1 Functions
 - **Error Functions**: `erf()`, `erfc()`
-- **Gamma Functions**: `tgamma()`, `lgamma()`, `gamma_r()`, `lgamma_r()`
+- **Gamma Functions**: `tgamma()`, `lgamma()`, `gamma()`, `gamma_r()`, `lgamma_r()`
 - **Bessel Functions**: `j0()`, `j1()`, `jn()`, `y0()`, `y1()`, `yn()`
 
 ### C99 Complex Numbers (Complete Implementation)
@@ -95,7 +96,7 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 
 ### Float and Long Double Variants
 - **Complete Coverage** - All functions have `f` (float) and `l` (long double) variants
-- **180+ Functions** - Full implementation across all precision types
+- **200+ Functions** - Full implementation across all precision types
 
 ### Mathematical Constants
 - **C89 Constants**: `M_E`, `M_LOG2E`, `M_LOG10E`, `M_LN2`, `M_LN10`, `M_PI`, `M_PI_2`, `M_PI_4`, `M_1_PI`, `M_2_PI`, `M_2_SQRTPI`, `M_SQRT2`, `M_SQRT1_2`, `HUGE_VAL`

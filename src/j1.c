@@ -262,6 +262,41 @@ static double __ieee754_j1(double x)
     return(x*0.5+r/s);
 }
 
+/****** ma.lib/j1 *******************************************************
+* 
+*   NAME	
+* 	j1 -- Return Bessel function of first kind, order 1. (V1.0)
+*
+*   SYNOPSIS
+*	double result = j1(double x);
+*	  D0		   D0
+*	double j1(double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the first kind of order one.
+*	This function is used in various mathematical and physical applications,
+*	including wave propagation and signal processing.
+* 
+*   INPUTS
+*	x - Input value. Range is approximately [-1e9, 1e9] for accurate results.
+*	
+*   RESULT
+*	result - Bessel function J1(x). Returns 0.0 if x is 0.0, returns 0.0
+*	        for large |x|, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 2.0;
+*	double bessel = j1(x);  
+*
+*   NOTES
+*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+*	Uses high-precision algorithms from fdlibm.
+* 
+*   SEE ALSO
+*	j0(), jn(), y0(), y1(), yn(), math.h
+* 
+******************************************************************************/
+
 double j1(double x)
 {
     return __ieee754_j1(x);

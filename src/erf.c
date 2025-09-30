@@ -104,6 +104,41 @@ sb5  =  2.55305040643316442583e+03, /* 0x40A3F219, 0xCEDF3BE6 */
 sb6  =  4.74528541206955367215e+02, /* 0x407DA874, 0xE79FE763 */
 sb7  = -2.24409524465858183362e+01; /* 0xC03670E2, 0x42712D62 */
 
+/****** ma.lib/erf ******************************************************
+* 
+*   NAME	
+* 	erf -- Return error function of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = erf(double x);
+*	  D0		   D0
+*	double erf(double x);
+*
+*   FUNCTION
+*	Compute the error function of x. The error function is defined as:
+*	erf(x) = (2/sqrt(pi)) * integral from 0 to x of exp(-t^2) dt
+*	This implementation uses high-precision algorithms from fdlibm.
+* 
+*   INPUTS
+*	x - Input value. Range is approximately [-8, 8] for accurate results.
+*	
+*   RESULT
+*	result - Error function of x, in the range [-1, 1]. Returns -1 for
+*	        large negative x, +1 for large positive x, NaN for NaN input.
+* 
+*   EXAMPLE
+*	double value = 1.0;
+*	double error = erf(value);  
+*
+*   NOTES
+*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+*	The complementary error function erfc() is also available.
+* 
+*   SEE ALSO
+*	erfc(), math.h
+* 
+******************************************************************************/
+
 double erf(double x) 
 {
     int hx, ix, i;

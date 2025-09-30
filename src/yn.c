@@ -84,6 +84,43 @@ static double __ieee754_yn(int n, double x)
     if(sign>0) return b; else return -b;
 }
 
+/****** ma.lib/yn *******************************************************
+* 
+*   NAME	
+* 	yn -- Return Bessel function of second kind, order n. (V1.0)
+*
+*   SYNOPSIS
+*	double result = yn(int n, double x);
+*	  D0		   D0
+*	double yn(int n, double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the second kind of order n.
+*	This function is used in various mathematical and physical applications,
+*	including wave propagation and signal processing.
+* 
+*   INPUTS
+*	n - Order of the Bessel function.
+*	x - Input value. Must be positive for valid result.
+*	
+*   RESULT
+*	result - Bessel function Yn(x). Returns -Infinity if x is 0.0,
+*	        returns 0.0 for large x, returns NaN if x is negative or NaN.
+* 
+*   EXAMPLE
+*	int n = 2;
+*	double x = 2.0;
+*	double bessel = yn(n, x);  
+*
+*   NOTES
+*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+*	Uses high-precision algorithms from fdlibm.
+* 
+*   SEE ALSO
+*	y0(), y1(), j0(), j1(), jn(), math.h
+* 
+******************************************************************************/
+
 double yn(int n, double x)
 {
     return __ieee754_yn(n, x);

@@ -193,6 +193,41 @@ int __ieee754_rem_pio2(double x, double *y)
     return n;
 }
 
+/****** ma.lib/sin ******************************************************
+* 
+*   NAME	
+* 	sin -- Return sine function of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = sin(double x);
+*	  D0		   D0
+*	double sin(double x);
+*
+*   FUNCTION
+*	Compute the sine of x, where x is in radians. The sine function
+*	returns values in the range [-1, 1]. This implementation uses
+*	high-precision algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value in radians. Range is approximately [-2^63, 2^63].
+*	
+*   RESULT
+*	result - Sine of x, in the range [-1, 1]. Returns NaN if x is NaN,
+*	        returns x if x is ±0, returns NaN if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double angle = M_PI / 4.0;  
+*	double sine = sin(angle);   
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Performance is optimized for the Amiga platform.
+* 
+*   SEE ALSO
+*	cos(), tan(), asin(), math.h
+* 
+******************************************************************************/
+
 double sin(double x)
 {
     double y[2], z=0.0;
