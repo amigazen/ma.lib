@@ -25,3 +25,4 @@ long double scalbnl(long double x, int n)
     /* SAS/C maps long double to double, so delegate to scalbn() */
     return (long double)scalbn((double)x, n);
 }
+

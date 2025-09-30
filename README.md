@@ -114,6 +114,34 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 - **SAS/C Compatible** - Designed specifically for SAS/C compiler
 - **C++ Complex Support** - Wraps SAS/C's native C++ complex number classes
 
+### Library Compatibility
+- **Co-exists with scm.lib** - ma.lib can be used alongside SAS/C's scm.lib or standalone, as implements a complete libm
+- **Linker Order Control** - Order libraries in linker command to control function precedence:
+  - `ma.lib scm.lib` - Use ma.lib functions in preference, fallback to scm.lib only for functions not part of C99/POSIX standards
+  - `scm.lib ma.lib` - Use scm.lib functions in preference, fallback to ma.lib to provide additional C99 functions
+
+## Usage
+
+### Basic Usage
+```c
+#include <math.h>
+#include <complex.h>
+
+double result = sqrt(2.0);  // Uses ma.lib implementation
+```
+
+### Linker Command Examples
+```bash
+# Use ma.lib functions when available, fallback to scm.lib
+sc LINK TO program program.c LIB ma.lib scm.lib
+
+# Use scm.lib functions when available, fallback to ma.lib  
+sc LINK TO program program.c LIB scm.lib ma.lib
+
+# Use only ma.lib (recommended for new projects)
+sc LINK TO program program.c LIB ma.lib
+```
+
 ## Contact 
 
 - At GitHub https://github.com/amigazen/ma.lib/ 

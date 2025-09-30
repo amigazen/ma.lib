@@ -25,3 +25,4 @@ int isinf(double x)
     hx = 0x7ff00000 - hx;    /* now hx is 0 if x is infinite */
     return ((unsigned)(hx))>>31;
 }
+

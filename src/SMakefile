@@ -17,13 +17,13 @@ AS = asm
 # Math function objects - C99/POSIX extensions
 MATH_OBJS = \
 	acosh.o asinh.o atanh.o \
-	expm1.o log1p.o \
-	rint.o \
+	expm1.o log1p.o exp2.o log2.o \
+	rint.o trunc.o round.o lround.o llround.o nearbyint.o lrint.o llrint.o \
 	hypot.o \
 	matherr.o \
 	ldexp.o frexp.o cbrt.o \
 	finite.o isnan.o isinf.o copysign.o \
-	nextafter.o scalbn.o logb.o ilogb.o \
+	nextafter.o nexttoward.o scalbn.o scalbln.o logb.o ilogb.o \
 	fabs.o fmod.o modf.o remainder.o ceil.o floor.o \
 	erf.o erfc.o gamma.o lgamma.o gamma_r.o lgamma_r.o \
 	j0.o j1.o jn.o y0.o y1.o yn.o sin.o cos.o tan.o atan.o atan2.o \
@@ -31,7 +31,8 @@ MATH_OBJS = \
 	cosh.o sinh.o tanh.o asin.o acos.o \
 	signgam.o lib_version.o \
 	significand.o scalb.o tgamma.o \
-	fmin.o fmax.o fdim.o fma.o nan.o fpclassify.o remquo.o
+	fmin.o fmax.o fdim.o fma.o nan.o fpclassify.o remquo.o \
+	longlong.o
 
 # Complex number function objects (C++ compiled)
 COMPLEX_OBJS = \
@@ -48,16 +49,18 @@ COMPLEX_OBJS = \
 # Float variants (f suffix)
 FLOAT_OBJS = \
 	acoshf.o asinhf.o atanhf.o \
-	log1pf.o \
+	log1pf.o exp2f.o log2f.o \
+	truncf.o roundf.o lroundf.o llroundf.o nearbyintf.o lrintf.o llrintf.o \
 	finitef.o isnanf.o isinff.o copysignf.o \
-	nextafterf.o scalbnf.o logbf.o ilogbf.o
+	nextafterf.o nexttowardf.o scalbnf.o scalblnf.o logbf.o ilogbf.o
 
 # Long double variants (l suffix)  
 LONGDOUBLE_OBJS = \
 	acoshl.o asinhl.o atanhl.o \
-	log1pl.o \
+	log1pl.o exp2l.o log2l.o \
+	truncl.o roundl.o lroundl.o llroundl.o nearbyintl.o lrintl.o llrintl.o \
 	finitel.o isnanl.o isinfl.o copysignl.o \
-	nextafterl.o scalbnl.o logbl.o ilogbl.o
+	nextafterl.o nexttowardl.o scalbnl.o scalblnl.o logbl.o ilogbl.o
 
 # Complex float variants (not implemented yet)
 COMPLEXF_OBJS = 

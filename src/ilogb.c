@@ -44,3 +44,4 @@ int ilogb(double x)
     else if (hx<0x7ff00000) return (hx>>20)-1023;
     else return 0x7fffffff;
 }
+

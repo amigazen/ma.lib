@@ -25,3 +25,4 @@ int ilogbl(long double x)
     /* SAS/C maps long double to double, so delegate to ilogb() */
     return ilogb((double)x);
 }
+

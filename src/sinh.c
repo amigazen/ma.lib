@@ -68,3 +68,4 @@ double sinh(double x)
 {
     return __ieee754_sinh(x);
 }
+

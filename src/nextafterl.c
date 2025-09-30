@@ -24,3 +24,4 @@ long double nextafterl(long double x, long double y)
     /* SAS/C maps long double to double, so delegate to nextafter() */
     return (long double)nextafter((double)x, (double)y);
 }
+

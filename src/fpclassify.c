@@ -17,3 +17,4 @@ int fpclassify(double x)
     if (x < 1.175494e-38 && x > -1.175494e-38) return FP_SUBNORMAL;
     return FP_NORMAL;
 }
+

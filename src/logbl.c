@@ -24,3 +24,4 @@ long double logbl(long double x)
     /* SAS/C maps long double to double, so delegate to logb() */
     return (long double)logb((double)x);
 }
+

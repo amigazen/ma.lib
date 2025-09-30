@@ -35,3 +35,4 @@ double logb(double x)
     else
         return (double) (ix-1023); 
 }
+
