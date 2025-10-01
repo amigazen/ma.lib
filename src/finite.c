@@ -21,7 +21,7 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
-/****** ma.lib/finite ***************************************************
+/****** ma.lib/finite *******************************************************
 * 
 *   NAME	
 * 	finite -- Test if value is finite. (V1.0)
@@ -32,27 +32,26 @@
 *	int finite(double x);
 *
 *   FUNCTION
-*	Test if the given floating-point value is finite (not infinity or NaN).
-*	Finite values are normal numbers, subnormal numbers, and zero.
+*	Test if x is a finite value. This returns 1 if x is finite (not NaN
+*	and not ±Infinity), 0 otherwise. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
 * 
 *   INPUTS
-*	x - Floating-point value to test.
+*	x - Input value. Range is [-∞, +∞].
 *	
 *   RESULT
-*	result - Non-zero if x is finite, zero if x is infinity or NaN.
+*	result - 1 if x is finite, 0 if x is NaN or ±Infinity.
 * 
 *   EXAMPLE
-*	double value = 3.14159;
-*	if (finite(value)) {
-*	    printf("Value is finite\n");
-*	}
+*	double x = 3.14;
+*	int result = finite(x);  
 *
 *   NOTES
-*	This function is C99 compliant and uses bit manipulation for
-*	maximum performance. No branching is used in the implementation.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to !isnan(x) && !isinf(x).
 * 
 *   SEE ALSO
-*	isnan(), isinf(), fpclassify(), math.h
+*	isnan(), isinf(), math.h
 * 
 ******************************************************************************/
 

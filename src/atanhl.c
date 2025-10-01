@@ -14,6 +14,40 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/atanhl ********************************************************
+* 
+*   NAME	
+* 	atanhl -- Return inverse hyperbolic tangent of long double. (V1.0)
+*
+*   SYNOPSIS
+*	long double result = atanhl(long double x);
+*	  D0		   D0
+*	long double atanhl(long double x);
+*
+*   FUNCTION
+*	Compute the inverse hyperbolic tangent of a long double value. This returns
+*	the value whose hyperbolic tangent is x. This implementation uses
+*	the standard formula: atanh(x) = 0.5 * log((1+x)/(1-x)).
+* 
+*   INPUTS
+*	x - Long double value. Must be in range (-1, 1) for valid result.
+*	
+*   RESULT
+*	result - Inverse hyperbolic tangent of x. Returns 0 if |x| >= 1.
+* 
+*   EXAMPLE
+*	long double x = 0.5L;
+*	long double result = atanhl(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses the standard mathematical formula for computation.
+* 
+*   SEE ALSO
+*	atanh(), asinhl(), acoshl(), math.h
+* 
+******************************************************************************/
+
 /*
  * atanhl - long double precision hyperbolic arc tangent
  * 

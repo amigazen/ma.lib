@@ -10,9 +10,7 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
-/* Helper macros are defined in m99_math.h */
-
-/****** ma.lib/isinf ****************************************************
+/****** ma.lib/isinf ********************************************************
 * 
 *   NAME	
 * 	isinf -- Test if value is infinity. (V1.0)
@@ -23,29 +21,26 @@
 *	int isinf(double x);
 *
 *   FUNCTION
-*	Test if the given floating-point value is infinity (positive or
-*	negative). Infinity values represent values that are too large
-*	to be represented in the floating-point format.
+*	Test if x is infinity (positive or negative). This returns 1 if x is
+*	±Infinity, 0 otherwise. This implementation uses high-precision
+*	algorithms for maximum accuracy.
 * 
 *   INPUTS
-*	x - Floating-point value to test.
+*	x - Input value. Range is [-∞, +∞].
 *	
 *   RESULT
-*	result - Non-zero if x is ±Infinity, zero if x is finite or NaN.
+*	result - 1 if x is ±Infinity, 0 if x is finite or NaN.
 * 
 *   EXAMPLE
-*	double value = 1.0 / 0.0;  
-*	if (isinf(value)) {
-*	    printf("Value is infinity\n");
-*	}
+*	double x = 1.0 / 0.0;
+*	int result = isinf(x);  
 *
 *   NOTES
-*	This function is C99 compliant and uses bit manipulation for
-*	maximum performance. Checks both IEEE 754 infinity bit patterns
-*	and HUGE_VAL for compatibility.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to x == INFINITY || x == -INFINITY.
 * 
 *   SEE ALSO
-*	isnan(), finite(), fpclassify(), math.h
+*	isnan(), finite(), math.h
 * 
 ******************************************************************************/
 

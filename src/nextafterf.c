@@ -22,6 +22,43 @@
 /* SAS/C uses big-endian, so high word is first */
 #define __HI(x) *(int*)&x
 
+/****** ma.lib/nextafterf ****************************************************
+* 
+*   NAME	
+* 	nextafterf -- Next representable float toward another. (V1.0)
+*
+*   SYNOPSIS
+*	float result = nextafterf(float x, float y);
+*	  D0		   D0
+*	float nextafterf(float x, float y);
+*
+*   FUNCTION
+*	Return the next representable float value after x in the
+*	direction toward y. This is useful for implementing floating-point
+*	algorithms that need to step through representable values.
+*	This implementation uses high-precision algorithms from fdlibm.
+* 
+*   INPUTS
+*	x - Starting float value.
+*	y - Target float value (direction).
+*	
+*   RESULT
+*	result - Next representable float value toward y.
+* 
+*   EXAMPLE
+*	float x = 1.0f;
+*	float y = 2.0f;
+*	float result = nextafterf(x, y);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses direct bit manipulation for optimal performance.
+* 
+*   SEE ALSO
+*	nextafter(), nexttowardf(), math.h
+* 
+******************************************************************************/
+
 float nextafterf(float x, float y)
 {
     int hx, hy, ix, iy;
@@ -65,4 +102,5 @@ float nextafterf(float x, float y)
     __HI(x) = hx;
     return x;
 }
+
 

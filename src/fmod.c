@@ -136,6 +136,43 @@ static double __ieee754_fmod(double x, double y)
 }
 
 /* Public fmod function */
+
+/****** ma.lib/fmod *********************************************************
+* 
+*   NAME	
+* 	fmod -- Return floating-point remainder of x/y. (V1.0)
+*
+*   SYNOPSIS
+*	double result = fmod(double x, double y);
+*	  D0		   D0
+*	double fmod(double x, double y);
+*
+*   FUNCTION
+*	Compute the floating-point remainder of x/y. The result has the same
+*	sign as x and magnitude less than |y|. This implementation uses
+*	high-precision algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Numerator value.
+*	y - Denominator value.
+*	
+*   RESULT
+*	result - Floating-point remainder of x/y. Returns NaN if y is 0 or if
+*	        either argument is NaN, returns x if y is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 5.0, y = 2.0;
+*	double result = fmod(x, y);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM if y is 0.
+* 
+*   SEE ALSO
+*	remainder(), modf(), math.h
+* 
+******************************************************************************/
+
 double fmod(double x, double y)
 {
     double z;

@@ -11,13 +11,43 @@
 #include <complex.h>
 #include "include/internal/complex_internal.h"
 
-/*
- * cmul - complex multiplication
- * 
- * Multiplies two complex numbers: result = a * b
- * 
- * This wraps SAS/C's C++ operator* function.
- */
+/****** ma.lib/cmul ***********************************************************
+* 
+*   NAME	
+* 	cmul -- Multiply two complex numbers. (V1.0)
+*
+*   SYNOPSIS
+*	complex_t result = cmul(complex_t a, complex_t b);
+*	  D0		   D0
+*	complex_t cmul(complex_t a, complex_t b);
+*
+*   FUNCTION
+*	Multiply two complex numbers. This computes a * b where a and b
+*	are complex numbers. This implementation uses SAS/C's C++ complex
+*	class for maximum accuracy.
+* 
+*   INPUTS
+*	a - First complex number (multiplicand).
+*	b - Second complex number (multiplier).
+*	
+*   RESULT
+*	result - Complex number a * b. Returns {a.re*b.re - a.im*b.im,
+*	        a.re*b.im + a.im*b.re}.
+* 
+*   EXAMPLE
+*	complex_t a = {3.0, 4.0};
+*	complex_t b = {1.0, 2.0};
+*	complex_t result = cmul(a, b);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses SAS/C C++ complex class internally.
+* 
+*   SEE ALSO
+*	cadd(), csub(), cdiv(), complex.h
+* 
+******************************************************************************/
+
 complex_t cmul(complex_t a, complex_t b)
 {
     // Convert to SAS/C C++ complex class

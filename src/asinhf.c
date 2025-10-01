@@ -14,6 +14,40 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/asinhf ********************************************************
+* 
+*   NAME	
+* 	asinhf -- Return inverse hyperbolic sine of float. (V1.0)
+*
+*   SYNOPSIS
+*	float result = asinhf(float x);
+*	  D0		   D0
+*	float asinhf(float x);
+*
+*   FUNCTION
+*	Compute the inverse hyperbolic sine of a float value. This returns
+*	the value whose hyperbolic sine is x. This implementation uses
+*	the standard formula: asinh(x) = log(x + sqrt(x^2 + 1)).
+* 
+*   INPUTS
+*	x - Float value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Inverse hyperbolic sine of x. Returns ±Infinity for large |x|.
+* 
+*   EXAMPLE
+*	float x = 1.0f;
+*	float result = asinhf(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Originally adapted from PDC libsrc (Fred Fish - Public Domain).
+* 
+*   SEE ALSO
+*	asinh(), acoshf(), atanhf(), math.h
+* 
+******************************************************************************/
+
 /*
  * asinhf - double precision hyperbolic arc sine (float)
  * 

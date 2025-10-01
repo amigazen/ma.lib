@@ -83,6 +83,42 @@ static double __ieee754_acos(double x)
     }
 }
 
+/****** ma.lib/acos *********************************************************
+* 
+*   NAME	
+* 	acos -- Return arc cosine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = acos(double x);
+*	  D0		   D0
+*	double acos(double x);
+*
+*   FUNCTION
+*	Compute the arc cosine of x. The arc cosine is the inverse of the
+*	cosine function, returning the angle whose cosine is x. This
+*	implementation uses high-precision algorithms from fdlibm for maximum
+*	accuracy.
+* 
+*   INPUTS
+*	x - Input value. Must be in the range [-1, 1] for valid result.
+*	
+*   RESULT
+*	result - Arc cosine of x in radians, in the range [0, π]. Returns
+*	        NaN if |x| > 1, returns π/2 if x is 0, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 0.5;
+*	double angle = acos(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM for |x| > 1.
+* 
+*   SEE ALSO
+*	asin(), atan(), cos(), math.h
+* 
+******************************************************************************/
+
 double acos(double x)
 {
     double result = __ieee754_acos(x);

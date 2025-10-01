@@ -28,6 +28,42 @@
  * 2. If x < -xmax or xmax < x then let x = xmax and flag overflow.
  * 3. asinh(x) = log [x+sqrt(x**2 + 1)]
  */
+
+/****** ma.lib/asinh ********************************************************
+* 
+*   NAME	
+* 	asinh -- Return hyperbolic arc sine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = asinh(double x);
+*	  D0		   D0
+*	double asinh(double x);
+*
+*   FUNCTION
+*	Compute the hyperbolic arc sine of x. The hyperbolic arc sine is the
+*	inverse of the hyperbolic sine function. This implementation uses the
+*	formula asinh(x) = log(x + sqrt(x² + 1)).
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Hyperbolic arc sine of x. Returns x if x is ±0, returns
+*	        NaN if x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	double result = asinh(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Handles overflow conditions for large input values.
+* 
+*   SEE ALSO
+*	acosh(), atanh(), sinh(), log(), math.h
+* 
+******************************************************************************/
+
 double asinh(double x)
 {
     struct exception xcpt;

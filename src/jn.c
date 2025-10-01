@@ -24,6 +24,7 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
+
 static const double
 invsqrtpi=  5.64189583547756279280e-01, /* 0x3FE20DD7, 0x50429B6D */
 two   =  2.00000000000000000000e+00, /* 0x40000000, 0x00000000 */
@@ -241,6 +242,44 @@ static double __ieee754_yn(int n, double x)
     }
     if(sign>0) return b; else return -b;
 }
+
+/****** ma.lib/jn *************************************************************
+* 
+*   NAME	
+* 	jn -- Return Bessel function of first kind, order n. (V1.0)
+*
+*   SYNOPSIS
+*	double result = jn(int n, double x);
+*	  D0		   D0
+*	double jn(int n, double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the first kind of order n.
+*	This function is used in various mathematical and physical
+*	applications. This implementation uses high-precision algorithms
+*	from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	n - Order of the Bessel function.
+*	x - Input value. Must be >= 0 for valid result.
+*	
+*   RESULT
+*	result - Bessel function J_n(x). Returns NaN if x < 0, returns
+*	        0 if n < 0 and x is 0, returns 1 if n = 0 and x is 0.
+* 
+*   EXAMPLE
+*	int n = 2;
+*	double x = 1.0;
+*	double result = jn(n, x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM if x < 0.
+* 
+*   SEE ALSO
+*	yn(), j0(), j1(), math.h
+* 
+******************************************************************************/
 
 double jn(int n, double x)
 {

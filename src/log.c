@@ -83,6 +83,41 @@ static double __ieee754_log(double x)
     }
 }
 
+/****** ma.lib/log **********************************************************
+* 
+*   NAME	
+* 	log -- Return natural logarithm of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = log(double x);
+*	  D0		   D0
+*	double log(double x);
+*
+*   FUNCTION
+*	Compute the natural logarithm of x. This is the logarithm to base e
+*	where e is the base of natural logarithms. This implementation uses
+*	high-precision algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Must be positive for valid result.
+*	
+*   RESULT
+*	result - Natural logarithm of x. Returns -Infinity if x is +0.0,
+*	        NaN if x is negative or NaN, +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	double x = M_E;
+*	double result = log(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM for non-positive arguments.
+* 
+*   SEE ALSO
+*	log10(), log2(), exp(), pow(), math.h
+* 
+******************************************************************************/
+
 double log(double x)
 {
     /* Handle special cases first */

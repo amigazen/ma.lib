@@ -23,7 +23,7 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
-/****** ma.lib/logb *****************************************************
+/****** ma.lib/logb *********************************************************
 * 
 *   NAME	
 * 	logb -- Return binary exponent of x. (V1.0)
@@ -34,27 +34,28 @@
 *	double logb(double x);
 *
 *   FUNCTION
-*	Extract the binary exponent of x as a floating-point value.
-*	This is equivalent to floor(log2(|x|)) for normal numbers.
-*	This function is included for IEEE 754 compliance.
+*	Extract the binary exponent of x as a double. This is equivalent to
+*	the exponent part of the floating-point representation. This
+*	implementation uses high-precision algorithms from fdlibm for maximum
+*	accuracy.
 * 
 *   INPUTS
-*	x - Input value.
+*	x - Input value. Range is [-∞, +∞].
 *	
 *   RESULT
-*	result - Binary exponent of x. Returns -Infinity if x is 0.0,
-*	        returns +Infinity if x is ±Infinity, returns NaN if x is NaN.
+*	result - Binary exponent of x. Returns -Infinity if x is 0, returns
+*	        +Infinity if x is ±Infinity, returns NaN if x is NaN.
 * 
 *   EXAMPLE
-*	double x = 8.0; 
+*	double x = 8.0;
 *	double exp = logb(x);  
 *
 *   NOTES
-*	This function is C99 compliant and provides IEEE 754 accuracy.
-*	Use ilogb() instead for better performance in most cases.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to the exponent part of frexp().
 * 
 *   SEE ALSO
-*	ilogb(), frexp(), scalbn(), math.h
+*	frexp(), ilogb(), scalbn(), math.h
 * 
 ******************************************************************************/
 

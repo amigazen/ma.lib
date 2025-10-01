@@ -23,7 +23,7 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
-/****** ma.lib/nextafter ************************************************
+/****** ma.lib/nextafter ****************************************************
 * 
 *   NAME	
 * 	nextafter -- Return next representable value toward y. (V1.0)
@@ -34,29 +34,29 @@
 *	double nextafter(double x, double y);
 *
 *   FUNCTION
-*	Return the next machine floating-point number of x in the direction
-*	toward y. This function is useful for finding the next representable
-*	value in a floating-point format.
+*	Compute the next representable floating-point value after x in the
+*	direction toward y. This is useful for finding the next or previous
+*	representable value. This implementation uses high-precision algorithms
+*	from fdlibm for maximum accuracy.
 * 
 *   INPUTS
 *	x - Starting value.
-*	y - Target direction. The result will be the next representable
-*	    value of x in the direction toward y.
+*	y - Direction value.
 *	
 *   RESULT
-*	result - Next representable value of x toward y. Returns x if x equals y,
-*	        returns NaN if either argument is NaN, returns x if x is ±Infinity.
+*	result - Next representable value after x toward y. Returns y if x
+*	        equals y, returns NaN if either argument is NaN.
 * 
 *   EXAMPLE
 *	double x = 1.0, y = 2.0;
-*	double next = nextafter(x, y);  
+*	double result = nextafter(x, y);  
 *
 *   NOTES
-*	This function is C99 compliant and provides IEEE 754 accuracy.
-*	Uses bit manipulation for optimal performance.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is useful for finding adjacent representable values.
 * 
 *   SEE ALSO
-*	nexttoward(), scalbn(), math.h
+*	nexttoward(), math.h
 * 
 ******************************************************************************/
 

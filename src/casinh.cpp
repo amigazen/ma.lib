@@ -11,6 +11,41 @@
 
 #include "include/internal/complex_internal.h"
 
+/****** ma.lib/casinh *********************************************************
+* 
+*   NAME	
+* 	casinh -- Return complex arc hyperbolic sine. (V1.0)
+*
+*   SYNOPSIS
+*	complex_t result = casinh(complex_t z);
+*	  D0		   D0
+*	complex_t casinh(complex_t z);
+*
+*   FUNCTION
+*	Compute the complex arc hyperbolic sine of z. This is the
+*	inverse of the complex hyperbolic sine function. This
+*	implementation uses SAS/C's C++ complex class for maximum accuracy.
+* 
+*   INPUTS
+*	z - Complex number.
+*	
+*   RESULT
+*	result - Complex arc hyperbolic sine of z. Returns NaN if z
+*	        is outside the domain.
+* 
+*   EXAMPLE
+*	complex_t z = {1.0, 2.0};
+*	complex_t result = casinh(z);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses SAS/C C++ complex class internally.
+* 
+*   SEE ALSO
+*	cacosh(), catanh(), csinh(), complex.h
+* 
+******************************************************************************/
+
 complex_t casinh(complex_t z)
 {
     /* Manual implementation using mathematical formula */

@@ -28,6 +28,42 @@ twom54  =  5.55111512312578270212e-17, /* 0x3C900000, 0x00000000 */
 huge   =  1.0e+300,
 tiny   =  1.0e-300;
 
+/****** ma.lib/scalbln ******************************************************
+* 
+*   NAME	
+* 	scalbln -- Return x * 2^n. (V1.0)
+*
+*   SYNOPSIS
+*	double result = scalbln(double x, long n);
+*	  D0		   D0
+*	double scalbln(double x, long n);
+*
+*   FUNCTION
+*	Compute x * 2^n. This scales x by a power of 2. This implementation
+*	uses high-precision algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value.
+*	n - Exponent value.
+*	
+*   RESULT
+*	result - x * 2^n. Returns NaN if x is NaN, returns ±Infinity for
+*	        large results, returns ±0 for small results.
+* 
+*   EXAMPLE
+*	double x = 3.0;
+*	long n = 2;
+*	double result = scalbln(x, n);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to scalbn(x, n) when n is in range.
+* 
+*   SEE ALSO
+*	scalbn(), scalb(), ldexp(), math.h
+* 
+******************************************************************************/
+
 double scalbln(double x, long n)
 {
     int k,hx,lx;

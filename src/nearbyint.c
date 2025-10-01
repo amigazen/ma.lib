@@ -20,6 +20,42 @@
 
 static const double huge = 1.0e300;
 
+/****** ma.lib/nearbyint ****************************************************
+* 
+*   NAME	
+* 	nearbyint -- Return x rounded to nearest integer. (V1.0)
+*
+*   SYNOPSIS
+*	double result = nearbyint(double x);
+*	  D0		   D0
+*	double nearbyint(double x);
+*
+*   FUNCTION
+*	Compute the nearest integer value to x according to the current
+*	rounding mode. This rounds x to the nearest integer using the
+*	prevailing rounding mode. This implementation uses high-precision
+*	algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Nearest integer to x. Returns x if x is ±0, returns NaN if
+*	        x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.7;
+*	double result = nearbyint(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Raises inexact flag if x != nearbyint(x).
+* 
+*   SEE ALSO
+*	round(), rint(), floor(), ceil(), math.h
+* 
+******************************************************************************/
+
 double nearbyint(double x)
 {
     int i0,i1,j0;

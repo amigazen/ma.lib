@@ -15,6 +15,41 @@
 
 #include <amiga/math.h>
 
+/****** ma.lib/acoshl ********************************************************
+* 
+*   NAME	
+* 	acoshl -- Return inverse hyperbolic cosine of long double. (V1.0)
+*
+*   SYNOPSIS
+*	long double result = acoshl(long double x);
+*	  D0		   D0
+*	long double acoshl(long double x);
+*
+*   FUNCTION
+*	Compute the inverse hyperbolic cosine of a long double value. This returns
+*	the value whose hyperbolic cosine is x. This implementation uses
+*	AmigaOS math libraries when available, falling back to standard implementation.
+* 
+*   INPUTS
+*	x - Long double value. Must be >= 1 for valid result.
+*	
+*   RESULT
+*	result - Inverse hyperbolic cosine of x. Returns 0 if x < 1,
+*	        returns +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	long double x = 2.0L;
+*	long double result = acoshl(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses AmigaOS math libraries when available for optimal performance.
+* 
+*   SEE ALSO
+*	acosh(), asinhl(), atanhl(), math.h
+* 
+******************************************************************************/
+
 /*
  * acoshl - inverse hyperbolic cosine (long double)
  * 

@@ -90,6 +90,41 @@ static double __ieee754_asin(double x)
     if(hx>0) return t; else return -t;    
 }
 
+/****** ma.lib/asin *********************************************************
+* 
+*   NAME	
+* 	asin -- Return arc sine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = asin(double x);
+*	  D0		   D0
+*	double asin(double x);
+*
+*   FUNCTION
+*	Compute the arc sine of x. The arc sine is the inverse of the sine
+*	function, returning the angle whose sine is x. This implementation
+*	uses high-precision algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Must be in the range [-1, 1] for valid result.
+*	
+*   RESULT
+*	result - Arc sine of x in radians, in the range [-π/2, π/2]. Returns
+*	        NaN if |x| > 1, returns x if x is ±0, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 0.5;
+*	double angle = asin(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM for |x| > 1.
+* 
+*   SEE ALSO
+*	acos(), atan(), sin(), math.h
+* 
+******************************************************************************/
+
 double asin(double x)
 {
     double result = __ieee754_asin(x);

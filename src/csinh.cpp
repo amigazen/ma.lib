@@ -12,14 +12,40 @@
 #include <math.h>
 #include "include/internal/complex_internal.h"
 
-/*
- * csinh - complex hyperbolic sine
- * 
- * Returns the complex hyperbolic sine of z.
- * csinh(z) = sinh(z)
- * 
- * This wraps SAS/C's C++ sinh() function.
- */
+/****** ma.lib/csinh **********************************************************
+* 
+*   NAME	
+* 	csinh -- Return complex hyperbolic sine of z. (V1.0)
+*
+*   SYNOPSIS
+*	complex_t result = csinh(complex_t z);
+*	  D0		   D0
+*	complex_t csinh(complex_t z);
+*
+*   FUNCTION
+*	Compute the complex hyperbolic sine of z. This returns sinh(z)
+*	where z is a complex number. This implementation uses SAS/C's
+*	C++ complex class for maximum accuracy.
+* 
+*   INPUTS
+*	z - Complex number.
+*	
+*   RESULT
+*	result - Complex hyperbolic sine of z. Returns NaN if z is NaN.
+* 
+*   EXAMPLE
+*	complex_t z = {1.0, 2.0};
+*	complex_t result = csinh(z);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses SAS/C C++ complex class internally.
+* 
+*   SEE ALSO
+*	ccosh(), ctanh(), casinh(), complex.h
+* 
+******************************************************************************/
+
 complex_t csinh(complex_t z)
 {
     // Convert to SAS/C C++ complex class

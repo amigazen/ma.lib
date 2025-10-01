@@ -68,8 +68,43 @@ static double __ieee754_cosh(double x)
     return huge*huge;
 }
 
+/****** ma.lib/cosh *********************************************************
+* 
+*   NAME	
+* 	cosh -- Return hyperbolic cosine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = cosh(double x);
+*	  D0		   D0
+*	double cosh(double x);
+*
+*   FUNCTION
+*	Compute the hyperbolic cosine of x. The hyperbolic cosine is defined as
+*	(e^x + e^(-x)) / 2. This implementation uses high-precision algorithms
+*	from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is approximately [-710, 710] for finite results.
+*	
+*   RESULT
+*	result - Hyperbolic cosine of x. Returns +Infinity for large |x|,
+*	        returns 1.0 if x is ±0, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	double result = cosh(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	sinh(), tanh(), acosh(), exp(), math.h
+* 
+******************************************************************************/
+
 double cosh(double x)
 {
     return __ieee754_cosh(x);
 }
+
 

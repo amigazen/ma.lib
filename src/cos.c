@@ -54,7 +54,7 @@ extern double __kernel_cos(double x, double y);
 *
 *   NOTES
 *	This function is C89 compliant and provides IEEE 754 accuracy.
-*	Performance is optimized for the Amiga platform.
+*	Uses range reduction to [-π/4, π/4] for optimal accuracy.
 * 
 *   SEE ALSO
 *	sin(), tan(), acos(), math.h

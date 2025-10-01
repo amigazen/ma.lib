@@ -22,6 +22,44 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
+/****** ma.lib/yn **************************************************************
+* 
+*   NAME	
+* 	yn -- Return Bessel function of second kind, order n. (V1.0)
+*
+*   SYNOPSIS
+*	double result = yn(int n, double x);
+*	  D0		   D0
+*	double yn(int n, double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the second kind of order n.
+*	This function is used in various mathematical and physical
+*	applications. This implementation uses high-precision algorithms
+*	from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	n - Order of the Bessel function.
+*	x - Input value. Must be > 0 for valid result.
+*	
+*   RESULT
+*	result - Bessel function Y_n(x). Returns NaN if x <= 0, returns
+*	        -Infinity if n = 0 and x is 0.
+* 
+*   EXAMPLE
+*	int n = 2;
+*	double x = 1.0;
+*	double result = yn(n, x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM if x <= 0.
+* 
+*   SEE ALSO
+*	jn(), y0(), y1(), math.h
+* 
+******************************************************************************/
+
 static const double
 invsqrtpi=  5.64189583547756279280e-01, /* 0x3FE20DD7, 0x50429B6D */
 two   =  2.00000000000000000000e+00, /* 0x40000000, 0x00000000 */
@@ -83,43 +121,6 @@ static double __ieee754_yn(int n, double x)
     }
     if(sign>0) return b; else return -b;
 }
-
-/****** ma.lib/yn *******************************************************
-* 
-*   NAME	
-* 	yn -- Return Bessel function of second kind, order n. (V1.0)
-*
-*   SYNOPSIS
-*	double result = yn(int n, double x);
-*	  D0		   D0
-*	double yn(int n, double x);
-*
-*   FUNCTION
-*	Compute the Bessel function of the second kind of order n.
-*	This function is used in various mathematical and physical applications,
-*	including wave propagation and signal processing.
-* 
-*   INPUTS
-*	n - Order of the Bessel function.
-*	x - Input value. Must be positive for valid result.
-*	
-*   RESULT
-*	result - Bessel function Yn(x). Returns -Infinity if x is 0.0,
-*	        returns 0.0 for large x, returns NaN if x is negative or NaN.
-* 
-*   EXAMPLE
-*	int n = 2;
-*	double x = 2.0;
-*	double bessel = yn(n, x);  
-*
-*   NOTES
-*	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
-*	Uses high-precision algorithms from fdlibm.
-* 
-*   SEE ALSO
-*	y0(), y1(), j0(), j1(), jn(), math.h
-* 
-******************************************************************************/
 
 double yn(int n, double x)
 {

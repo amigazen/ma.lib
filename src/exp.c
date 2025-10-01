@@ -92,8 +92,43 @@ static double __ieee754_exp(double x)
     }
 }
 
+/****** ma.lib/exp **********************************************************
+* 
+*   NAME	
+* 	exp -- Return exponential of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = exp(double x);
+*	  D0		   D0
+*	double exp(double x);
+*
+*   FUNCTION
+*	Compute the exponential of x. This is equivalent to e^x where e is
+*	the base of natural logarithms. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is approximately [-700, 700] for finite results.
+*	
+*   RESULT
+*	result - Exponential of x. Returns +Infinity for large positive x,
+*	        +0.0 for large negative x, NaN for NaN input.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	double result = exp(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	log(), exp2(), pow(), math.h
+* 
+******************************************************************************/
+
 double exp(double x)
 {
     return __ieee754_exp(x);
 }
+
 

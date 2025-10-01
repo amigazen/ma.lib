@@ -11,6 +11,42 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/y1 *************************************************************
+* 
+*   NAME	
+* 	y1 -- Return Bessel function of second kind, order 1. (V1.0)
+*
+*   SYNOPSIS
+*	double result = y1(double x);
+*	  D0		   D0
+*	double y1(double x);
+*
+*   FUNCTION
+*	Compute the Bessel function of the second kind of order 1.
+*	This function is used in various mathematical and physical
+*	applications. This implementation uses series and asymptotic
+*	expansions for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Must be > 0 for valid result.
+*	
+*   RESULT
+*	result - Bessel function Y₁(x). Returns -Infinity if x is 0,
+*	        returns NaN if x <= 0, returns 0 for large x.
+* 
+*   EXAMPLE
+*	double x = 2.0;
+*	double result = y1(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM if x <= 0.
+* 
+*   SEE ALSO
+*	y0(), yn(), j0(), j1(), math.h
+* 
+******************************************************************************/
+
 double y1(double x)
 {
     double result;

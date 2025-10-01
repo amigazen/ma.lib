@@ -97,3 +97,4 @@ int long_long_popcount(long_long_t value);
 lldiv_t lldiv(long_long_t numer, long_long_t denom);
 
 #endif /* LONG_LONG_H */
+

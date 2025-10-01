@@ -20,6 +20,41 @@
 /* SAS/C uses big-endian, so high word is first */
 #define __HI(x) *(int*)&x
 
+/****** ma.lib/isnanf ********************************************************
+* 
+*   NAME	
+* 	isnanf -- Test if float value is NaN. (V1.0)
+*
+*   SYNOPSIS
+*	int result = isnanf(float x);
+*	  D0		   D0
+*	int isnanf(float x);
+*
+*   FUNCTION
+*	Test if a float value is NaN (Not a Number). This performs
+*	IEEE 754 NaN detection for float values on AmigaOS with SAS/C.
+* 
+*   INPUTS
+*	x - Float value to test.
+*	
+*   RESULT
+*	result - Non-zero if x is NaN, zero otherwise.
+* 
+*   EXAMPLE
+*	float x = 0.0f / 0.0f;
+*	if (isnanf(x)) {
+*	    printf("x is NaN\n");
+*	}
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses bit manipulation for efficient NaN detection.
+* 
+*   SEE ALSO
+*	isnan(), isinf(), finitef(), math.h
+* 
+******************************************************************************/
+
 int isnanf(float x)
 {
     int hx;

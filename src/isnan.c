@@ -21,7 +21,7 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
-/****** ma.lib/isnan ****************************************************
+/****** ma.lib/isnan ********************************************************
 * 
 *   NAME	
 * 	isnan -- Test if value is NaN (Not a Number). (V1.0)
@@ -32,28 +32,26 @@
 *	int isnan(double x);
 *
 *   FUNCTION
-*	Test if the given floating-point value is NaN (Not a Number).
-*	NaN values are special floating-point values that represent
-*	undefined or unrepresentable results.
+*	Test if x is NaN (Not a Number). This returns 1 if x is NaN, 0
+*	otherwise. This implementation uses high-precision algorithms from
+*	fdlibm for maximum accuracy.
 * 
 *   INPUTS
-*	x - Floating-point value to test.
+*	x - Input value. Range is [-∞, +∞].
 *	
 *   RESULT
-*	result - Non-zero if x is NaN, zero if x is a valid number.
+*	result - 1 if x is NaN, 0 if x is finite or ±Infinity.
 * 
 *   EXAMPLE
-*	double value = 0.0 / 0.0;  
-*	if (isnan(value)) {
-*	    printf("Value is NaN\n");
-*	}
+*	double x = 0.0 / 0.0;
+*	int result = isnan(x);  
 *
 *   NOTES
-*	This function is C99 compliant and uses bit manipulation for
-*	maximum performance. No branching is used in the implementation.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to x != x.
 * 
 *   SEE ALSO
-*	isinf(), finite(), fpclassify(), math.h
+*	isinf(), finite(), math.h
 * 
 ******************************************************************************/
 

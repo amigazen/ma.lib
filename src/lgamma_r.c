@@ -141,6 +141,44 @@ static double sin_pi(double x)
     return -y;
 }
 
+/****** ma.lib/lgamma_r *******************************************************
+* 
+*   NAME	
+* 	lgamma_r -- Return log of gamma function (reentrant). (V1.0)
+*
+*   SYNOPSIS
+*	double result = lgamma_r(double x, int *signgamp);
+*	  D0		   D0
+*	double lgamma_r(double x, int *signgamp);
+*
+*   FUNCTION
+*	Compute the logarithm of the gamma function. This is the reentrant
+*	version that stores the sign of gamma(x) in *signgamp. This
+*	implementation uses high-precision algorithms from fdlibm for
+*	maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	signgamp - Pointer to int to store sign of gamma(x).
+*	
+*   RESULT
+*	result - Log of |gamma(x)|. Returns +Infinity if x is a non-positive
+*	        integer, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 2.5;
+*	int sign;
+*	double result = lgamma_r(x, &sign);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	The sign of gamma(x) is stored in the int pointed to by signgamp.
+* 
+*   SEE ALSO
+*	lgamma(), tgamma(), gamma(), math.h
+* 
+******************************************************************************/
+
 double lgamma_r(double x, int *signgamp)
 {
     double t, y, z, nadj, p, p1, p2, p3, q, r, w;

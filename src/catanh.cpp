@@ -11,6 +11,41 @@
 
 #include "include/internal/complex_internal.h"
 
+/****** ma.lib/catanh *********************************************************
+* 
+*   NAME	
+* 	catanh -- Return complex arc hyperbolic tangent. (V1.0)
+*
+*   SYNOPSIS
+*	complex_t result = catanh(complex_t z);
+*	  D0		   D0
+*	complex_t catanh(complex_t z);
+*
+*   FUNCTION
+*	Compute the complex arc hyperbolic tangent of z. This is the
+*	inverse of the complex hyperbolic tangent function. This
+*	implementation uses SAS/C's C++ complex class for maximum accuracy.
+* 
+*   INPUTS
+*	z - Complex number.
+*	
+*   RESULT
+*	result - Complex arc hyperbolic tangent of z. Returns NaN if z
+*	        is outside the domain [-1, 1] on the real axis.
+* 
+*   EXAMPLE
+*	complex_t z = {0.5, 0.0};
+*	complex_t result = catanh(z);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses SAS/C C++ complex class internally.
+* 
+*   SEE ALSO
+*	cacosh(), casinh(), ctanh(), complex.h
+* 
+******************************************************************************/
+
 complex_t catanh(complex_t z)
 {
     /* Manual implementation using mathematical formula */

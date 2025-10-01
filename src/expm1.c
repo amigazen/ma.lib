@@ -15,15 +15,43 @@
 
 #include <amiga/math.h>
 
-/*
- * expm1 - exp(x) - 1
- * 
- * Returns exp(x) - 1, computed in a way that is accurate even
- * for small values of x.
- * 
- * This function is useful when x is close to zero, as exp(x) - 1
- * can suffer from cancellation errors.
- */
+/****** ma.lib/expm1 **********************************************************
+* 
+*   NAME	
+* 	expm1 -- Return exp(x) - 1. (V1.0)
+*
+*   SYNOPSIS
+*	double result = expm1(double x);
+*	  D0		   D0
+*	double expm1(double x);
+*
+*   FUNCTION
+*	Compute exp(x) - 1. This function provides more accurate results
+*	than exp(x) - 1 for small values of x, avoiding cancellation
+*	errors. This implementation uses high-precision algorithms for
+*	maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - exp(x) - 1. Returns x if x is ±0, returns -1 if x is
+*	        -Infinity, returns +Infinity if x is +Infinity, returns
+*	        NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 0.001;
+*	double result = expm1(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	More accurate than exp(x) - 1 for small x values.
+* 
+*   SEE ALSO
+*	exp(), log1p(), math.h
+* 
+******************************************************************************/
+
 double expm1(double x)
 {
     double result;

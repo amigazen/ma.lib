@@ -19,6 +19,41 @@
 
 static const double huge = 1.0e300;
 
+/****** ma.lib/trunc ********************************************************
+* 
+*   NAME	
+* 	trunc -- Return x rounded toward zero to integral value. (V1.0)
+*
+*   SYNOPSIS
+*	double result = trunc(double x);
+*	  D0		   D0
+*	double trunc(double x);
+*
+*   FUNCTION
+*	Compute the integral value of x rounded toward zero. This truncates
+*	the fractional part of x. This implementation uses high-precision
+*	algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - x rounded toward zero. Returns x if x is ±0, returns NaN if
+*	        x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.7;
+*	double result = trunc(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Raises inexact flag if x != trunc(x).
+* 
+*   SEE ALSO
+*	floor(), ceil(), round(), math.h
+* 
+******************************************************************************/
+
 double trunc(double x)
 {
     int i0,i1,j0;

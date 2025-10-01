@@ -22,6 +22,41 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
+/****** ma.lib/sin ***********************************************************
+* 
+*   NAME	
+* 	sin -- Return sine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = sin(double x);
+*	  D0		   D0
+*	double sin(double x);
+*
+*   FUNCTION
+*	Compute the sine of x. This returns the sine of x in radians.
+*	This implementation uses high-precision algorithms from fdlibm
+*	for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value in radians. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Sine of x. Returns NaN if x is NaN, returns NaN if x is
+*	        ±Infinity, returns x if x is ±0.
+* 
+*   EXAMPLE
+*	double x = M_PI / 2.0;
+*	double result = sin(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses range reduction to [-π/4, π/4] for optimal accuracy.
+* 
+*   SEE ALSO
+*	cos(), tan(), asin(), math.h
+* 
+******************************************************************************/
+
 /* Internal functions for sin */
 int __ieee754_rem_pio2(double x, double *y);
 double __kernel_sin(double x, double y, int iy);

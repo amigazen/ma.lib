@@ -9,7 +9,7 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
-/****** ma.lib/fmin *****************************************************
+/****** ma.lib/fmin *********************************************************
 * 
 *   NAME	
 * 	fmin -- Return minimum of two values. (V1.0)
@@ -29,16 +29,15 @@
 *	y - Second value to compare.
 *	
 *   RESULT
-*	result - Minimum of x and y. Returns NaN if both arguments are NaN,
-*	        returns the non-NaN argument if only one is NaN.
+*	result - Minimum of x and y. Returns NaN if both arguments are NaN.
 * 
 *   EXAMPLE
 *	double x = 3.14, y = 2.71;
-*	double min = fmin(x, y);  
+*	double result = fmin(x, y);  
 *
 *   NOTES
-*	This function is C99 compliant and provides IEEE 754 accuracy.
-*	Handles NaN values according to IEEE 754 standard.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to (x < y) ? x : y with proper NaN handling.
 * 
 *   SEE ALSO
 *	fmax(), fabs(), math.h

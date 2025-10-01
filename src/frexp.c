@@ -29,6 +29,44 @@
 static const double
 two54 =  1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
 
+/****** ma.lib/frexp ********************************************************
+* 
+*   NAME	
+* 	frexp -- Return significand and exponent of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = frexp(double x, int *eptr);
+*	  D0		   D0
+*	double frexp(double x, int *eptr);
+*
+*   FUNCTION
+*	Break x into a normalized fraction and an integral power of 2. The
+*	result is x = result * 2^eptr, where result is in the range [0.5, 1.0)
+*	or 0, and eptr is the exponent. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value.
+*	eptr - Pointer to integer to store exponent.
+*	
+*   RESULT
+*	result - Normalized fraction in range [0.5, 1.0) or 0. Returns 0 if
+*	        x is 0, returns x if x is ±Infinity or NaN.
+* 
+*   EXAMPLE
+*	double x = 3.14159;
+*	int exp;
+*	double result = frexp(x, &exp);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	The exponent is stored in the integer pointed to by eptr.
+* 
+*   SEE ALSO
+*	ldexp(), scalbn(), scalb(), math.h
+* 
+******************************************************************************/
+
 double frexp(double x, int *eptr)
 {
     int  hx, ix, lx;

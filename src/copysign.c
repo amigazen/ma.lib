@@ -23,7 +23,7 @@
 #define __HI(x) *(int*)&x
 #define __LO(x) *(1+(int*)&x)
 
-/****** ma.lib/copysign *************************************************
+/****** ma.lib/copysign *****************************************************
 * 
 *   NAME	
 * 	copysign -- Copy sign bit from y to x. (V1.0)
@@ -34,25 +34,25 @@
 *	double copysign(double x, double y);
 *
 *   FUNCTION
-*	Copy the sign bit from y to x. Returns a value with the magnitude
-*	of x and the sign of y. This function is useful for ensuring
-*	consistent sign handling in mathematical operations.
+*	Copy the sign bit from y to x. This returns a value with the magnitude
+*	of x and the sign of y. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
 * 
 *   INPUTS
-*	x - Value whose magnitude will be used.
-*	y - Value whose sign will be used.
+*	x - Magnitude value.
+*	y - Sign value.
 *	
 *   RESULT
-*	result - Value with magnitude of x and sign of y. Returns +0.0 if
-*	        x is +0.0, returns -0.0 if x is -0.0, returns NaN if x is NaN.
+*	result - Value with magnitude of x and sign of y. Returns x if y is
+*	        ±0, returns NaN if either argument is NaN.
 * 
 *   EXAMPLE
 *	double x = 3.14, y = -2.0;
-*	double result = copysign(x, y);
+*	double result = copysign(x, y);  
 *
 *   NOTES
-*	This function is C99 compliant and provides IEEE 754 accuracy.
-*	Uses bit manipulation for optimal performance.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is useful for changing the sign of a value.
 * 
 *   SEE ALSO
 *	signbit(), fabs(), math.h

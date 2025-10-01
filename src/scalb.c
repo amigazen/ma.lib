@@ -33,6 +33,41 @@ static double __ieee754_scalb(double x, double fn)
     return scalbn(x,(int)fn);
 }
 
+/****** ma.lib/scalb ********************************************************
+* 
+*   NAME	
+* 	scalb -- Return x * 2^fn. (V1.0)
+*
+*   SYNOPSIS
+*	double result = scalb(double x, double fn);
+*	  D0		   D0
+*	double scalb(double x, double fn);
+*
+*   FUNCTION
+*	Compute x * 2^fn. This scales x by a power of 2. This implementation
+*	uses high-precision algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value.
+*	fn - Exponent value.
+*	
+*   RESULT
+*	result - x * 2^fn. Returns NaN if either argument is NaN, returns
+*	        ±Infinity for large results, returns ±0 for small results.
+* 
+*   EXAMPLE
+*	double x = 3.0, fn = 2.0;
+*	double result = scalb(x, fn);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to ERANGE on overflow or underflow.
+* 
+*   SEE ALSO
+*	scalbn(), ldexp(), math.h
+* 
+******************************************************************************/
+
 double scalb(double x, double fn)
 {
     double z;

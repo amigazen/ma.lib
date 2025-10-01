@@ -20,7 +20,7 @@
 /* SAS/C uses big-endian, so high word is first */
 #define __HI(x) *(int*)&x
 
-/****** ma.lib/fabs *****************************************************
+/****** ma.lib/fabs *********************************************************
 * 
 *   NAME	
 * 	fabs -- Return absolute value of x. (V1.0)
@@ -31,27 +31,27 @@
 *	double fabs(double x);
 *
 *   FUNCTION
-*	Compute the absolute value of x. For positive x, returns x.
-*	For negative x, returns -x. For zero, returns +0.0.
-*	This implementation uses bit manipulation for maximum performance.
+*	Compute the absolute value of x. This returns the magnitude of x
+*	without regard to its sign. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
 * 
 *   INPUTS
-*	x - Input value.
+*	x - Input value. Range is [-∞, +∞].
 *	
 *   RESULT
-*	result - Absolute value of x, always non-negative. Returns NaN if
-*	        x is NaN, +Infinity if x is ±Infinity.
+*	result - Absolute value of x. Returns x if x is ±0, returns NaN if
+*	        x is NaN, returns +Infinity if x is ±Infinity.
 * 
 *   EXAMPLE
-*	double value = -3.14;
-*	double abs = fabs(value);  
+*	double x = -3.14;
+*	double result = fabs(x);  
 *
 *   NOTES
 *	This function is C89 compliant and provides IEEE 754 accuracy.
-*	Uses bit manipulation for optimal performance.
+*	This is equivalent to (x < 0) ? -x : x.
 * 
 *   SEE ALSO
-*	abs(), labs(), llabs(), math.h
+*	copysign(), signbit(), math.h
 * 
 ******************************************************************************/
 

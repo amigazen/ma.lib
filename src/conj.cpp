@@ -11,14 +11,40 @@
 #include <complex.h>
 #include "include/internal/complex_internal.h"
 
-/*
- * conj - complex conjugate
- * 
- * Returns the complex conjugate of a complex number.
- * conj(z) = creal(z) - i * cimag(z)
- * 
- * This wraps SAS/C's C++ conj() function.
- */
+/****** ma.lib/conj **********************************************************
+* 
+*   NAME	
+* 	conj -- Return complex conjugate. (V1.0)
+*
+*   SYNOPSIS
+*	complex_t result = conj(complex_t z);
+*	  D0		   D0
+*	complex_t conj(complex_t z);
+*
+*   FUNCTION
+*	Compute the complex conjugate of z. This returns a complex number
+*	with the same real part but negated imaginary part. This
+*	implementation uses SAS/C's C++ complex class for maximum accuracy.
+* 
+*   INPUTS
+*	z - Complex number.
+*	
+*   RESULT
+*	result - Complex conjugate of z. Returns (z.re, -z.im).
+* 
+*   EXAMPLE
+*	complex_t z = {3.0, 4.0};
+*	complex_t result = conj(z);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses SAS/C C++ complex class internally.
+* 
+*   SEE ALSO
+*	creal(), cimag(), cabs(), complex.h
+* 
+******************************************************************************/
+
 complex_t conj(complex_t z)
 {
     // Convert to SAS/C C++ complex class

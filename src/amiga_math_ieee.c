@@ -16,9 +16,41 @@
 #include <libraries/mathieeedoubtrans.h>
 #include <amiga/math.h>
 
-/*
- * amiga_ieee_add - IEEE double precision addition
- */
+/****** ma.lib/amiga_ieee_add **********************************************
+* 
+*   NAME	
+* 	amiga_ieee_add -- Return IEEE double precision addition. (V1.0)
+*
+*   SYNOPSIS
+*	double result = amiga_ieee_add(double x, double y);
+*	  D0		   D0
+*	double amiga_ieee_add(double x, double y);
+*
+*   FUNCTION
+*	Add two IEEE double precision numbers using Amiga's mathieeedoubbas
+*	library. This provides access to the Amiga's native IEEE math
+*	functions for maximum compatibility.
+* 
+*   INPUTS
+*	x - First value (double).
+*	y - Second value (double).
+*	
+*   RESULT
+*	result - x + y using IEEE library.
+* 
+*   EXAMPLE
+*	double x = 3.14, y = 2.86;
+*	double result = amiga_ieee_add(x, y);  
+*
+*   NOTES
+*	This function is Amiga-specific and requires mathieeedoubbas.library.
+*	Uses inline assembly for direct library calls.
+* 
+*   SEE ALSO
+*	amiga_ieee_sub(), amiga_ieee_mul(), mathieeedoubbas.library
+* 
+******************************************************************************/
+
 double amiga_ieee_add(double x, double y)
 {
     register double result asm("d0");

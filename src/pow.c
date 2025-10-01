@@ -254,8 +254,44 @@ static double __ieee754_pow(double x, double y)
     return s*z;
 }
 
+/****** ma.lib/pow **********************************************************
+* 
+*   NAME	
+* 	pow -- Return x raised to the power of y. (V1.0)
+*
+*   SYNOPSIS
+*	double result = pow(double x, double y);
+*	  D0		   D0
+*	double pow(double x, double y);
+*
+*   FUNCTION
+*	Compute x raised to the power of y. This is equivalent to x^y.
+*	This implementation uses high-precision algorithms from fdlibm for
+*	maximum accuracy.
+* 
+*   INPUTS
+*	x - Base value.
+*	y - Exponent value.
+*	
+*   RESULT
+*	result - x^y. Returns +Infinity for large positive results, +0.0 for
+*	        large negative results, NaN for invalid combinations.
+* 
+*   EXAMPLE
+*	double x = 2.0, y = 3.0;
+*	double result = pow(x, y);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	sqrt(), cbrt(), exp(), log(), math.h
+* 
+******************************************************************************/
+
 double pow(double x, double y)
 {
     return __ieee754_pow(x, y);
 }
+
 

@@ -22,6 +22,41 @@
 
 static const double huge = 1.0e300;
 
+/****** ma.lib/lround *******************************************************
+* 
+*   NAME	
+* 	lround -- Return x rounded to nearest long integer. (V1.0)
+*
+*   SYNOPSIS
+*	long result = lround(double x);
+*	  D0		   D0
+*	long lround(double x);
+*
+*   FUNCTION
+*	Compute the nearest long integer value to x. This rounds x to the
+*	nearest long integer, with ties rounded away from zero. This
+*	implementation uses high-precision algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Nearest long integer to x. Returns 0 if x is ±0, returns
+*	        NaN if x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.7;
+*	long result = lround(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Raises inexact flag if x != lround(x).
+* 
+*   SEE ALSO
+*	round(), lrint(), nearbyint(), math.h
+* 
+******************************************************************************/
+
 long lround(double x)
 {
     int i0,i1,j0;

@@ -11,6 +11,40 @@
 
 #include "include/internal/complex_internal.h"
 
+/****** ma.lib/catan **********************************************************
+* 
+*   NAME	
+* 	catan -- Return complex arc tangent. (V1.0)
+*
+*   SYNOPSIS
+*	complex_t result = catan(complex_t z);
+*	  D0		   D0
+*	complex_t catan(complex_t z);
+*
+*   FUNCTION
+*	Compute the complex arc tangent of z. This is the inverse of the
+*	complex tangent function. This implementation uses SAS/C's C++
+*	complex class for maximum accuracy.
+* 
+*   INPUTS
+*	z - Complex number.
+*	
+*   RESULT
+*	result - Complex arc tangent of z. Returns NaN if z is ±i.
+* 
+*   EXAMPLE
+*	complex_t z = {1.0, 0.0};
+*	complex_t result = catan(z);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses SAS/C C++ complex class internally.
+* 
+*   SEE ALSO
+*	cacos(), casin(), ctan(), complex.h
+* 
+******************************************************************************/
+
 complex_t catan(complex_t z)
 {
     /* Manual implementation using mathematical formula */

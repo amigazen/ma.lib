@@ -64,8 +64,44 @@ static double __ieee754_sinh(double x)
     return x*shuge;
 }
 
+/****** ma.lib/sinh *********************************************************
+* 
+*   NAME	
+* 	sinh -- Return hyperbolic sine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = sinh(double x);
+*	  D0		   D0
+*	double sinh(double x);
+*
+*   FUNCTION
+*	Compute the hyperbolic sine of x. The hyperbolic sine is defined as
+*	(e^x - e^(-x)) / 2. This implementation uses high-precision algorithms
+*	from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is approximately [-710, 710] for finite results.
+*	
+*   RESULT
+*	result - Hyperbolic sine of x. Returns +Infinity for large positive x,
+*	        -Infinity for large negative x, returns x if x is ±0, returns
+*	        NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	double result = sinh(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	cosh(), tanh(), asinh(), exp(), math.h
+* 
+******************************************************************************/
+
 double sinh(double x)
 {
     return __ieee754_sinh(x);
 }
+
 

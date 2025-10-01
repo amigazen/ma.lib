@@ -19,6 +19,41 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/ilogbf ********************************************************
+* 
+*   NAME	
+* 	ilogbf -- Return binary exponent of float. (V1.0)
+*
+*   SYNOPSIS
+*	int result = ilogbf(float x);
+*	  D0		   D0
+*	int ilogbf(float x);
+*
+*   FUNCTION
+*	Extract the binary exponent of a float value. This returns
+*	the exponent as an integer. This implementation uses
+*	high-precision algorithms from fdlibm.
+* 
+*   INPUTS
+*	x - Float value.
+*	
+*   RESULT
+*	result - Binary exponent. Returns 0x80000001 if x is 0,
+*	        returns 0x7fffffff if x is ±Infinity or NaN.
+* 
+*   EXAMPLE
+*	float x = 8.0f;
+*	int result = ilogbf(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses direct bit manipulation for optimal performance.
+* 
+*   SEE ALSO
+*	ilogb(), logbf(), frexpf(), math.h
+* 
+******************************************************************************/
+
 /* Helper macros for accessing high/low parts of float */
 /* SAS/C uses big-endian, so high word is first */
 #define __HI(x) *(int*)&x
@@ -38,4 +73,5 @@ int ilogbf(float x)
     else if (hx<0x7f800000) return (hx>>23)-127;
     else return 0x7fffffff;
 }
+
 

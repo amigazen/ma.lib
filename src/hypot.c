@@ -22,6 +22,43 @@
  * Domain: (-infinity, +infinity) for both x and y
  * Range: [0, +infinity)
  */
+
+/****** ma.lib/hypot ********************************************************
+* 
+*   NAME	
+* 	hypot -- Return Euclidean distance sqrt(x² + y²). (V1.0)
+*
+*   SYNOPSIS
+*	double result = hypot(double x, double y);
+*	  D0		   D0
+*	double hypot(double x, double y);
+*
+*   FUNCTION
+*	Compute the Euclidean distance sqrt(x² + y²). This is the length of the
+*	hypotenuse of a right triangle with sides x and y. This implementation
+*	avoids overflow and underflow by scaling the computation.
+* 
+*   INPUTS
+*	x - First value.
+*	y - Second value.
+*	
+*   RESULT
+*	result - Euclidean distance sqrt(x² + y²). Returns +Infinity if either
+*	        argument is ±Infinity, returns NaN if either argument is NaN.
+* 
+*   EXAMPLE
+*	double x = 3.0, y = 4.0;
+*	double result = hypot(x, y);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Handles overflow and underflow conditions correctly.
+* 
+*   SEE ALSO
+*	sqrt(), pow(), math.h
+* 
+******************************************************************************/
+
 double hypot(double x, double y)
 {
     double result;

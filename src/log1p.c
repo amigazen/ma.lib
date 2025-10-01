@@ -38,6 +38,42 @@
  * number |x| < DBL_EPSILON/2., the closest floating-point number to
  * log(1+x) is exactly x.
  */
+
+/****** ma.lib/log1p **********************************************************
+* 
+*   NAME	
+* 	log1p -- Return log(1 + x). (V1.0)
+*
+*   SYNOPSIS
+*	double result = log1p(double x);
+*	  D0		   D0
+*	double log1p(double x);
+*
+*   FUNCTION
+*	Compute log(1 + x). This function is designed to avoid the significant
+*	loss of precision that arises from direct evaluation when x is small.
+*	This implementation uses high-precision algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Must be > -1 for valid result.
+*	
+*   RESULT
+*	result - log(1 + x). Returns -Infinity if x is -1, returns x if x is
+*	        ±0, returns NaN if x < -1, returns +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	double x = 0.001;
+*	double result = log1p(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	More accurate than log(1 + x) for small x values.
+* 
+*   SEE ALSO
+*	log(), expm1(), math.h
+* 
+******************************************************************************/
+
 double log1p(double x)
 {
     double y;

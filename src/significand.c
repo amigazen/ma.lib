@@ -19,6 +19,41 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/significand **************************************************
+* 
+*   NAME	
+* 	significand -- Return significand of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = significand(double x);
+*	  D0		   D0
+*	double significand(double x);
+*
+*   FUNCTION
+*	Compute the significand of x. The significand is the fractional part
+*	of the floating-point number, normalized to the range [1, 2). This
+*	implementation uses scalb(x, -ilogb(x)) for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Significand of x. Returns x if x is ±0, returns NaN if
+*	        x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.14159;
+*	double result = significand(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to scalb(x, -ilogb(x)).
+* 
+*   SEE ALSO
+*	scalb(), ilogb(), math.h
+* 
+******************************************************************************/
+
 double significand(double x)
 {
     return scalb(x, (double) -ilogb(x));

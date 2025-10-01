@@ -11,6 +11,41 @@
 #include <float.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/log1pf ********************************************************
+* 
+*   NAME	
+* 	log1pf -- Return log(1+x) for float. (V1.0)
+*
+*   SYNOPSIS
+*	float result = log1pf(float x);
+*	  D0		   D0
+*	float log1pf(float x);
+*
+*   FUNCTION
+*	Compute log(1+x) for float values. This provides accurate
+*	logarithm computation for values close to zero. This
+*	implementation uses high-precision algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-1, +∞].
+*	
+*   RESULT
+*	result - log(1+x). Returns -Infinity if x is -1,
+*	        returns NaN if x < -1.
+* 
+*   EXAMPLE
+*	float x = 0.1f;
+*	float result = log1pf(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	More accurate than logf(1+x) for small x values.
+* 
+*   SEE ALSO
+*	log1p(), logf(), expf(), math.h
+* 
+******************************************************************************/
+
 float log1pf(float x)
 {
     float y;

@@ -23,6 +23,44 @@
  *      nexttoward(-inf,y) = -inf
  */
 
+/****** ma.lib/nexttoward ***************************************************
+* 
+*   NAME	
+* 	nexttoward -- Return next representable value toward y. (V1.0)
+*
+*   SYNOPSIS
+*	double result = nexttoward(double x, long double y);
+*	  D0		   D0
+*	double nexttoward(double x, long double y);
+*
+*   FUNCTION
+*	Compute the next representable floating-point value after x in the
+*	direction toward y. This is useful for finding the next or previous
+*	representable value. This implementation uses high-precision algorithms
+*	for maximum accuracy.
+* 
+*   INPUTS
+*	x - Starting value.
+*	y - Direction value.
+*	
+*   RESULT
+*	result - Next representable value after x toward y. Returns x if x
+*	        equals y, returns NaN if either argument is NaN.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	long double y = 2.0L;
+*	double result = nexttoward(x, y);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is useful for finding adjacent representable values.
+* 
+*   SEE ALSO
+*	nextafter(), math.h
+* 
+******************************************************************************/
+
 double nexttoward(double x, long double y)
 {
     int hx,ix,iy;

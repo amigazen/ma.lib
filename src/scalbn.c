@@ -30,10 +30,10 @@ twom54  =  5.55111512312578270212e-17, /* 0x3C900000, 0x00000000 */
 huge   = 1.0e+300,
 tiny   = 1.0e-300;
 
-/****** ma.lib/scalbn ***************************************************
+/****** ma.lib/scalbn *******************************************************
 * 
 *   NAME	
-* 	scalbn -- Scale x by 2^n. (V1.0)
+* 	scalbn -- Return x * 2^n. (V1.0)
 *
 *   SYNOPSIS
 *	double result = scalbn(double x, int n);
@@ -41,29 +41,28 @@ tiny   = 1.0e-300;
 *	double scalbn(double x, int n);
 *
 *   FUNCTION
-*	Scale x by 2^n. This is equivalent to x * 2^n but computed by
-*	exponent manipulation rather than by actually performing a
-*	multiplication. This is more efficient and accurate.
+*	Compute x * 2^n. This scales x by a power of 2. This implementation
+*	uses high-precision algorithms from fdlibm for maximum accuracy.
 * 
 *   INPUTS
-*	x - Value to scale.
-*	n - Power of 2 to scale by. Range is approximately [-1024, 1024].
+*	x - Input value.
+*	n - Exponent value.
 *	
 *   RESULT
-*	result - x * 2^n. Returns ±Infinity for overflow, ±0.0 for underflow,
-*	        NaN if x is NaN, ±Infinity if x is ±Infinity.
+*	result - x * 2^n. Returns NaN if x is NaN, returns ±Infinity for
+*	        large results, returns ±0 for small results.
 * 
 *   EXAMPLE
 *	double x = 3.0;
 *	int n = 2;
-*	double scaled = scalbn(x, n); 
+*	double result = scalbn(x, n);  
 *
 *   NOTES
-*	This function is C99 compliant and provides IEEE 754 accuracy.
-*	Uses bit manipulation for optimal performance.
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	This is equivalent to ldexp(x, n).
 * 
 *   SEE ALSO
-*	scalbln(), ldexp(), frexp(), math.h
+*	scalb(), ldexp(), math.h
 * 
 ******************************************************************************/
 

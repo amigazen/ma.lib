@@ -29,6 +29,42 @@ twom25  =  2.9802322388e-08, /* 0x33000000 */
 huge   = 1.0e+30,
 tiny   = 1.0e-30;
 
+/****** ma.lib/scalbnf *******************************************************
+* 
+*   NAME	
+* 	scalbnf -- Scale float by 2^n. (V1.0)
+*
+*   SYNOPSIS
+*	float result = scalbnf(float x, int n);
+*	  D0		   D0
+*	float scalbnf(float x, int n);
+*
+*   FUNCTION
+*	Scale a float value by 2^n using exponent manipulation.
+*	This is more efficient than multiplication for powers of 2.
+*	This implementation uses high-precision algorithms from fdlibm.
+* 
+*   INPUTS
+*	x - Float value to scale.
+*	n - Power of 2 to scale by.
+*	
+*   RESULT
+*	result - x * 2^n. Returns NaN if x is NaN, returns x if x is ±Infinity.
+* 
+*   EXAMPLE
+*	float x = 3.0f;
+*	float result = scalbnf(x, 2);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses direct bit manipulation for optimal performance.
+* 
+*   SEE ALSO
+*	scalbn(), scalblnf(), ldexpf(), math.h
+* 
+******************************************************************************/
+
+
 float scalbnf(float x, int n)
 {
     int  k, hx;

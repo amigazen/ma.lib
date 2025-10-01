@@ -96,6 +96,40 @@ static double __kernel_tan(double x, double y, int iy)
     }
 }
 
+/****** ma.lib/tan **********************************************************
+* 
+*   NAME	
+* 	tan -- Return tangent function of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = tan(double x);
+*	  D0		   D0
+*	double tan(double x);
+*
+*   FUNCTION
+*	Compute the tangent of x, where x is in radians. The tangent function
+*	returns values in the range [-∞, +∞]. This implementation uses
+*	high-precision algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value in radians. Range is approximately [-2^63, 2^63].
+*	
+*   RESULT
+*	result - Tangent of x. Returns NaN if x is NaN, returns x if x is ±0,
+*	        returns NaN if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double angle = M_PI / 4.0;
+*	double tangent = tan(angle);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	sin(), cos(), atan(), math.h
+* 
+******************************************************************************/
+
 double tan(double x)
 {
     double y[2], z=0.0;

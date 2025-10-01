@@ -14,9 +14,40 @@
 #include <libraries/mathffp.h>
 #include <amiga/math.h>
 
-/*
- * amiga_ffp_sin - FFP sine function
- */
+/****** ma.lib/amiga_ffp_sin ***********************************************
+* 
+*   NAME	
+* 	amiga_ffp_sin -- Return sine using Amiga FFP library. (V1.0)
+*
+*   SYNOPSIS
+*	double result = amiga_ffp_sin(double x);
+*	  D0		   D0
+*	double amiga_ffp_sin(double x);
+*
+*   FUNCTION
+*	Compute the sine of x using Amiga's mathffp.library. This provides
+*	access to the Amiga's native FFP (Fast Floating Point) math
+*	functions for maximum compatibility.
+* 
+*   INPUTS
+*	x - Input value in radians (double).
+*	
+*   RESULT
+*	result - Sine of x using FFP library.
+* 
+*   EXAMPLE
+*	double x = M_PI / 2.0;
+*	double result = amiga_ffp_sin(x);  
+*
+*   NOTES
+*	This function is Amiga-specific and requires mathffp.library.
+*	Uses inline assembly for direct library calls.
+* 
+*   SEE ALSO
+*	amiga_ffp_cos(), amiga_ffp_tan(), mathffp.library
+* 
+******************************************************************************/
+
 double amiga_ffp_sin(double x)
 {
     register double result asm("d0");

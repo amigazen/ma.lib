@@ -24,6 +24,40 @@
 
 static const double one=1.0, two=2.0, tiny = 1.0e-300;
 
+/****** ma.lib/tanh *********************************************************
+* 
+*   NAME	
+* 	tanh -- Return hyperbolic tangent of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = tanh(double x);
+*	  D0		   D0
+*	double tanh(double x);
+*
+*   FUNCTION
+*	Compute the hyperbolic tangent of x. The hyperbolic tangent is defined
+*	as sinh(x) / cosh(x). This implementation uses high-precision algorithms
+*	from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Hyperbolic tangent of x, in the range [-1, 1]. Returns x if
+*	        x is ±0, returns ±1 for large |x|, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	double result = tanh(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	sinh(), cosh(), atanh(), math.h
+* 
+******************************************************************************/
+
 double tanh(double x)
 {
     double t, z;
@@ -56,4 +90,5 @@ double tanh(double x)
     }
     return (jx>=0)? z: -z;
 }
+
 

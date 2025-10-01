@@ -27,6 +27,41 @@ log10_2lo  =  3.69423907715893078616e-13; /* 0x3D59FEF3, 0x11F12B36 */
 
 static double zero   =  0.0;
 
+/****** ma.lib/log10 **********************************************************
+* 
+*   NAME	
+* 	log10 -- Return base 10 logarithm of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = log10(double x);
+*	  D0		   D0
+*	double log10(double x);
+*
+*   FUNCTION
+*	Compute the base 10 logarithm of x. This returns log₁₀(x).
+*	This implementation uses high-precision algorithms from fdlibm
+*	for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Must be > 0 for valid result.
+*	
+*   RESULT
+*	result - Base 10 logarithm of x. Returns -Infinity if x is 0,
+*	        returns NaN if x < 0, returns +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	double x = 100.0;
+*	double result = log10(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM if x <= 0.
+* 
+*   SEE ALSO
+*	log(), log2(), exp(), math.h
+* 
+******************************************************************************/
+
 static double __ieee754_log10(double x)
 {
     double y, z;

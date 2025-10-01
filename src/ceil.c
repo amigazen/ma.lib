@@ -26,6 +26,41 @@
 
 static const double huge = 1.0e300;
 
+/****** ma.lib/ceil *********************************************************
+* 
+*   NAME	
+* 	ceil -- Return smallest integer >= x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = ceil(double x);
+*	  D0		   D0
+*	double ceil(double x);
+*
+*   FUNCTION
+*	Compute the smallest integer value not less than x. This rounds x
+*	toward positive infinity. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Smallest integer >= x. Returns x if x is ±0, returns NaN if
+*	        x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.2;
+*	double result = ceil(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Raises inexact flag if x != ceil(x).
+* 
+*   SEE ALSO
+*	floor(), round(), trunc(), math.h
+* 
+******************************************************************************/
+
 double ceil(double x)
 {
     int i0, i1, j0;
@@ -69,4 +104,5 @@ double ceil(double x)
     __LO(x) = i1;
     return x;
 }
+
 

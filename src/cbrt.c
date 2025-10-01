@@ -21,6 +21,42 @@
  * Domain: (-infinity, +infinity)
  * Range: (-infinity, +infinity)
  */
+
+/****** ma.lib/cbrt *********************************************************
+* 
+*   NAME	
+* 	cbrt -- Return cube root of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = cbrt(double x);
+*	  D0		   D0
+*	double cbrt(double x);
+*
+*   FUNCTION
+*	Compute the cube root of x. The cube root is the value y such that
+*	y³ = x. This implementation uses high-precision algorithms for maximum
+*	accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Cube root of x. Returns x if x is ±0, returns NaN if x is NaN,
+*	        returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 8.0;
+*	double result = cbrt(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Handles special values correctly.
+* 
+*   SEE ALSO
+*	sqrt(), pow(), math.h
+* 
+******************************************************************************/
+
 double cbrt(double x)
 {
     double result;

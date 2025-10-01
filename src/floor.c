@@ -26,6 +26,41 @@
 
 static const double huge = 1.0e300;
 
+/****** ma.lib/floor ********************************************************
+* 
+*   NAME	
+* 	floor -- Return largest integer <= x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = floor(double x);
+*	  D0		   D0
+*	double floor(double x);
+*
+*   FUNCTION
+*	Compute the largest integer value not greater than x. This rounds x
+*	toward negative infinity. This implementation uses high-precision
+*	algorithms from fdlibm for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Largest integer <= x. Returns x if x is ±0, returns NaN if
+*	        x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.7;
+*	double result = floor(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Raises inexact flag if x != floor(x).
+* 
+*   SEE ALSO
+*	ceil(), round(), trunc(), math.h
+* 
+******************************************************************************/
+
 double floor(double x)
 {
     int i0, i1, j0;

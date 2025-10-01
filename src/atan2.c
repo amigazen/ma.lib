@@ -98,8 +98,47 @@ static double __ieee754_atan2(double y, double x)
     }
 }
 
+/****** ma.lib/atan2 ********************************************************
+* 
+*   NAME	
+* 	atan2 -- Return arc tangent of y/x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = atan2(double y, double x);
+*	  D0		   D0
+*	double atan2(double y, double x);
+*
+*   FUNCTION
+*	Compute the arc tangent of y/x, using the signs of both arguments to
+*	determine the quadrant of the result. This is the two-argument version
+*	of atan that returns values in the full range [-π, π]. This
+*	implementation uses high-precision algorithms from fdlibm for maximum
+*	accuracy.
+* 
+*   INPUTS
+*	y - Numerator value.
+*	x - Denominator value.
+*	
+*   RESULT
+*	result - Arc tangent of y/x in radians, in the range [-π, π]. Returns
+*	        +π/2 if y > 0 and x = 0, -π/2 if y < 0 and x = 0, NaN if both
+*	        x and y are 0, returns y if x > 0 and y = 0.
+* 
+*   EXAMPLE
+*	double y = 1.0, x = 1.0;
+*	double angle = atan2(y, x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	atan(), asin(), acos(), math.h
+* 
+******************************************************************************/
+
 double atan2(double y, double x)
 {
     return __ieee754_atan2(y, x);
 }
+
 

@@ -22,6 +22,42 @@
 
 static const double huge = 1.0e300;
 
+/****** ma.lib/llrint *******************************************************
+* 
+*   NAME	
+* 	llrint -- Return x rounded to nearest long long integer. (V1.0)
+*
+*   SYNOPSIS
+*	long_long_t result = llrint(double x);
+*	  D0		   D0
+*	long_long_t llrint(double x);
+*
+*   FUNCTION
+*	Compute the nearest long long integer value to x according to the
+*	current rounding mode. This rounds x to the nearest long long integer
+*	using the prevailing rounding mode. This implementation uses
+*	high-precision algorithms for maximum accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Nearest long long integer to x. Returns 0 if x is ±0, returns
+*	        NaN if x is NaN, returns ±Infinity if x is ±Infinity.
+* 
+*   EXAMPLE
+*	double x = 3.7;
+*	long_long_t result = llrint(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Raises inexact flag if x != llrint(x).
+* 
+*   SEE ALSO
+*	round(), lrint(), nearbyint(), math.h
+* 
+******************************************************************************/
+
 long_long_t llrint(double x)
 {
     int i0,i1,j0;

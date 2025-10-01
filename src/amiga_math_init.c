@@ -19,6 +19,41 @@
 #include <libraries/mathtrans.h>
 #include <amiga/math.h>
 
+/****** ma.lib/amiga_math_init ***********************************************
+* 
+*   NAME	
+* 	amiga_math_init -- Initialize AmigaOS math libraries. (V1.0)
+*
+*   SYNOPSIS
+*	int result = amiga_math_init(void);
+*	  D0		   D0
+*	int amiga_math_init(void);
+*
+*   FUNCTION
+*	Initialize AmigaOS math libraries for optimal performance in ma.lib.
+*	This function sets up the appropriate math library based on system
+*	capabilities and user preferences.
+* 
+*   INPUTS
+*	None.
+*	
+*   RESULT
+*	result - Non-zero on success, zero on failure.
+* 
+*   EXAMPLE
+*	if (amiga_math_init()) {
+*	    printf("Math libraries initialized successfully\n");
+*	}
+*
+*   NOTES
+*	This function is Amiga-specific and should be called before
+*	using any math functions for optimal performance.
+* 
+*   SEE ALSO
+*	amiga_math_cleanup(), amiga_math_set_type(), math.h
+* 
+******************************************************************************/
+
 /* Global state */
 static m99_math_type_t current_math_type = M99_MATH_AUTO;
 static int optimization_flags = M99_OPT_FPU | M99_OPT_IEEE;

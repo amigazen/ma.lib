@@ -64,6 +64,41 @@ static const double
 one   = 1.0,
 huge   = 1.0e300;
 
+/****** ma.lib/atan *********************************************************
+* 
+*   NAME	
+* 	atan -- Return arc tangent of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = atan(double x);
+*	  D0		   D0
+*	double atan(double x);
+*
+*   FUNCTION
+*	Compute the arc tangent of x. The arc tangent is the inverse of the
+*	tangent function, returning the angle whose tangent is x. This
+*	implementation uses high-precision algorithms from fdlibm for maximum
+*	accuracy.
+* 
+*   INPUTS
+*	x - Input value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Arc tangent of x in radians, in the range [-π/2, π/2].
+*	        Returns x if x is ±0, returns NaN if x is NaN.
+* 
+*   EXAMPLE
+*	double x = 1.0;
+*	double angle = atan(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+* 
+*   SEE ALSO
+*	asin(), acos(), atan2(), tan(), math.h
+* 
+******************************************************************************/
+
 double atan(double x)
 {
     double w, s1, s2, z;
@@ -110,4 +145,5 @@ double atan(double x)
         return (hx<0)? -z:z;
     }
 }
+
 

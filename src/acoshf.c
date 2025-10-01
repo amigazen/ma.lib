@@ -15,6 +15,41 @@
 
 #include <amiga/math.h>
 
+/****** ma.lib/acoshf ********************************************************
+* 
+*   NAME	
+* 	acoshf -- Return inverse hyperbolic cosine of float. (V1.0)
+*
+*   SYNOPSIS
+*	float result = acoshf(float x);
+*	  D0		   D0
+*	float acoshf(float x);
+*
+*   FUNCTION
+*	Compute the inverse hyperbolic cosine of a float value. This returns
+*	the value whose hyperbolic cosine is x. This implementation uses
+*	AmigaOS math libraries when available, falling back to standard implementation.
+* 
+*   INPUTS
+*	x - Float value. Must be >= 1 for valid result.
+*	
+*   RESULT
+*	result - Inverse hyperbolic cosine of x. Returns 0 if x < 1,
+*	        returns +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	float x = 2.0f;
+*	float result = acoshf(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Uses AmigaOS math libraries when available for optimal performance.
+* 
+*   SEE ALSO
+*	acosh(), asinhf(), atanhf(), math.h
+* 
+******************************************************************************/
+
 /*
  * acoshf - inverse hyperbolic cosine (float)
  * 

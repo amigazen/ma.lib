@@ -14,6 +14,40 @@
 #include <math.h>
 #include "include/internal/m99_math.h"
 
+/****** ma.lib/asinhl ********************************************************
+* 
+*   NAME	
+* 	asinhl -- Return inverse hyperbolic sine of long double. (V1.0)
+*
+*   SYNOPSIS
+*	long double result = asinhl(long double x);
+*	  D0		   D0
+*	long double asinhl(long double x);
+*
+*   FUNCTION
+*	Compute the inverse hyperbolic sine of a long double value. This returns
+*	the value whose hyperbolic sine is x. This implementation uses
+*	the standard formula: asinh(x) = log(x + sqrt(x^2 + 1)).
+* 
+*   INPUTS
+*	x - Long double value. Range is [-∞, +∞].
+*	
+*   RESULT
+*	result - Inverse hyperbolic sine of x. Returns ±Infinity for large |x|.
+* 
+*   EXAMPLE
+*	long double x = 1.0L;
+*	long double result = asinhl(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Originally adapted from PDC libsrc (Fred Fish - Public Domain).
+* 
+*   SEE ALSO
+*	asinh(), acoshl(), atanhl(), math.h
+* 
+******************************************************************************/
+
 /*
  * asinhl - long double precision hyperbolic arc sine
  * 

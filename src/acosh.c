@@ -26,6 +26,42 @@
  * Domain: [1, +infinity)
  * Range: [0, +infinity)
  */
+
+/****** ma.lib/acosh ********************************************************
+* 
+*   NAME	
+* 	acosh -- Return hyperbolic arc cosine of x. (V1.0)
+*
+*   SYNOPSIS
+*	double result = acosh(double x);
+*	  D0		   D0
+*	double acosh(double x);
+*
+*   FUNCTION
+*	Compute the hyperbolic arc cosine of x. The hyperbolic arc cosine is
+*	the inverse of the hyperbolic cosine function. This implementation uses
+*	the formula acosh(x) = log(x + sqrt(x² - 1)).
+* 
+*   INPUTS
+*	x - Input value. Must be >= 1.0 for valid result.
+*	
+*   RESULT
+*	result - Hyperbolic arc cosine of x. Returns 0.0 if x is 1.0, returns
+*	        NaN if x < 1.0, returns +Infinity if x is +Infinity.
+* 
+*   EXAMPLE
+*	double x = 2.0;
+*	double result = acosh(x);  
+*
+*   NOTES
+*	This function is C89 compliant and provides IEEE 754 accuracy.
+*	Sets errno to EDOM for x < 1.0.
+* 
+*   SEE ALSO
+*	asinh(), atanh(), cosh(), log(), math.h
+* 
+******************************************************************************/
+
 double acosh(double x)
 {
     double result;
