@@ -1,0 +1,5703 @@
+TABLE OF CONTENTS
+
+ma.lib/acos
+ma.lib/acosh
+ma.lib/acoshf
+ma.lib/acoshl
+ma.lib/amiga_ffp_sin
+ma.lib/amiga_ieee_add
+ma.lib/amiga_math_init
+ma.lib/asin
+ma.lib/asinh
+ma.lib/asinhf
+ma.lib/asinhl
+ma.lib/atan
+ma.lib/atan2
+ma.lib/atanh
+ma.lib/atanhf
+ma.lib/atanhl
+ma.lib/atoll
+ma.lib/cbrt
+ma.lib/ceil
+ma.lib/cimag
+ma.lib/copysign
+ma.lib/copysignf
+ma.lib/copysignl
+ma.lib/cos
+ma.lib/cosh
+ma.lib/creal
+ma.lib/erf
+ma.lib/exp
+ma.lib/exp2
+ma.lib/exp2f
+ma.lib/exp2l
+ma.lib/expm1
+ma.lib/fabs
+ma.lib/fdim
+ma.lib/finite
+ma.lib/finitef
+ma.lib/finitel
+ma.lib/floor
+ma.lib/fma
+ma.lib/fmax
+ma.lib/fmin
+ma.lib/fmod
+ma.lib/fpclassify
+ma.lib/frexp
+ma.lib/gamma
+ma.lib/gamma_r
+ma.lib/get_long_long_max
+ma.lib/get_long_long_min
+ma.lib/handle_overflow
+ma.lib/hypot
+ma.lib/ilogb
+ma.lib/ilogbf
+ma.lib/ilogbl
+ma.lib/isinf
+ma.lib/isinff
+ma.lib/isinfl
+ma.lib/isnan
+ma.lib/isnanf
+ma.lib/isnanl
+ma.lib/j0
+ma.lib/j1
+ma.lib/jn
+ma.lib/ldexp
+ma.lib/lgamma
+ma.lib/lgamma_r
+ma.lib/lldiv
+ma.lib/llrint
+ma.lib/llrintf
+ma.lib/llrintl
+ma.lib/llround
+ma.lib/llroundf
+ma.lib/llroundl
+ma.lib/log
+ma.lib/log10
+ma.lib/log1p
+ma.lib/log1pf
+ma.lib/log1pl
+ma.lib/log2
+ma.lib/log2f
+ma.lib/log2l
+ma.lib/logb
+ma.lib/logbf
+ma.lib/logbl
+ma.lib/long_long_add
+ma.lib/long_long_and
+ma.lib/long_long_clz
+ma.lib/long_long_ctz
+ma.lib/long_long_div
+ma.lib/long_long_divmod
+ma.lib/long_long_eq
+ma.lib/long_long_ge
+ma.lib/long_long_gt
+ma.lib/long_long_is_negative
+ma.lib/long_long_is_positive
+ma.lib/long_long_is_zero
+ma.lib/long_long_le
+ma.lib/long_long_lt
+ma.lib/long_long_mod
+ma.lib/long_long_mul
+ma.lib/long_long_negate
+ma.lib/long_long_not
+ma.lib/long_long_or
+ma.lib/long_long_popcount
+ma.lib/long_long_sar
+ma.lib/long_long_shl
+ma.lib/long_long_shr
+ma.lib/long_long_sub
+ma.lib/long_long_to_long
+ma.lib/long_long_to_ulong
+ma.lib/long_long_to_unsigned_long_long
+ma.lib/long_long_xor
+ma.lib/long_to_long_long
+ma.lib/lrint
+ma.lib/lrintf
+ma.lib/lrintl
+ma.lib/lround
+ma.lib/lroundf
+ma.lib/lroundl
+ma.lib/matherr
+ma.lib/modf
+ma.lib/nan
+ma.lib/nearbyint
+ma.lib/nearbyintf
+ma.lib/nearbyintl
+ma.lib/nextafter
+ma.lib/nextafterf
+ma.lib/nextafterl
+ma.lib/nexttoward
+ma.lib/nexttowardf
+ma.lib/nexttowardl
+ma.lib/pow
+ma.lib/remainder
+ma.lib/remquo
+ma.lib/rint
+ma.lib/round
+ma.lib/roundf
+ma.lib/roundl
+ma.lib/scalb
+ma.lib/scalbln
+ma.lib/scalblnf
+ma.lib/scalblnl
+ma.lib/scalbn
+ma.lib/scalbnf
+ma.lib/scalbnl
+ma.lib/signbit
+ma.lib/significand
+ma.lib/sin
+ma.lib/sin
+ma.lib/sinh
+ma.lib/sqrt
+ma.lib/strtoull
+ma.lib/tan
+ma.lib/tanh
+ma.lib/tgamma
+ma.lib/trunc
+ma.lib/truncf
+ma.lib/truncl
+ma.lib/unsigned_long_long_to_long_long
+ma.lib/y0
+ma.lib/y1
+ma.lib/yn
+
+ma.lib/acos                                                       ma.lib/acos
+ 
+   NAME
+	acos -- Return arc cosine of x. (V1.0)
+
+   SYNOPSIS
+	double result = acos(double x);
+	 D0		 D0
+	double acos(double x);
+
+   FUNCTION
+	Compute the arc cosine of x. The arc cosine is the inverse of the
+	cosine function, returning the angle whose cosine is x. This
+	implementation uses high-precision algorithms from fdlibm for maximum
+	accuracy.
+
+   INPUTS
+	x - Input value. Must be in the range [-1, 1] for valid result.
+
+   RESULT
+	result - Arc cosine of x in radians, in the range [0, ð]. Returns
+	 NaN if |x| > 1, returns ð/2 if x is 0, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 0.5;
+	double angle = acos(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for |x| > 1.
+
+   SEE ALSO
+	asin(), atan(), cos(), math.h
+
+ 
+ma.lib/acosh                                                       ma.lib/acosh
+ 
+   NAME
+	acosh -- Return hyperbolic arc cosine of x. (V1.0)
+
+   SYNOPSIS
+	double result = acosh(double x);
+	 D0		 D0
+	double acosh(double x);
+
+   FUNCTION
+	Compute the hyperbolic arc cosine of x. The hyperbolic arc cosine is
+	the inverse of the hyperbolic cosine function. This implementation uses
+	the formula acosh(x) = log(x + sqrt(xÂ² - 1)).
+
+   INPUTS
+	x - Input value. Must be >= 1.0 for valid result.
+
+   RESULT
+	result - Hyperbolic arc cosine of x. Returns 0.0 if x is 1.0, returns
+	 NaN if x < 1.0, returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double x = 2.0;
+	double result = acosh(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for x < 1.0.
+
+   SEE ALSO
+	asinh(), atanh(), cosh(), log(), math.h
+
+ 
+ma.lib/acoshf                                                       ma.lib/acoshf
+ 
+   NAME
+	acoshf -- Return inverse hyperbolic cosine of float. (V1.0)
+
+   SYNOPSIS
+	float result = acoshf(float x);
+	 D0		 D0
+	float acoshf(float x);
+
+   FUNCTION
+	Compute the inverse hyperbolic cosine of a float value. This returns
+	the value whose hyperbolic cosine is x. This implementation uses
+	AmigaOS math libraries when available, falling back to standard implementation.
+
+   INPUTS
+	x - Float value. Must be >= 1 for valid result.
+
+   RESULT
+	result - Inverse hyperbolic cosine of x. Returns 0 if x < 1,
+	 returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	float x = 2.0f;
+	float result = acoshf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses AmigaOS math libraries when available for optimal performance.
+
+   SEE ALSO
+	acosh(), asinhf(), atanhf(), math.h
+
+ 
+ma.lib/acoshl                                                       ma.lib/acoshl
+ 
+   NAME
+	acoshl -- Return inverse hyperbolic cosine of long double. (V1.0)
+
+   SYNOPSIS
+	long double result = acoshl(long double x);
+	 D0		 D0
+	long double acoshl(long double x);
+
+   FUNCTION
+	Compute the inverse hyperbolic cosine of a long double value. This returns
+	the value whose hyperbolic cosine is x. This implementation uses
+	AmigaOS math libraries when available, falling back to standard implementation.
+
+   INPUTS
+	x - Long double value. Must be >= 1 for valid result.
+
+   RESULT
+	result - Inverse hyperbolic cosine of x. Returns 0 if x < 1,
+	 returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	long double x = 2.0L;
+	long double result = acoshl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses AmigaOS math libraries when available for optimal performance.
+
+   SEE ALSO
+	acosh(), asinhl(), atanhl(), math.h
+
+ 
+ma.lib/amiga_ffp_sin                                                       ma.lib/amiga_ffp_sin
+ 
+   NAME
+	amiga_ffp_sin -- Return sine using Amiga FFP library. (V1.0)
+
+   SYNOPSIS
+	double result = amiga_ffp_sin(double x);
+	 D0		 D0
+	double amiga_ffp_sin(double x);
+
+   FUNCTION
+	Compute the sine of x using Amiga's mathffp.library. This provides
+	access to the Amiga's native FFP (Fast Floating Point) math
+	functions for maximum compatibility.
+
+   INPUTS
+	x - Input value in radians (double).
+
+   RESULT
+	result - Sine of x using FFP library.
+
+   EXAMPLE
+	double x = M_PI / 2.0;
+	double result = amiga_ffp_sin(x);
+
+   NOTES
+	This function is Amiga-specific and requires mathffp.library.
+	Uses inline assembly for direct library calls.
+
+   SEE ALSO
+	amiga_ffp_cos(), amiga_ffp_tan(), mathffp.library
+
+ 
+ma.lib/amiga_ieee_add                                                       ma.lib/amiga_ieee_add
+ 
+   NAME
+	amiga_ieee_add -- Return IEEE double precision addition. (V1.0)
+
+   SYNOPSIS
+	double result = amiga_ieee_add(double x, double y);
+	 D0		 D0
+	double amiga_ieee_add(double x, double y);
+
+   FUNCTION
+	Add two IEEE double precision numbers using Amiga's mathieeedoubbas
+	library. This provides access to the Amiga's native IEEE math
+	functions for maximum compatibility.
+
+   INPUTS
+	x - First value (double).
+	y - Second value (double).
+
+   RESULT
+	result - x + y using IEEE library.
+
+   EXAMPLE
+	double x = 3.14, y = 2.86;
+	double result = amiga_ieee_add(x, y);
+
+   NOTES
+	This function is Amiga-specific and requires mathieeedoubbas.library.
+	Uses inline assembly for direct library calls.
+
+   SEE ALSO
+	amiga_ieee_sub(), amiga_ieee_mul(), mathieeedoubbas.library
+
+ 
+ma.lib/amiga_math_init                                                       ma.lib/amiga_math_init
+ 
+   NAME
+	amiga_math_init -- Initialize AmigaOS math libraries. (V1.0)
+
+   SYNOPSIS
+	int result = amiga_math_init(void);
+	 D0		 D0
+	int amiga_math_init(void);
+
+   FUNCTION
+	Initialize AmigaOS math libraries for optimal performance in ma.lib.
+	This function sets up the appropriate math library based on system
+	capabilities and user preferences.
+
+   INPUTS
+	None.
+
+   RESULT
+	result - Non-zero on success, zero on failure.
+
+   EXAMPLE
+	if (amiga_math_init()) {
+	 printf("Math libraries initialized successfully\n");
+	}
+
+   NOTES
+	This function is Amiga-specific and should be called before
+	using any math functions for optimal performance.
+
+   SEE ALSO
+	amiga_math_cleanup(), amiga_math_set_type(), math.h
+
+ 
+ma.lib/asin                                                       ma.lib/asin
+ 
+   NAME
+	asin -- Return arc sine of x. (V1.0)
+
+   SYNOPSIS
+	double result = asin(double x);
+	 D0		 D0
+	double asin(double x);
+
+   FUNCTION
+	Compute the arc sine of x. The arc sine is the inverse of the sine
+	function, returning the angle whose sine is x. This implementation
+	uses high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Must be in the range [-1, 1] for valid result.
+
+   RESULT
+	result - Arc sine of x in radians, in the range [-ð/2, ð/2]. Returns
+	 NaN if |x| > 1, returns x if x is Â±0, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 0.5;
+	double angle = asin(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for |x| > 1.
+
+   SEE ALSO
+	acos(), atan(), sin(), math.h
+
+ 
+ma.lib/asinh                                                       ma.lib/asinh
+ 
+   NAME
+	asinh -- Return hyperbolic arc sine of x. (V1.0)
+
+   SYNOPSIS
+	double result = asinh(double x);
+	 D0		 D0
+	double asinh(double x);
+
+   FUNCTION
+	Compute the hyperbolic arc sine of x. The hyperbolic arc sine is the
+	inverse of the hyperbolic sine function. This implementation uses the
+	formula asinh(x) = log(x + sqrt(xÂ² + 1)).
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Hyperbolic arc sine of x. Returns x if x is Â±0, returns
+	 NaN if x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 1.0;
+	double result = asinh(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Handles overflow conditions for large input values.
+
+   SEE ALSO
+	acosh(), atanh(), sinh(), log(), math.h
+
+ 
+ma.lib/asinhf                                                       ma.lib/asinhf
+ 
+   NAME
+	asinhf -- Return inverse hyperbolic sine of float. (V1.0)
+
+   SYNOPSIS
+	float result = asinhf(float x);
+	 D0		 D0
+	float asinhf(float x);
+
+   FUNCTION
+	Compute the inverse hyperbolic sine of a float value. This returns
+	the value whose hyperbolic sine is x. This implementation uses
+	the standard formula: asinh(x) = log(x + sqrt(x^2 + 1)).
+
+   INPUTS
+	x - Float value. Range is [-â, +â].
+
+   RESULT
+	result - Inverse hyperbolic sine of x. Returns Â±Infinity for large |x|.
+
+   EXAMPLE
+	float x = 1.0f;
+	float result = asinhf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Originally adapted from PDC libsrc (Fred Fish - Public Domain).
+
+   SEE ALSO
+	asinh(), acoshf(), atanhf(), math.h
+
+ 
+ma.lib/asinhl                                                       ma.lib/asinhl
+ 
+   NAME
+	asinhl -- Return inverse hyperbolic sine of long double. (V1.0)
+
+   SYNOPSIS
+	long double result = asinhl(long double x);
+	 D0		 D0
+	long double asinhl(long double x);
+
+   FUNCTION
+	Compute the inverse hyperbolic sine of a long double value. This returns
+	the value whose hyperbolic sine is x. This implementation uses
+	the standard formula: asinh(x) = log(x + sqrt(x^2 + 1)).
+
+   INPUTS
+	x - Long double value. Range is [-â, +â].
+
+   RESULT
+	result - Inverse hyperbolic sine of x. Returns Â±Infinity for large |x|.
+
+   EXAMPLE
+	long double x = 1.0L;
+	long double result = asinhl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Originally adapted from PDC libsrc (Fred Fish - Public Domain).
+
+   SEE ALSO
+	asinh(), acoshl(), atanhl(), math.h
+
+ 
+ma.lib/atan                                                       ma.lib/atan
+ 
+   NAME
+	atan -- Return arc tangent of x. (V1.0)
+
+   SYNOPSIS
+	double result = atan(double x);
+	 D0		 D0
+	double atan(double x);
+
+   FUNCTION
+	Compute the arc tangent of x. The arc tangent is the inverse of the
+	tangent function, returning the angle whose tangent is x. This
+	implementation uses high-precision algorithms from fdlibm for maximum
+	accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Arc tangent of x in radians, in the range [-ð/2, ð/2].
+	 Returns x if x is Â±0, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 1.0;
+	double angle = atan(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	asin(), acos(), atan2(), tan(), math.h
+
+ 
+ma.lib/atan2                                                       ma.lib/atan2
+ 
+   NAME
+	atan2 -- Return arc tangent of y/x. (V1.0)
+
+   SYNOPSIS
+	double result = atan2(double y, double x);
+	 D0		 D0
+	double atan2(double y, double x);
+
+   FUNCTION
+	Compute the arc tangent of y/x, using the signs of both arguments to
+	determine the quadrant of the result. This is the two-argument version
+	of atan that returns values in the full range [-ð, ð]. This
+	implementation uses high-precision algorithms from fdlibm for maximum
+	accuracy.
+
+   INPUTS
+	y - Numerator value.
+	x - Denominator value.
+
+   RESULT
+	result - Arc tangent of y/x in radians, in the range [-ð, ð]. Returns
+	 +ð/2 if y > 0 and x = 0, -ð/2 if y < 0 and x = 0, NaN if both
+	 x and y are 0, returns y if x > 0 and y = 0.
+
+   EXAMPLE
+	double y = 1.0, x = 1.0;
+	double angle = atan2(y, x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	atan(), asin(), acos(), math.h
+
+ 
+ma.lib/atanh                                                       ma.lib/atanh
+ 
+   NAME
+	atanh -- Return hyperbolic arc tangent of x. (V1.0)
+
+   SYNOPSIS
+	double result = atanh(double x);
+	 D0		 D0
+	double atanh(double x);
+
+   FUNCTION
+	Compute the hyperbolic arc tangent of x. The hyperbolic arc tangent is
+	the inverse of the hyperbolic tangent function. This implementation uses
+	the formula atanh(x) = 0.5 * log((1+x)/(1-x)).
+
+   INPUTS
+	x - Input value. Must be in the range (-1, 1) for valid result.
+
+   RESULT
+	result - Hyperbolic arc tangent of x. Returns x if x is Â±0, returns
+	 NaN if |x| >= 1, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 0.5;
+	double result = atanh(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for |x| >= 1.
+
+   SEE ALSO
+	asinh(), acosh(), tanh(), log(), math.h
+
+ 
+ma.lib/atanhf                                                       ma.lib/atanhf
+ 
+   NAME
+	atanhf -- Return inverse hyperbolic tangent of float. (V1.0)
+
+   SYNOPSIS
+	float result = atanhf(float x);
+	 D0		 D0
+	float atanhf(float x);
+
+   FUNCTION
+	Compute the inverse hyperbolic tangent of a float value. This returns
+	the value whose hyperbolic tangent is x. This implementation uses
+	the standard formula: atanh(x) = 0.5 * log((1+x)/(1-x)).
+
+   INPUTS
+	x - Float value. Must be in range (-1, 1) for valid result.
+
+   RESULT
+	result - Inverse hyperbolic tangent of x. Returns 0 if |x| >= 1.
+
+   EXAMPLE
+	float x = 0.5f;
+	float result = atanhf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses the standard mathematical formula for computation.
+
+   SEE ALSO
+	atanh(), asinhf(), acoshf(), math.h
+
+ 
+ma.lib/atanhl                                                       ma.lib/atanhl
+ 
+   NAME
+	atanhl -- Return inverse hyperbolic tangent of long double. (V1.0)
+
+   SYNOPSIS
+	long double result = atanhl(long double x);
+	 D0		 D0
+	long double atanhl(long double x);
+
+   FUNCTION
+	Compute the inverse hyperbolic tangent of a long double value. This returns
+	the value whose hyperbolic tangent is x. This implementation uses
+	the standard formula: atanh(x) = 0.5 * log((1+x)/(1-x)).
+
+   INPUTS
+	x - Long double value. Must be in range (-1, 1) for valid result.
+
+   RESULT
+	result - Inverse hyperbolic tangent of x. Returns 0 if |x| >= 1.
+
+   EXAMPLE
+	long double x = 0.5L;
+	long double result = atanhl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses the standard mathematical formula for computation.
+
+   SEE ALSO
+	atanh(), asinhl(), acoshl(), math.h
+
+ 
+ma.lib/atoll                                                       ma.lib/atoll
+ 
+   NAME
+	atoll -- Convert string to long_long_t. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = atoll(const char *str);
+	 D0		 A0
+	long_long_t atoll(const char *str);
+
+   FUNCTION
+	Convert a string to long_long_t value. This is equivalent to
+	atoll() but returns long_long_t for 64-bit integer emulation
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	str - String to convert (base 10 only).
+
+   RESULT
+	result - Converted long_long_t value. Returns 0 on error.
+
+   EXAMPLE
+	const char *str = "1234567890";
+	long_long_t result = atoll(str);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to ERANGE on overflow.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/cbrt                                                       ma.lib/cbrt
+ 
+   NAME
+	cbrt -- Return cube root of x. (V1.0)
+
+   SYNOPSIS
+	double result = cbrt(double x);
+	 D0		 D0
+	double cbrt(double x);
+
+   FUNCTION
+	Compute the cube root of x. The cube root is the value y such that
+	yÂ³ = x. This implementation uses high-precision algorithms for maximum
+	accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Cube root of x. Returns x if x is Â±0, returns NaN if x is NaN,
+	 returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 8.0;
+	double result = cbrt(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Handles special values correctly.
+
+   SEE ALSO
+	sqrt(), pow(), math.h
+
+ 
+ma.lib/ceil                                                       ma.lib/ceil
+ 
+   NAME
+	ceil -- Return smallest integer >= x. (V1.0)
+
+   SYNOPSIS
+	double result = ceil(double x);
+	 D0		 D0
+	double ceil(double x);
+
+   FUNCTION
+	Compute the smallest integer value not less than x. This rounds x
+	toward positive infinity. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Smallest integer >= x. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.2;
+	double result = ceil(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != ceil(x).
+
+   SEE ALSO
+	floor(), round(), trunc(), math.h
+
+ 
+ma.lib/cimag                                                       ma.lib/cimag
+ 
+   NAME
+	cimag -- Return imaginary part of complex number. (V1.0)
+
+   SYNOPSIS
+	double result = cimag(complex_t z);
+	 D0		 D0
+	double cimag(complex_t z);
+
+   FUNCTION
+	Extract the imaginary part of a complex number. This function returns
+	the imaginary component of the complex number z. This is equivalent
+	to accessing the .im field of the complex_t structure.
+
+   INPUTS
+	z - Complex number.
+
+   RESULT
+	result - Imaginary part of z. Returns z.im.
+
+   EXAMPLE
+	complex_t z = {3.0, 4.0};
+	double imag_part = cimag(z);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to z.im.
+
+   SEE ALSO
+	creal(), complex.h
+
+ 
+ma.lib/copysign                                                       ma.lib/copysign
+ 
+   NAME
+	copysign -- Copy sign bit from y to x. (V1.0)
+
+   SYNOPSIS
+	double result = copysign(double x, double y);
+	 D0		 D0
+	double copysign(double x, double y);
+
+   FUNCTION
+	Copy the sign bit from y to x. This returns a value with the magnitude
+	of x and the sign of y. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Magnitude value.
+	y - Sign value.
+
+   RESULT
+	result - Value with magnitude of x and sign of y. Returns x if y is
+	 Â±0, returns NaN if either argument is NaN.
+
+   EXAMPLE
+	double x = 3.14, y = -2.0;
+	double result = copysign(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is useful for changing the sign of a value.
+
+   SEE ALSO
+	signbit(), fabs(), math.h
+
+ 
+ma.lib/copysignf                                                       ma.lib/copysignf
+ 
+   NAME
+	copysignf -- Copy sign bit from float to another. (V1.0)
+
+   SYNOPSIS
+	float result = copysignf(float x, float y);
+	 D0		 D0
+	float copysignf(float x, float y);
+
+   FUNCTION
+	Copy the sign bit from y to x, returning a value with the
+	magnitude of x and the sign of y. This implementation uses
+	high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Float value to copy magnitude from.
+	y - Float value to copy sign from.
+
+   RESULT
+	result - Value with magnitude of x and sign of y.
+
+   EXAMPLE
+	float x = -3.0f;
+	float y = 2.0f;
+	float result = copysignf(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses direct bit manipulation for optimal performance.
+
+   SEE ALSO
+	copysign(), copysignl(), fabsf(), math.h
+
+ 
+ma.lib/copysignl                                                       ma.lib/copysignl
+ 
+   NAME
+	copysignl -- Copy sign bit from long double to another. (V1.0)
+
+   SYNOPSIS
+	long double result = copysignl(long double x, long double y);
+	 D0		 D0
+	long double copysignl(long double x, long double y);
+
+   FUNCTION
+	Copy the sign bit from y to x, returning a value with the
+	magnitude of x and the sign of y. This implementation uses
+	the double precision copysign() function.
+
+   INPUTS
+	x - Long double value to copy magnitude from.
+	y - Long double value to copy sign from.
+
+   RESULT
+	result - Value with magnitude of x and sign of y.
+
+   EXAMPLE
+	long double x = -3.0L;
+	long double y = 2.0L;
+	long double result = copysignl(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision copysign() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	copysign(), copysignf(), fabsl(), math.h
+
+ 
+ma.lib/cos                                                       ma.lib/cos
+ 
+   NAME
+	cos -- Return cosine function of x. (V1.0)
+
+   SYNOPSIS
+	double result = cos(double x);
+	 D0		 D0
+	double cos(double x);
+
+   FUNCTION
+	Compute the cosine of x, where x is in radians. The cosine function
+	returns values in the range [-1, 1]. This implementation uses
+	high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value in radians. Range is approximately [-2^63, 2^63].
+
+   RESULT
+	result - Cosine of x, in the range [-1, 1]. Returns NaN if x is NaN,
+	 returns 1.0 if x is Â±0, returns NaN if x is Â±Infinity.
+
+   EXAMPLE
+	double angle = M_PI / 3.0;
+	double cosine = cos(angle);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses range reduction to [-ð/4, ð/4] for optimal accuracy.
+
+   SEE ALSO
+	sin(), tan(), acos(), math.h
+
+ 
+ma.lib/cosh                                                       ma.lib/cosh
+ 
+   NAME
+	cosh -- Return hyperbolic cosine of x. (V1.0)
+
+   SYNOPSIS
+	double result = cosh(double x);
+	 D0		 D0
+	double cosh(double x);
+
+   FUNCTION
+	Compute the hyperbolic cosine of x. The hyperbolic cosine is defined as
+	(e^x + e^(-x)) / 2. This implementation uses high-precision algorithms
+	from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is approximately [-710, 710] for finite results.
+
+   RESULT
+	result - Hyperbolic cosine of x. Returns +Infinity for large |x|,
+	 returns 1.0 if x is Â±0, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 1.0;
+	double result = cosh(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	sinh(), tanh(), acosh(), exp(), math.h
+
+ 
+ma.lib/creal                                                       ma.lib/creal
+ 
+   NAME
+	creal -- Return real part of complex number. (V1.0)
+
+   SYNOPSIS
+	double result = creal(complex_t z);
+	 D0		 D0
+	double creal(complex_t z);
+
+   FUNCTION
+	Extract the real part of a complex number. This function returns
+	the real component of the complex number z. This is equivalent
+	to accessing the .re field of the complex_t structure.
+
+   INPUTS
+	z - Complex number.
+
+   RESULT
+	result - Real part of z. Returns z.re.
+
+   EXAMPLE
+	complex_t z = {3.0, 4.0};
+	double real_part = creal(z);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to z.re.
+
+   SEE ALSO
+	cimag(), complex.h
+
+ 
+ma.lib/erf                                                       ma.lib/erf
+ 
+   NAME
+	erf -- Return error function of x. (V1.0)
+
+   SYNOPSIS
+	double result = erf(double x);
+	 D0		 D0
+	double erf(double x);
+
+   FUNCTION
+	Compute the error function of x. The error function is defined as:
+	erf(x) = (2/sqrt(pi)) * integral from 0 to x of exp(-t^2) dt
+	This implementation uses high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Input value. Range is approximately [-8, 8] for accurate results.
+
+   RESULT
+	result - Error function of x, in the range [-1, 1]. Returns -1 for
+	 large negative x, +1 for large positive x, NaN for NaN input.
+
+   EXAMPLE
+	double value = 1.0;
+	double error = erf(value);
+
+   NOTES
+	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+	The complementary error function erfc() is also available.
+
+   SEE ALSO
+	erfc(), math.h
+
+ 
+ma.lib/exp                                                       ma.lib/exp
+ 
+   NAME
+	exp -- Return exponential of x. (V1.0)
+
+   SYNOPSIS
+	double result = exp(double x);
+	 D0		 D0
+	double exp(double x);
+
+   FUNCTION
+	Compute the exponential of x. This is equivalent to e^x where e is
+	the base of natural logarithms. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is approximately [-700, 700] for finite results.
+
+   RESULT
+	result - Exponential of x. Returns +Infinity for large positive x,
+	 +0.0 for large negative x, NaN for NaN input.
+
+   EXAMPLE
+	double x = 1.0;
+	double result = exp(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	log(), exp2(), pow(), math.h
+
+ 
+ma.lib/exp2                                                       ma.lib/exp2
+ 
+   NAME
+	exp2 -- Return 2 raised to the power of x. (V1.0)
+
+   SYNOPSIS
+	double result = exp2(double x);
+	 D0		 D0
+	double exp2(double x);
+
+   FUNCTION
+	Compute 2 raised to the power of x. This is equivalent to 2^x.
+	This implementation uses exp(x * ln(2)) for accuracy.
+
+   INPUTS
+	x - Input value. Range is approximately [-1024, 1024] for finite
+	 results.
+
+   RESULT
+	result - 2^x. Returns +Infinity for large positive x, +0.0 for
+	 large negative x, NaN for NaN input.
+
+   EXAMPLE
+	double power = 3.0;
+	double result = exp2(power);
+
+   NOTES
+	This function is C99 compliant and provides IEEE 754 accuracy.
+	Overflow occurs for x > 1024, underflow for x < -1024.
+
+   SEE ALSO
+	exp(), log2(), pow(), math.h
+
+ 
+ma.lib/exp2f                                                       ma.lib/exp2f
+ 
+   NAME
+	exp2f -- Return 2 raised to the power of x (float). (V1.0)
+
+   SYNOPSIS
+	float result = exp2f(float x);
+	 D0		 D0
+	float exp2f(float x);
+
+   FUNCTION
+	Compute 2 raised to the power of x for float values. This is
+	equivalent to 2^x. This implementation uses the double precision
+	exp2() function for accuracy.
+
+   INPUTS
+	x - Input value (float). Range is approximately [-128, 128] for
+	 finite results.
+
+   RESULT
+	result - 2^x (float). Returns +Infinity for large positive x,
+	 +0.0 for large negative x, NaN for NaN input.
+
+   EXAMPLE
+	float power = 3.0f;
+	float result = exp2f(power);
+
+   NOTES
+	This function is C99 compliant and provides IEEE 754 accuracy.
+	Overflow occurs for x > 128, underflow for x < -128.
+
+   SEE ALSO
+	exp2(), expf(), log2f(), math.h
+
+ 
+ma.lib/exp2l                                                       ma.lib/exp2l
+ 
+   NAME
+	exp2l -- Return 2 raised to the power of long double. (V1.0)
+
+   SYNOPSIS
+	long double result = exp2l(long double x);
+	 D0		 D0
+	long double exp2l(long double x);
+
+   FUNCTION
+	Compute 2 raised to the power of a long double value. This returns
+	2^x. This implementation uses the double precision exp2() function.
+
+   INPUTS
+	x - Long double exponent.
+
+   RESULT
+	result - 2^x. Returns +Infinity if x is +Infinity,
+	 returns 0 if x is -Infinity, returns NaN if x is NaN.
+
+   EXAMPLE
+	long double x = 3.0L;
+	long double result = exp2l(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision exp2() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	exp2(), expl(), log2l(), math.h
+
+ 
+ma.lib/expm1                                                       ma.lib/expm1
+ 
+   NAME
+	expm1 -- Return exp(x) - 1. (V1.0)
+
+   SYNOPSIS
+	double result = expm1(double x);
+	 D0		 D0
+	double expm1(double x);
+
+   FUNCTION
+	Compute exp(x) - 1. This function provides more accurate results
+	than exp(x) - 1 for small values of x, avoiding cancellation
+	errors. This implementation uses high-precision algorithms for
+	maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - exp(x) - 1. Returns x if x is Â±0, returns -1 if x is
+	 -Infinity, returns +Infinity if x is +Infinity, returns
+	 NaN if x is NaN.
+
+   EXAMPLE
+	double x = 0.001;
+	double result = expm1(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	More accurate than exp(x) - 1 for small x values.
+
+   SEE ALSO
+	exp(), log1p(), math.h
+
+ 
+ma.lib/fabs                                                       ma.lib/fabs
+ 
+   NAME
+	fabs -- Return absolute value of x. (V1.0)
+
+   SYNOPSIS
+	double result = fabs(double x);
+	 D0		 D0
+	double fabs(double x);
+
+   FUNCTION
+	Compute the absolute value of x. This returns the magnitude of x
+	without regard to its sign. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Absolute value of x. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns +Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = -3.14;
+	double result = fabs(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to (x < 0) ? -x : x.
+
+   SEE ALSO
+	copysign(), signbit(), math.h
+
+ 
+ma.lib/fdim                                                       ma.lib/fdim
+ 
+   NAME
+	fdim -- Return positive difference of two values. (V1.0)
+
+   SYNOPSIS
+	double result = fdim(double x, double y);
+	 D0		 D0
+	double fdim(double x, double y);
+
+   FUNCTION
+	Return the positive difference of two floating-point values. This is
+	equivalent to max(x - y, 0). If either argument is NaN, return NaN.
+	If x > y, return x - y, otherwise return 0.
+
+   INPUTS
+	x - First value.
+	y - Second value.
+
+   RESULT
+	result - Positive difference max(x - y, 0). Returns NaN if either
+	 argument is NaN.
+
+   EXAMPLE
+	double x = 5.0, y = 3.0;
+	double result = fdim(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to fmax(x - y, 0.0).
+
+   SEE ALSO
+	fmax(), fmin(), fabs(), math.h
+
+ 
+ma.lib/finite                                                       ma.lib/finite
+ 
+   NAME
+	finite -- Test if value is finite. (V1.0)
+
+   SYNOPSIS
+	int result = finite(double x);
+	 D0		 D0
+	int finite(double x);
+
+   FUNCTION
+	Test if x is a finite value. This returns 1 if x is finite (not NaN
+	and not Â±Infinity), 0 otherwise. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - 1 if x is finite, 0 if x is NaN or Â±Infinity.
+
+   EXAMPLE
+	double x = 3.14;
+	int result = finite(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to !isnan(x) && !isinf(x).
+
+   SEE ALSO
+	isnan(), isinf(), math.h
+
+ 
+ma.lib/finitef                                                       ma.lib/finitef
+ 
+   NAME
+	finitef -- Test if float value is finite. (V1.0)
+
+   SYNOPSIS
+	int result = finitef(float x);
+	 D0		 D0
+	int finitef(float x);
+
+   FUNCTION
+	Test if a float value is finite (not infinity or NaN). This performs
+	IEEE 754 finite detection for float values on AmigaOS with SAS/C.
+
+   INPUTS
+	x - Float value to test.
+
+   RESULT
+	result - Non-zero if x is finite, zero otherwise.
+
+   EXAMPLE
+	float x = 3.14f;
+	if (finitef(x)) {
+	 printf("x is finite\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses bit manipulation for efficient finite detection.
+
+   SEE ALSO
+	finite(), isinf(), isnan(), math.h
+
+ 
+ma.lib/finitel                                                       ma.lib/finitel
+ 
+   NAME
+	finitel -- Test if long double value is finite. (V1.0)
+
+   SYNOPSIS
+	int result = finitel(long double x);
+	 D0		 D0
+	int finitel(long double x);
+
+   FUNCTION
+	Test if a long double value is finite (not infinity or NaN). This performs
+	IEEE 754 finite detection for long double values on AmigaOS with SAS/C.
+
+   INPUTS
+	x - Long double value to test.
+
+   RESULT
+	result - Non-zero if x is finite, zero otherwise.
+
+   EXAMPLE
+	long double x = 3.14L;
+	if (finitel(x)) {
+	 printf("x is finite\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Delegates to finite() since SAS/C maps long double to double.
+
+   SEE ALSO
+	finite(), isinf(), isnan(), math.h
+
+ 
+ma.lib/floor                                                       ma.lib/floor
+ 
+   NAME
+	floor -- Return largest integer <= x. (V1.0)
+
+   SYNOPSIS
+	double result = floor(double x);
+	 D0		 D0
+	double floor(double x);
+
+   FUNCTION
+	Compute the largest integer value not greater than x. This rounds x
+	toward negative infinity. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Largest integer <= x. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	double result = floor(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != floor(x).
+
+   SEE ALSO
+	ceil(), round(), trunc(), math.h
+
+ 
+ma.lib/fma                                                       ma.lib/fma
+ 
+   NAME
+	fma -- Return fused multiply-add x*y + z. (V1.0)
+
+   SYNOPSIS
+	double result = fma(double x, double y, double z);
+	 D0		 D0
+	double fma(double x, double y, double z);
+
+   FUNCTION
+	Compute the fused multiply-add operation x*y + z. This performs the
+	multiplication and addition as a single operation. This implementation
+	uses standard multiply and add for SAS/C compatibility.
+
+   INPUTS
+	x - First multiplicand.
+	y - Second multiplicand.
+	z - Addend.
+
+   RESULT
+	result - x*y + z. Returns NaN if any argument is NaN, returns Â±Infinity
+	 for large results, returns Â±0 for small results.
+
+   EXAMPLE
+	double x = 2.0, y = 3.0, z = 1.0;
+	double result = fma(x, y, z);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to x * y + z.
+
+   SEE ALSO
+	pow(), exp(), log(), math.h
+
+ 
+ma.lib/fmax                                                       ma.lib/fmax
+ 
+   NAME
+	fmax -- Return maximum of two values. (V1.0)
+
+   SYNOPSIS
+	double result = fmax(double x, double y);
+	 D0		 D0
+	double fmax(double x, double y);
+
+   FUNCTION
+	Return the maximum of two floating-point values. If one argument is NaN,
+	return the other argument. If both arguments are NaN, return NaN.
+	If the arguments are equal, return the one with positive zero.
+
+   INPUTS
+	x - First value to compare.
+	y - Second value to compare.
+
+   RESULT
+	result - Maximum of x and y. Returns NaN if both arguments are NaN.
+
+   EXAMPLE
+	double x = 3.14, y = 2.71;
+	double result = fmax(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to (x > y) ? x : y with proper NaN handling.
+
+   SEE ALSO
+	fmin(), fabs(), math.h
+
+ 
+ma.lib/fmin                                                       ma.lib/fmin
+ 
+   NAME
+	fmin -- Return minimum of two values. (V1.0)
+
+   SYNOPSIS
+	double result = fmin(double x, double y);
+	 D0		 D0
+	double fmin(double x, double y);
+
+   FUNCTION
+	Return the minimum of two floating-point values. If one argument is NaN,
+	return the other argument. If both arguments are NaN, return NaN.
+	If the arguments are equal, return the one with positive zero.
+
+   INPUTS
+	x - First value to compare.
+	y - Second value to compare.
+
+   RESULT
+	result - Minimum of x and y. Returns NaN if both arguments are NaN.
+
+   EXAMPLE
+	double x = 3.14, y = 2.71;
+	double result = fmin(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to (x < y) ? x : y with proper NaN handling.
+
+   SEE ALSO
+	fmax(), fabs(), math.h
+
+ 
+ma.lib/fmod                                                       ma.lib/fmod
+ 
+   NAME
+	fmod -- Return floating-point remainder of x/y. (V1.0)
+
+   SYNOPSIS
+	double result = fmod(double x, double y);
+	 D0		 D0
+	double fmod(double x, double y);
+
+   FUNCTION
+	Compute the floating-point remainder of x/y. The result has the same
+	sign as x and magnitude less than |y|. This implementation uses
+	high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Numerator value.
+	y - Denominator value.
+
+   RESULT
+	result - Floating-point remainder of x/y. Returns NaN if y is 0 or if
+	 either argument is NaN, returns x if y is Â±Infinity.
+
+   EXAMPLE
+	double x = 5.0, y = 2.0;
+	double result = fmod(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM if y is 0.
+
+   SEE ALSO
+	remainder(), modf(), math.h
+
+ 
+ma.lib/fpclassify                                                       ma.lib/fpclassify
+ 
+   NAME
+	fpclassify -- Classify floating-point value. (V1.0)
+
+   SYNOPSIS
+	int result = fpclassify(double x);
+	 D0		 D0
+	int fpclassify(double x);
+
+   FUNCTION
+	Classify the floating-point value x into one of the standard categories.
+	This returns a constant indicating the type of value. This implementation
+	uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Classification constant: FP_NAN, FP_INFINITE, FP_ZERO,
+	 FP_SUBNORMAL, or FP_NORMAL.
+
+   EXAMPLE
+	double x = 3.14;
+	int result = fpclassify(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to checking isnan(), isinf(), etc.
+
+   SEE ALSO
+	isnan(), isinf(), finite(), math.h
+
+ 
+ma.lib/frexp                                                       ma.lib/frexp
+ 
+   NAME
+	frexp -- Return significand and exponent of x. (V1.0)
+
+   SYNOPSIS
+	double result = frexp(double x, int *eptr);
+	 D0		 D0
+	double frexp(double x, int *eptr);
+
+   FUNCTION
+	Break x into a normalized fraction and an integral power of 2. The
+	result is x = result * 2^eptr, where result is in the range [0.5, 1.0)
+	or 0, and eptr is the exponent. This implementation uses high-precision
+	algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value.
+	eptr - Pointer to integer to store exponent.
+
+   RESULT
+	result - Normalized fraction in range [0.5, 1.0) or 0. Returns 0 if
+	 x is 0, returns x if x is Â±Infinity or NaN.
+
+   EXAMPLE
+	double x = 3.14159;
+	int exp;
+	double result = frexp(x, &exp);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	The exponent is stored in the integer pointed to by eptr.
+
+   SEE ALSO
+	ldexp(), scalbn(), scalb(), math.h
+
+ 
+ma.lib/gamma                                                       ma.lib/gamma
+ 
+   NAME
+	gamma -- Return gamma function of x. (V1.0)
+
+   SYNOPSIS
+	double result = gamma(double x);
+	 D0		 D0
+	double gamma(double x);
+
+   FUNCTION
+	Compute the gamma function of x. This is equivalent to tgamma(x)
+	but uses the global signgam variable. This implementation uses
+	high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Gamma function Î(x). Returns +Infinity if x is a
+	 non-positive integer, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 2.5;
+	double result = gamma(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses global signgam variable for sign information.
+
+   SEE ALSO
+	tgamma(), lgamma(), gamma_r(), math.h
+
+ 
+ma.lib/gamma_r                                                       ma.lib/gamma_r
+ 
+   NAME
+	gamma_r -- Return gamma function of x (reentrant). (V1.0)
+
+   SYNOPSIS
+	double result = gamma_r(double x, int *signgamp);
+	 D0		 D0
+	double gamma_r(double x, int *signgamp);
+
+   FUNCTION
+	Compute the gamma function of x. This is the reentrant version
+	that stores the sign of gamma(x) in *signgamp. This implementation
+	uses high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+	signgamp - Pointer to int to store sign of gamma(x).
+
+   RESULT
+	result - Gamma function Î(x). Returns +Infinity if x is a
+	 non-positive integer, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 2.5;
+	int sign;
+	double result = gamma_r(x, &sign);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	The sign of gamma(x) is stored in the int pointed to by signgamp.
+
+   SEE ALSO
+	gamma(), tgamma(), lgamma_r(), math.h
+
+ 
+ma.lib/get_long_long_max                                                       ma.lib/get_long_long_max
+ 
+   NAME
+	get_long_long_max -- Get maximum long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = get_long_long_max(void);
+	 D0		 D0
+	long_long_t get_long_long_max(void);
+
+   FUNCTION
+	Get the maximum value for long_long_t type. This returns the
+	largest representable 64-bit signed integer for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	None.
+
+   RESULT
+	result - Maximum long_long_t value (LONG_LONG_MAX).
+
+   EXAMPLE
+	long_long_t max = get_long_long_max();
+	printf("Max value: %ld%ld\n", max.hi, max.lo);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Returns constant maximum value.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/get_long_long_min                                                       ma.lib/get_long_long_min
+ 
+   NAME
+	get_long_long_min -- Get minimum long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = get_long_long_min(void);
+	 D0		 D0
+	long_long_t get_long_long_min(void);
+
+   FUNCTION
+	Get the minimum value for long_long_t type. This returns the
+	smallest representable 64-bit signed integer for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	None.
+
+   RESULT
+	result - Minimum long_long_t value (LONG_LONG_MIN).
+
+   EXAMPLE
+	long_long_t min = get_long_long_min();
+	printf("Min value: %ld%ld\n", min.hi, min.lo);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Returns constant minimum value.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/handle_overflow                                                       ma.lib/handle_overflow
+ 
+   NAME
+	handle_overflow -- Handle overflow cases for long long operations. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = handle_overflow(int negative);
+	 D0		 D0
+	long_long_t handle_overflow(int negative);
+
+   FUNCTION
+	Handle overflow cases for long long operations. Returns the
+	appropriate maximum or minimum value based on the sign.
+	This is a helper function for 64-bit integer emulation.
+
+   INPUTS
+	negative - Non-zero if result should be negative (minimum value).
+
+   RESULT
+	result - LONG_LONG_MAX if negative is 0, LONG_LONG_MIN if negative is 1.
+
+   EXAMPLE
+	long_long_t result = handle_overflow(0);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Internal helper function for overflow handling.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/hypot                                                       ma.lib/hypot
+ 
+   NAME
+	hypot -- Return Euclidean distance sqrt(xÂ² + yÂ²). (V1.0)
+
+   SYNOPSIS
+	double result = hypot(double x, double y);
+	 D0		 D0
+	double hypot(double x, double y);
+
+   FUNCTION
+	Compute the Euclidean distance sqrt(xÂ² + yÂ²). This is the length of the
+	hypotenuse of a right triangle with sides x and y. This implementation
+	avoids overflow and underflow by scaling the computation.
+
+   INPUTS
+	x - First value.
+	y - Second value.
+
+   RESULT
+	result - Euclidean distance sqrt(xÂ² + yÂ²). Returns +Infinity if either
+	 argument is Â±Infinity, returns NaN if either argument is NaN.
+
+   EXAMPLE
+	double x = 3.0, y = 4.0;
+	double result = hypot(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Handles overflow and underflow conditions correctly.
+
+   SEE ALSO
+	sqrt(), pow(), math.h
+
+ 
+ma.lib/ilogb                                                       ma.lib/ilogb
+ 
+   NAME
+	ilogb -- Return binary exponent of x as integer. (V1.0)
+
+   SYNOPSIS
+	int result = ilogb(double x);
+	 D0		 D0
+	int ilogb(double x);
+
+   FUNCTION
+	Extract the binary exponent of x as an integer. This is equivalent to
+	the exponent part of the floating-point representation. This
+	implementation uses high-precision algorithms from fdlibm for maximum
+	accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Binary exponent of x. Returns 0x80000001 if x is 0, returns
+	 0x7fffffff if x is Â±Infinity or NaN.
+
+   EXAMPLE
+	double x = 8.0;
+	int exp = ilogb(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to the exponent part of frexp().
+
+   SEE ALSO
+	frexp(), logb(), scalbn(), math.h
+
+ 
+ma.lib/ilogbf                                                       ma.lib/ilogbf
+ 
+   NAME
+	ilogbf -- Return binary exponent of float. (V1.0)
+
+   SYNOPSIS
+	int result = ilogbf(float x);
+	 D0		 D0
+	int ilogbf(float x);
+
+   FUNCTION
+	Extract the binary exponent of a float value. This returns
+	the exponent as an integer. This implementation uses
+	high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Float value.
+
+   RESULT
+	result - Binary exponent. Returns 0x80000001 if x is 0,
+	 returns 0x7fffffff if x is Â±Infinity or NaN.
+
+   EXAMPLE
+	float x = 8.0f;
+	int result = ilogbf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses direct bit manipulation for optimal performance.
+
+   SEE ALSO
+	ilogb(), logbf(), frexpf(), math.h
+
+ 
+ma.lib/ilogbl                                                       ma.lib/ilogbl
+ 
+   NAME
+	ilogbl -- Return binary exponent of long double. (V1.0)
+
+   SYNOPSIS
+	int result = ilogbl(long double x);
+	 D0		 D0
+	int ilogbl(long double x);
+
+   FUNCTION
+	Extract the binary exponent of a long double value. This returns
+	the exponent as an integer. This implementation uses
+	the double precision ilogb() function.
+
+   INPUTS
+	x - Long double value.
+
+   RESULT
+	result - Binary exponent. Returns 0x80000001 if x is 0,
+	 returns 0x7fffffff if x is Â±Infinity or NaN.
+
+   EXAMPLE
+	long double x = 8.0L;
+	int result = ilogbl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision ilogb() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	ilogb(), logbl(), frexpl(), math.h
+
+ 
+ma.lib/isinf                                                       ma.lib/isinf
+ 
+   NAME
+	isinf -- Test if value is infinity. (V1.0)
+
+   SYNOPSIS
+	int result = isinf(double x);
+	 D0		 D0
+	int isinf(double x);
+
+   FUNCTION
+	Test if x is infinity (positive or negative). This returns 1 if x is
+	Â±Infinity, 0 otherwise. This implementation uses high-precision
+	algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - 1 if x is Â±Infinity, 0 if x is finite or NaN.
+
+   EXAMPLE
+	double x = 1.0 / 0.0;
+	int result = isinf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to x == INFINITY || x == -INFINITY.
+
+   SEE ALSO
+	isnan(), finite(), math.h
+
+ 
+ma.lib/isinff                                                       ma.lib/isinff
+ 
+   NAME
+	isinff -- Test if float value is infinity. (V1.0)
+
+   SYNOPSIS
+	int result = isinff(float x);
+	 D0		 D0
+	int isinff(float x);
+
+   FUNCTION
+	Test if a float value is infinity (positive or negative).
+	This performs IEEE 754 infinity detection for float values
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	x - Float value to test.
+
+   RESULT
+	result - Non-zero if x is infinity, zero otherwise.
+
+   EXAMPLE
+	float x = 1.0f / 0.0f;
+	if (isinff(x)) {
+	 printf("x is infinity\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses bit manipulation for efficient infinity detection.
+
+   SEE ALSO
+	isinf(), isnanf(), finitef(), math.h
+
+ 
+ma.lib/isinfl                                                       ma.lib/isinfl
+ 
+   NAME
+	isinfl -- Test if long double value is infinity. (V1.0)
+
+   SYNOPSIS
+	int result = isinfl(long double x);
+	 D0		 D0
+	int isinfl(long double x);
+
+   FUNCTION
+	Test if a long double value is infinity (positive or negative).
+	This performs IEEE 754 infinity detection for long double values
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	x - Long double value to test.
+
+   RESULT
+	result - Non-zero if x is infinity, zero otherwise.
+
+   EXAMPLE
+	long double x = 1.0L / 0.0L;
+	if (isinfl(x)) {
+	 printf("x is infinity\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Delegates to isinf() since SAS/C maps long double to double.
+
+   SEE ALSO
+	isinf(), isnanl(), finitel(), math.h
+
+ 
+ma.lib/isnan                                                       ma.lib/isnan
+ 
+   NAME
+	isnan -- Test if value is NaN (Not a Number). (V1.0)
+
+   SYNOPSIS
+	int result = isnan(double x);
+	 D0		 D0
+	int isnan(double x);
+
+   FUNCTION
+	Test if x is NaN (Not a Number). This returns 1 if x is NaN, 0
+	otherwise. This implementation uses high-precision algorithms from
+	fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - 1 if x is NaN, 0 if x is finite or Â±Infinity.
+
+   EXAMPLE
+	double x = 0.0 / 0.0;
+	int result = isnan(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to x != x.
+
+   SEE ALSO
+	isinf(), finite(), math.h
+
+ 
+ma.lib/isnanf                                                       ma.lib/isnanf
+ 
+   NAME
+	isnanf -- Test if float value is NaN. (V1.0)
+
+   SYNOPSIS
+	int result = isnanf(float x);
+	 D0		 D0
+	int isnanf(float x);
+
+   FUNCTION
+	Test if a float value is NaN (Not a Number). This performs
+	IEEE 754 NaN detection for float values on AmigaOS with SAS/C.
+
+   INPUTS
+	x - Float value to test.
+
+   RESULT
+	result - Non-zero if x is NaN, zero otherwise.
+
+   EXAMPLE
+	float x = 0.0f / 0.0f;
+	if (isnanf(x)) {
+	 printf("x is NaN\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses bit manipulation for efficient NaN detection.
+
+   SEE ALSO
+	isnan(), isinf(), finitef(), math.h
+
+ 
+ma.lib/isnanl                                                       ma.lib/isnanl
+ 
+   NAME
+	isnanl -- Test if long double value is NaN. (V1.0)
+
+   SYNOPSIS
+	int result = isnanl(long double x);
+	 D0		 D0
+	int isnanl(long double x);
+
+   FUNCTION
+	Test if a long double value is NaN (Not a Number). This performs
+	IEEE 754 NaN detection for long double values on AmigaOS with SAS/C.
+
+   INPUTS
+	x - Long double value to test.
+
+   RESULT
+	result - Non-zero if x is NaN, zero otherwise.
+
+   EXAMPLE
+	long double x = 0.0L / 0.0L;
+	if (isnanl(x)) {
+	 printf("x is NaN\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Delegates to isnan() since SAS/C maps long double to double.
+
+   SEE ALSO
+	isnan(), isinf(), finitel(), math.h
+
+ 
+ma.lib/j0                                                       ma.lib/j0
+ 
+   NAME
+	j0 -- Return Bessel function of first kind, order 0. (V1.0)
+
+   SYNOPSIS
+	double result = j0(double x);
+	 D0		 D0
+	double j0(double x);
+
+   FUNCTION
+	Compute the Bessel function of the first kind of order zero.
+	This function is used in various mathematical and physical applications,
+	including wave propagation and signal processing.
+
+   INPUTS
+	x - Input value. Range is approximately [-1e9, 1e9] for accurate results.
+
+   RESULT
+	result - Bessel function J0(x). Returns 1.0 if x is 0.0, returns 0.0
+	 for large |x|, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 2.0;
+	double bessel = j0(x);
+
+   NOTES
+	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+	Uses high-precision algorithms from fdlibm.
+
+   SEE ALSO
+	j1(), jn(), y0(), y1(), yn(), math.h
+
+ 
+ma.lib/j1                                                       ma.lib/j1
+ 
+   NAME
+	j1 -- Return Bessel function of first kind, order 1. (V1.0)
+
+   SYNOPSIS
+	double result = j1(double x);
+	 D0		 D0
+	double j1(double x);
+
+   FUNCTION
+	Compute the Bessel function of the first kind of order one.
+	This function is used in various mathematical and physical applications,
+	including wave propagation and signal processing.
+
+   INPUTS
+	x - Input value. Range is approximately [-1e9, 1e9] for accurate results.
+
+   RESULT
+	result - Bessel function J1(x). Returns 0.0 if x is 0.0, returns 0.0
+	 for large |x|, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 2.0;
+	double bessel = j1(x);
+
+   NOTES
+	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+	Uses high-precision algorithms from fdlibm.
+
+   SEE ALSO
+	j0(), jn(), y0(), y1(), yn(), math.h
+
+ 
+ma.lib/jn                                                       ma.lib/jn
+ 
+   NAME
+	jn -- Return Bessel function of first kind, order n. (V1.0)
+
+   SYNOPSIS
+	double result = jn(int n, double x);
+	 D0		 D0
+	double jn(int n, double x);
+
+   FUNCTION
+	Compute the Bessel function of the first kind of order n.
+	This function is used in various mathematical and physical
+	applications. This implementation uses high-precision algorithms
+	from fdlibm for maximum accuracy.
+
+   INPUTS
+	n - Order of the Bessel function.
+	x - Input value. Must be >= 0 for valid result.
+
+   RESULT
+	result - Bessel function J_n(x). Returns NaN if x < 0, returns
+	 0 if n < 0 and x is 0, returns 1 if n = 0 and x is 0.
+
+   EXAMPLE
+	int n = 2;
+	double x = 1.0;
+	double result = jn(n, x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM if x < 0.
+
+   SEE ALSO
+	yn(), j0(), j1(), math.h
+
+ 
+ma.lib/ldexp                                                       ma.lib/ldexp
+ 
+   NAME
+	ldexp -- Return value * 2^exp. (V1.0)
+
+   SYNOPSIS
+	double result = ldexp(double value, int exp);
+	 D0		 D0
+	double ldexp(double value, int exp);
+
+   FUNCTION
+	Compute value * 2^exp. This scales value by a power of 2. This
+	implementation uses high-precision algorithms from fdlibm for maximum
+	accuracy.
+
+   INPUTS
+	value - Input value.
+	exp - Exponent value.
+
+   RESULT
+	result - value * 2^exp. Returns NaN if value is NaN, returns Â±Infinity
+	 for large results, returns Â±0 for small results.
+
+   EXAMPLE
+	double value = 3.0;
+	int exp = 2;
+	double result = ldexp(value, exp);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to scalbn(value, exp).
+
+   SEE ALSO
+	scalbn(), scalb(), frexp(), math.h
+
+ 
+ma.lib/lgamma                                                       ma.lib/lgamma
+ 
+   NAME
+	lgamma -- Return logarithm of gamma function. (V1.0)
+
+   SYNOPSIS
+	double result = lgamma(double x);
+	 D0		 D0
+	double lgamma(double x);
+
+   FUNCTION
+	Compute the natural logarithm of the absolute value of the gamma
+	function of x. The gamma function is a generalization of the
+	factorial function to real and complex numbers.
+
+   INPUTS
+	x - Input value. Must be positive for valid result.
+
+   RESULT
+	result - Log gamma of x. Returns +Infinity if x is 0 or negative
+	 integer, NaN if x is NaN, +Infinity if x is +Infinity.
+	 The sign of the gamma function is stored in the global
+	 variable signgam.
+
+   EXAMPLE
+	double x = 5.0;
+	double log_gamma = lgamma(x);
+
+   NOTES
+	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+	Uses high-precision algorithms from fdlibm. The sign of the result
+	is stored in the global variable signgam.
+
+   SEE ALSO
+	tgamma(), gamma(), lgamma_r(), signgam, math.h
+
+ 
+ma.lib/lgamma_r                                                       ma.lib/lgamma_r
+ 
+   NAME
+	lgamma_r -- Return log of gamma function (reentrant). (V1.0)
+
+   SYNOPSIS
+	double result = lgamma_r(double x, int *signgamp);
+	 D0		 D0
+	double lgamma_r(double x, int *signgamp);
+
+   FUNCTION
+	Compute the logarithm of the gamma function. This is the reentrant
+	version that stores the sign of gamma(x) in *signgamp. This
+	implementation uses high-precision algorithms from fdlibm for
+	maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+	signgamp - Pointer to int to store sign of gamma(x).
+
+   RESULT
+	result - Log of |gamma(x)|. Returns +Infinity if x is a non-positive
+	 integer, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 2.5;
+	int sign;
+	double result = lgamma_r(x, &sign);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	The sign of gamma(x) is stored in the int pointed to by signgamp.
+
+   SEE ALSO
+	lgamma(), tgamma(), gamma(), math.h
+
+ 
+ma.lib/lldiv                                                       ma.lib/lldiv
+ 
+   NAME
+	lldiv -- Divide long_long_t and return quotient and remainder. (V1.0)
+
+   SYNOPSIS
+	lldiv_t result = lldiv(long_long_t numer, long_long_t denom);
+	 D0		 D0
+	lldiv_t lldiv(long_long_t numer, long_long_t denom);
+
+   FUNCTION
+	Divide two long_long_t values and return both quotient and remainder
+	in an lldiv_t structure. This is equivalent to lldiv() but uses
+	long_long_t for 64-bit integer emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	numer - Numerator (dividend).
+	denom - Denominator (divisor).
+
+   RESULT
+	result - lldiv_t structure containing quotient and remainder.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2001);
+	long_long_t b = long_to_long_long(1000);
+	lldiv_t result = lldiv(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for division by zero.
+
+   SEE ALSO
+	long_long_t, lldiv_t, longlong.h
+
+ 
+ma.lib/llrint                                                       ma.lib/llrint
+ 
+   NAME
+	llrint -- Return x rounded to nearest long long integer. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = llrint(double x);
+	 D0		 D0
+	long_long_t llrint(double x);
+
+   FUNCTION
+	Compute the nearest long long integer value to x according to the
+	current rounding mode. This rounds x to the nearest long long integer
+	using the prevailing rounding mode. This implementation uses
+	high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Nearest long long integer to x. Returns 0 if x is Â±0, returns
+	 NaN if x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	long_long_t result = llrint(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != llrint(x).
+
+   SEE ALSO
+	round(), lrint(), nearbyint(), math.h
+
+ 
+ma.lib/llrintf                                                       ma.lib/llrintf
+ 
+   NAME
+	llrintf -- Round float to nearest long long integer. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = llrintf(float x);
+	 D0		 D0
+	long_long_t llrintf(float x);
+
+   FUNCTION
+	Round a float value to the nearest long long integer. This rounds to the
+	nearest integer using the current rounding mode. This implementation
+	uses the double precision llrint() function.
+
+   INPUTS
+	x - Float value to round.
+
+   RESULT
+	result - Rounded long_long_t integer. Returns LONG_LONG_MAX or LONG_LONG_MIN on overflow.
+
+   EXAMPLE
+	float x = 3.7f;
+	long_long_t result = llrintf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision llrint() internally for accuracy.
+
+   SEE ALSO
+	llrint(), lrintf(), rintf(), longlong.h
+
+ 
+ma.lib/llrintl                                                       ma.lib/llrintl
+ 
+   NAME
+	llrintl -- Round long double to nearest long long integer. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = llrintl(long double x);
+	 D0		 D0
+	long_long_t llrintl(long double x);
+
+   FUNCTION
+	Round a long double value to the nearest long long integer. This rounds to the
+	nearest integer using the current rounding mode. This implementation
+	uses the double precision llrint() function.
+
+   INPUTS
+	x - Long double value to round.
+
+   RESULT
+	result - Rounded long_long_t integer. Returns LONG_LONG_MAX or LONG_LONG_MIN on overflow.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long_long_t result = llrintl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision llrint() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	llrint(), lrintl(), rintl(), longlong.h
+
+ 
+ma.lib/llround                                                       ma.lib/llround
+ 
+   NAME
+	llround -- Return x rounded to nearest long long integer. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = llround(double x);
+	 D0		 D0
+	long_long_t llround(double x);
+
+   FUNCTION
+	Compute the nearest long long integer value to x. This rounds x to the
+	nearest long long integer, with ties rounded away from zero. This
+	implementation uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Nearest long long integer to x. Returns 0 if x is Â±0, returns
+	 NaN if x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	long_long_t result = llround(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != llround(x).
+
+   SEE ALSO
+	round(), lround(), llrint(), math.h
+
+ 
+ma.lib/llroundf                                                       ma.lib/llroundf
+ 
+   NAME
+	llroundf -- Round float to nearest long long integer. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = llroundf(float x);
+	 D0		 D0
+	long_long_t llroundf(float x);
+
+   FUNCTION
+	Round a float value to the nearest long long integer. This rounds to the
+	nearest integer, with halfway cases rounded away from zero.
+	This implementation uses the double precision llround() function.
+
+   INPUTS
+	x - Float value to round.
+
+   RESULT
+	result - Rounded long_long_t integer. Returns LONG_LONG_MAX or LONG_LONG_MIN on overflow.
+
+   EXAMPLE
+	float x = 3.7f;
+	long_long_t result = llroundf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision llround() internally for accuracy.
+
+   SEE ALSO
+	llround(), lroundf(), roundf(), longlong.h
+
+ 
+ma.lib/llroundl                                                       ma.lib/llroundl
+ 
+   NAME
+	llroundl -- Round long double to nearest long long integer. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = llroundl(long double x);
+	 D0		 D0
+	long_long_t llroundl(long double x);
+
+   FUNCTION
+	Round a long double value to the nearest long long integer. This rounds to the
+	nearest integer, with halfway cases rounded away from zero.
+	This implementation uses the double precision llround() function.
+
+   INPUTS
+	x - Long double value to round.
+
+   RESULT
+	result - Rounded long_long_t integer. Returns LONG_LONG_MAX or LONG_LONG_MIN on overflow.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long_long_t result = llroundl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision llround() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	llround(), lroundl(), roundl(), longlong.h
+
+ 
+ma.lib/log                                                       ma.lib/log
+ 
+   NAME
+	log -- Return natural logarithm of x. (V1.0)
+
+   SYNOPSIS
+	double result = log(double x);
+	 D0		 D0
+	double log(double x);
+
+   FUNCTION
+	Compute the natural logarithm of x. This is the logarithm to base e
+	where e is the base of natural logarithms. This implementation uses
+	high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Must be positive for valid result.
+
+   RESULT
+	result - Natural logarithm of x. Returns -Infinity if x is +0.0,
+	 NaN if x is negative or NaN, +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double x = M_E;
+	double result = log(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for non-positive arguments.
+
+   SEE ALSO
+	log10(), log2(), exp(), pow(), math.h
+
+ 
+ma.lib/log10                                                       ma.lib/log10
+ 
+   NAME
+	log10 -- Return base 10 logarithm of x. (V1.0)
+
+   SYNOPSIS
+	double result = log10(double x);
+	 D0		 D0
+	double log10(double x);
+
+   FUNCTION
+	Compute the base 10 logarithm of x. This returns logââ(x).
+	This implementation uses high-precision algorithms from fdlibm
+	for maximum accuracy.
+
+   INPUTS
+	x - Input value. Must be > 0 for valid result.
+
+   RESULT
+	result - Base 10 logarithm of x. Returns -Infinity if x is 0,
+	 returns NaN if x < 0, returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double x = 100.0;
+	double result = log10(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM if x <= 0.
+
+   SEE ALSO
+	log(), log2(), exp(), math.h
+
+ 
+ma.lib/log1p                                                       ma.lib/log1p
+ 
+   NAME
+	log1p -- Return log(1 + x). (V1.0)
+
+   SYNOPSIS
+	double result = log1p(double x);
+	 D0		 D0
+	double log1p(double x);
+
+   FUNCTION
+	Compute log(1 + x). This function is designed to avoid the significant
+	loss of precision that arises from direct evaluation when x is small.
+	This implementation uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Must be > -1 for valid result.
+
+   RESULT
+	result - log(1 + x). Returns -Infinity if x is -1, returns x if x is
+	 Â±0, returns NaN if x < -1, returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double x = 0.001;
+	double result = log1p(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	More accurate than log(1 + x) for small x values.
+
+   SEE ALSO
+	log(), expm1(), math.h
+
+ 
+ma.lib/log1pf                                                       ma.lib/log1pf
+ 
+   NAME
+	log1pf -- Return log(1+x) for float. (V1.0)
+
+   SYNOPSIS
+	float result = log1pf(float x);
+	 D0		 D0
+	float log1pf(float x);
+
+   FUNCTION
+	Compute log(1+x) for float values. This provides accurate
+	logarithm computation for values close to zero. This
+	implementation uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-1, +â].
+
+   RESULT
+	result - log(1+x). Returns -Infinity if x is -1,
+	 returns NaN if x < -1.
+
+   EXAMPLE
+	float x = 0.1f;
+	float result = log1pf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	More accurate than logf(1+x) for small x values.
+
+   SEE ALSO
+	log1p(), logf(), expf(), math.h
+
+ 
+ma.lib/log1pl                                                       ma.lib/log1pl
+ 
+   NAME
+	log1pl -- Return log(1+x) for long double. (V1.0)
+
+   SYNOPSIS
+	long double result = log1pl(long double x);
+	 D0		 D0
+	long double log1pl(long double x);
+
+   FUNCTION
+	Compute log(1+x) for long double values. This provides accurate
+	logarithm computation for values close to zero. This implementation
+	uses the double precision log1p() function.
+
+   INPUTS
+	x - Long double value. Range is [-1, +â].
+
+   RESULT
+	result - log(1+x). Returns -Infinity if x is -1,
+	 returns NaN if x < -1.
+
+   EXAMPLE
+	long double x = 0.1L;
+	long double result = log1pl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision log1p() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	log1p(), logl(), expl(), math.h
+
+ 
+ma.lib/log2                                                       ma.lib/log2
+ 
+   NAME
+	log2 -- Return base-2 logarithm of x. (V1.0)
+
+   SYNOPSIS
+	double result = log2(double x);
+	 D0		 D0
+	double log2(double x);
+
+   FUNCTION
+	Compute the base-2 logarithm of x. This is equivalent to log(x)/log(2).
+	This implementation uses log(x) / ln(2) for accuracy.
+
+   INPUTS
+	x - Input value. Must be positive for valid result.
+
+   RESULT
+	result - Base-2 logarithm of x. Returns -Infinity if x is +0.0,
+	 NaN if x is negative or NaN, +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double value = 8.0;
+	double log2_val = log2(value);
+
+   NOTES
+	This function is C99 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for non-positive arguments.
+
+   SEE ALSO
+	log(), exp2(), pow(), math.h
+
+ 
+ma.lib/log2f                                                       ma.lib/log2f
+ 
+   NAME
+	log2f -- Return base-2 logarithm of x (float). (V1.0)
+
+   SYNOPSIS
+	float result = log2f(float x);
+	 D0		 D0
+	float log2f(float x);
+
+   FUNCTION
+	Compute the base-2 logarithm of x for float values. This is
+	equivalent to log(x)/log(2). This implementation uses the double
+	precision log2() function for accuracy.
+
+   INPUTS
+	x - Input value (float). Must be positive for valid result.
+
+   RESULT
+	result - Base-2 logarithm of x (float). Returns -Infinity if x is +0.0,
+	 NaN if x is negative or NaN, +Infinity if x is +Infinity.
+
+   EXAMPLE
+	float value = 8.0f;
+	float log2_val = log2f(value);
+
+   NOTES
+	This function is C99 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for non-positive arguments.
+
+   SEE ALSO
+	log2(), logf(), exp2f(), math.h
+
+ 
+ma.lib/log2l                                                       ma.lib/log2l
+ 
+   NAME
+	log2l -- Return base-2 logarithm of long double. (V1.0)
+
+   SYNOPSIS
+	long double result = log2l(long double x);
+	 D0		 D0
+	long double log2l(long double x);
+
+   FUNCTION
+	Compute the base-2 logarithm of a long double value. This returns
+	logâ(x). This implementation uses the double precision log2() function.
+
+   INPUTS
+	x - Long double value. Must be > 0 for valid result.
+
+   RESULT
+	result - Base-2 logarithm of x. Returns -Infinity if x is 0,
+	 returns NaN if x < 0, returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	long double x = 8.0L;
+	long double result = log2l(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision log2() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	log2(), logl(), exp2l(), math.h
+
+ 
+ma.lib/logb                                                       ma.lib/logb
+ 
+   NAME
+	logb -- Return binary exponent of x. (V1.0)
+
+   SYNOPSIS
+	double result = logb(double x);
+	 D0		 D0
+	double logb(double x);
+
+   FUNCTION
+	Extract the binary exponent of x as a double. This is equivalent to
+	the exponent part of the floating-point representation. This
+	implementation uses high-precision algorithms from fdlibm for maximum
+	accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Binary exponent of x. Returns -Infinity if x is 0, returns
+	 +Infinity if x is Â±Infinity, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 8.0;
+	double exp = logb(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to the exponent part of frexp().
+
+   SEE ALSO
+	frexp(), ilogb(), scalbn(), math.h
+
+ 
+ma.lib/logbf                                                       ma.lib/logbf
+ 
+   NAME
+	logbf -- Return unbiased exponent of float. (V1.0)
+
+   SYNOPSIS
+	float result = logbf(float x);
+	 D0		 D0
+	float logbf(float x);
+
+   FUNCTION
+	Extract the unbiased exponent of a float value. This returns
+	the exponent as a floating-point number. This implementation
+	uses high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Float value.
+
+   RESULT
+	result - Unbiased exponent. Returns -Infinity if x is 0,
+	 returns +Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	float x = 8.0f;
+	float result = logbf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses direct bit manipulation for optimal performance.
+
+   SEE ALSO
+	logb(), ilogbf(), frexpf(), math.h
+
+ 
+ma.lib/logbl                                                       ma.lib/logbl
+ 
+   NAME
+	logbl -- Return unbiased exponent of long double. (V1.0)
+
+   SYNOPSIS
+	long double result = logbl(long double x);
+	 D0		 D0
+	long double logbl(long double x);
+
+   FUNCTION
+	Extract the unbiased exponent of a long double value. This returns
+	the exponent as a floating-point number. This implementation uses
+	the double precision logb() function.
+
+   INPUTS
+	x - Long double value.
+
+   RESULT
+	result - Unbiased exponent. Returns -Infinity if x is 0,
+	 returns +Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	long double x = 8.0L;
+	long double result = logbl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision logb() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	logb(), ilogbl(), frexpl(), math.h
+
+ 
+ma.lib/long_long_add                                                       ma.lib/long_long_add
+ 
+   NAME
+	long_long_add -- Add two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_add(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_add(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Add two long_long_t values with proper carry handling. This
+	performs complete 64-bit addition for 64-bit integer emulation
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Sum of a and b.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(1000);
+	long_long_t b = long_to_long_long(2000);
+	long_long_t result = long_long_add(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Handles carry propagation between high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_and                                                       ma.lib/long_long_and
+ 
+   NAME
+	long_long_and -- Bitwise AND of two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_and(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_and(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Perform bitwise AND operation on two long_long_t values.
+	This performs complete 64-bit bitwise AND for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Bitwise AND of a and b.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(0xFF00);
+	long_long_t b = long_to_long_long(0x0FF0);
+	long_long_t result = long_long_and(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs bitwise AND on both high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_clz                                                       ma.lib/long_long_clz
+ 
+   NAME
+	long_long_clz -- Count leading zeros in long_long_t value. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_clz(long_long_t value);
+	 D0		 D0
+	int long_long_clz(long_long_t value);
+
+   FUNCTION
+	Count the number of leading zero bits in a long_long_t value.
+	This performs complete 64-bit bit counting for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	value - long_long_t value to count.
+
+   RESULT
+	result - Number of leading zero bits (0-64).
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(1);
+	int zeros = long_long_clz(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Loop-based implementation - consider table-based for performance.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_ctz                                                       ma.lib/long_long_ctz
+ 
+   NAME
+	long_long_ctz -- Count trailing zeros in long_long_t value. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_ctz(long_long_t value);
+	 D0		 D0
+	int long_long_ctz(long_long_t value);
+
+   FUNCTION
+	Count the number of trailing zero bits in a long_long_t value.
+	This performs complete 64-bit bit counting for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	value - long_long_t value to count.
+
+   RESULT
+	result - Number of trailing zero bits (0-64).
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(8);
+	int zeros = long_long_ctz(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Loop-based implementation - consider table-based for performance.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_div                                                       ma.lib/long_long_div
+ 
+   NAME
+	long_long_div -- Divide two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_div(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_div(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Divide two long_long_t values using long division algorithm.
+	This performs complete 64-bit division for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value (dividend).
+	b - Second long_long_t value (divisor).
+
+   RESULT
+	result - Quotient of a and b (a / b).
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2000);
+	long_long_t b = long_to_long_long(1000);
+	long_long_t result = long_long_div(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for division by zero.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_divmod                                                       ma.lib/long_long_divmod
+ 
+   NAME
+	long_long_divmod -- Divide long_long_t and return quotient and remainder. (V1.0)
+
+   SYNOPSIS
+	void long_long_divmod(long_long_t a, long_long_t b, long_long_t *quotient, long_long_t *remainder);
+	 D0		 D0
+	void long_long_divmod(long_long_t a, long_long_t b, long_long_t *quotient, long_long_t *remainder);
+
+   FUNCTION
+	Divide two long_long_t values and return both quotient and remainder.
+	This performs complete 64-bit division for 64-bit integer emulation
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value (dividend).
+	b - Second long_long_t value (divisor).
+	quotient - Pointer to store quotient result.
+	remainder - Pointer to store remainder result.
+
+   RESULT
+	None. Results stored in *quotient and *remainder.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2001);
+	long_long_t b = long_to_long_long(1000);
+	long_long_t quot, rem;
+	long_long_divmod(a, b, &quot, &rem);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for division by zero.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_eq                                                       ma.lib/long_long_eq
+ 
+   NAME
+	long_long_eq -- Test if two long_long_t values are equal. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_eq(long_long_t a, long_long_t b);
+	 D0		 D0
+	int long_long_eq(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Test if two long_long_t values are equal. This performs complete
+	64-bit equality comparison for 64-bit integer emulation on
+	AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Non-zero if a equals b, zero otherwise.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(1000);
+	long_long_t b = long_to_long_long(1000);
+	if (long_long_eq(a, b)) {
+	 printf("Values are equal\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Compares both high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_ge                                                       ma.lib/long_long_ge
+ 
+   NAME
+	long_long_ge -- Test if first long_long_t is greater than or equal to second. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_ge(long_long_t a, long_long_t b);
+	 D0		 D0
+	int long_long_ge(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Test if first long_long_t value is greater than or equal to second.
+	This performs complete 64-bit signed comparison for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Non-zero if a >= b, zero otherwise.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2000);
+	long_long_t b = long_to_long_long(1000);
+	if (long_long_ge(a, b)) {
+	 printf("a is greater than or equal to b\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs signed comparison with proper sign handling.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_gt                                                       ma.lib/long_long_gt
+ 
+   NAME
+	long_long_gt -- Test if first long_long_t is greater than second. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_gt(long_long_t a, long_long_t b);
+	 D0		 D0
+	int long_long_gt(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Test if first long_long_t value is greater than second. This performs
+	complete 64-bit signed comparison for 64-bit integer emulation
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Non-zero if a > b, zero otherwise.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2000);
+	long_long_t b = long_to_long_long(1000);
+	if (long_long_gt(a, b)) {
+	 printf("a is greater than b\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs signed comparison with proper sign handling.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_is_negative                                                       ma.lib/long_long_is_negative
+ 
+   NAME
+	long_long_is_negative -- Test if long_long_t value is negative. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_is_negative(long_long_t value);
+	 D0		 D0
+	int long_long_is_negative(long_long_t value);
+
+   FUNCTION
+	Test if a long_long_t value is negative. This performs complete
+	64-bit sign test for 64-bit integer emulation on AmigaOS
+	with SAS/C.
+
+   INPUTS
+	value - long_long_t value to test.
+
+   RESULT
+	result - Non-zero if value is negative, zero otherwise.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(-1000);
+	if (long_long_is_negative(x)) {
+	 printf("Value is negative\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Tests the sign bit of the high 32-bit part.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_is_positive                                                       ma.lib/long_long_is_positive
+ 
+   NAME
+	long_long_is_positive -- Test if long_long_t value is positive. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_is_positive(long_long_t value);
+	 D0		 D0
+	int long_long_is_positive(long_long_t value);
+
+   FUNCTION
+	Test if a long_long_t value is positive. This performs complete
+	64-bit sign test for 64-bit integer emulation on AmigaOS
+	with SAS/C.
+
+   INPUTS
+	value - long_long_t value to test.
+
+   RESULT
+	result - Non-zero if value is positive, zero otherwise.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(1000);
+	if (long_long_is_positive(x)) {
+	 printf("Value is positive\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Tests the sign bit of the high 32-bit part.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_is_zero                                                       ma.lib/long_long_is_zero
+ 
+   NAME
+	long_long_is_zero -- Test if long_long_t value is zero. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_is_zero(long_long_t value);
+	 D0		 D0
+	int long_long_is_zero(long_long_t value);
+
+   FUNCTION
+	Test if a long_long_t value is zero. This performs complete
+	64-bit zero test for 64-bit integer emulation on AmigaOS
+	with SAS/C.
+
+   INPUTS
+	value - long_long_t value to test.
+
+   RESULT
+	result - Non-zero if value is zero, zero otherwise.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(0);
+	if (long_long_is_zero(x)) {
+	 printf("Value is zero\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Tests both high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_le                                                       ma.lib/long_long_le
+ 
+   NAME
+	long_long_le -- Test if first long_long_t is less than or equal to second. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_le(long_long_t a, long_long_t b);
+	 D0		 D0
+	int long_long_le(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Test if first long_long_t value is less than or equal to second.
+	This performs complete 64-bit signed comparison for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Non-zero if a <= b, zero otherwise.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(1000);
+	long_long_t b = long_to_long_long(2000);
+	if (long_long_le(a, b)) {
+	 printf("a is less than or equal to b\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs signed comparison with proper sign handling.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_lt                                                       ma.lib/long_long_lt
+ 
+   NAME
+	long_long_lt -- Test if first long_long_t is less than second. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_lt(long_long_t a, long_long_t b);
+	 D0		 D0
+	int long_long_lt(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Test if first long_long_t value is less than second. This performs
+	complete 64-bit signed comparison for 64-bit integer emulation
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Non-zero if a < b, zero otherwise.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(1000);
+	long_long_t b = long_to_long_long(2000);
+	if (long_long_lt(a, b)) {
+	 printf("a is less than b\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs signed comparison with proper sign handling.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_mod                                                       ma.lib/long_long_mod
+ 
+   NAME
+	long_long_mod -- Modulo operation on long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_mod(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_mod(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Perform modulo operation on two long_long_t values. This returns
+	the remainder of division for 64-bit integer emulation on
+	AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value (dividend).
+	b - Second long_long_t value (divisor).
+
+   RESULT
+	result - Remainder of a and b (a % b).
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2001);
+	long_long_t b = long_to_long_long(1000);
+	long_long_t result = long_long_mod(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for division by zero.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_mul                                                       ma.lib/long_long_mul
+ 
+   NAME
+	long_long_mul -- Multiply two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_mul(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_mul(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Multiply two long_long_t values using long multiplication algorithm.
+	This performs complete 64-bit multiplication for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value (multiplicand).
+	b - Second long_long_t value (multiplier).
+
+   RESULT
+	result - Product of a and b (a * b).
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(1000);
+	long_long_t b = long_to_long_long(2000);
+	long_long_t result = long_long_mul(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Handles overflow by returning maximum/minimum values.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_negate                                                       ma.lib/long_long_negate
+ 
+   NAME
+	long_long_negate -- Negate a long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_negate(long_long_t value);
+	 D0		 D0
+	long_long_t long_long_negate(long_long_t value);
+
+   FUNCTION
+	Negate a long_long_t value using two's complement arithmetic.
+	This is a helper function for 64-bit integer emulation on AmigaOS.
+
+   INPUTS
+	value - long_long_t value to negate.
+
+   RESULT
+	result - Negated value. Returns zero if input is zero.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(42);
+	long_long_t result = long_long_negate(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses two's complement negation: invert all bits and add 1.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_not                                                       ma.lib/long_long_not
+ 
+   NAME
+	long_long_not -- Bitwise NOT of long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_not(long_long_t a);
+	 D0		 D0
+	long_long_t long_long_not(long_long_t a);
+
+   FUNCTION
+	Perform bitwise NOT operation on a long_long_t value.
+	This performs complete 64-bit bitwise NOT for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - long_long_t value to invert.
+
+   RESULT
+	result - Bitwise NOT of a (all bits inverted).
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(0xFF00);
+	long_long_t result = long_long_not(a);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs bitwise NOT on both high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_or                                                       ma.lib/long_long_or
+ 
+   NAME
+	long_long_or -- Bitwise OR of two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_or(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_or(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Perform bitwise OR operation on two long_long_t values.
+	This performs complete 64-bit bitwise OR for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Bitwise OR of a and b.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(0xFF00);
+	long_long_t b = long_to_long_long(0x0FF0);
+	long_long_t result = long_long_or(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs bitwise OR on both high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_popcount                                                       ma.lib/long_long_popcount
+ 
+   NAME
+	long_long_popcount -- Count set bits in long_long_t value. (V1.0)
+
+   SYNOPSIS
+	int result = long_long_popcount(long_long_t value);
+	 D0		 D0
+	int long_long_popcount(long_long_t value);
+
+   FUNCTION
+	Count the number of set bits (population count) in a long_long_t value.
+	This performs complete 64-bit bit counting for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	value - long_long_t value to count.
+
+   RESULT
+	result - Number of set bits (0-64).
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(0xFF);
+	int bits = long_long_popcount(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Loop-based implementation - consider table-based for performance.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_sar                                                       ma.lib/long_long_sar
+ 
+   NAME
+	long_long_sar -- Arithmetic right shift long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_sar(long_long_t value, int shift);
+	 D0		 D0
+	long_long_t long_long_sar(long_long_t value, int shift);
+
+   FUNCTION
+	Arithmetic right shift a long_long_t value by the specified number
+	of bits. This preserves the sign bit for signed operations in
+	64-bit integer emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	value - long_long_t value to shift.
+	shift - Number of bits to shift right.
+
+   RESULT
+	result - Arithmetic right-shifted value. Returns all 1s if negative
+	 and shift >= 64, all 0s if positive and shift >= 64.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(-1024);
+	long_long_t result = long_long_sar(x, 10);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Preserves sign bit for signed arithmetic.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_shl                                                       ma.lib/long_long_shl
+ 
+   NAME
+	long_long_shl -- Left shift long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_shl(long_long_t value, int shift);
+	 D0		 D0
+	long_long_t long_long_shl(long_long_t value, int shift);
+
+   FUNCTION
+	Left shift a long_long_t value by the specified number of bits.
+	This performs complete 64-bit left shift for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	value - long_long_t value to shift.
+	shift - Number of bits to shift left.
+
+   RESULT
+	result - Left-shifted value. Returns zero if shift >= 64.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(1);
+	long_long_t result = long_long_shl(x, 10);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Shifts in zeros from the right.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_shr                                                       ma.lib/long_long_shr
+ 
+   NAME
+	long_long_shr -- Right shift long_long_t value. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_shr(long_long_t value, int shift);
+	 D0		 D0
+	long_long_t long_long_shr(long_long_t value, int shift);
+
+   FUNCTION
+	Right shift a long_long_t value by the specified number of bits.
+	This performs complete 64-bit right shift for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	value - long_long_t value to shift.
+	shift - Number of bits to shift right.
+
+   RESULT
+	result - Right-shifted value. Returns zero if shift >= 64.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(1024);
+	long_long_t result = long_long_shr(x, 10);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Shifts in zeros from the left.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_sub                                                       ma.lib/long_long_sub
+ 
+   NAME
+	long_long_sub -- Subtract two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_sub(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_sub(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Subtract two long_long_t values with proper borrow handling. This
+	performs complete 64-bit subtraction for 64-bit integer emulation
+	on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value (minuend).
+	b - Second long_long_t value (subtrahend).
+
+   RESULT
+	result - Difference of a and b (a - b).
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(2000);
+	long_long_t b = long_to_long_long(1000);
+	long_long_t result = long_long_sub(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Handles borrow propagation between high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_to_long                                                       ma.lib/long_long_to_long
+ 
+   NAME
+	long_long_to_long -- Convert long_long_t to long. (V1.0)
+
+   SYNOPSIS
+	long result = long_long_to_long(long_long_t value);
+	 D0		 D0
+	long long_long_to_long(long_long_t value);
+
+   FUNCTION
+	Convert a long_long_t value to long. This is a truncating
+	conversion that returns only the low 32 bits. This can cause
+	data loss if the high 32 bits are non-zero.
+
+   INPUTS
+	value - long_long_t value to convert.
+
+   RESULT
+	result - Long value (truncated to low 32 bits).
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(12345);
+	long result = long_long_to_long(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	WARNING: This can cause data loss if value.hi != 0.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_to_ulong                                                       ma.lib/long_long_to_ulong
+ 
+   NAME
+	long_long_to_ulong -- Convert long_long_t to unsigned long. (V1.0)
+
+   SYNOPSIS
+	unsigned long result = long_long_to_ulong(long_long_t value);
+	 D0		 D0
+	unsigned long long_long_to_ulong(long_long_t value);
+
+   FUNCTION
+	Convert a long_long_t value to unsigned long. This is a truncating
+	conversion that returns only the low 32 bits. This can cause
+	data loss if the high 32 bits are non-zero.
+
+   INPUTS
+	value - long_long_t value to convert.
+
+   RESULT
+	result - Unsigned long value (truncated to low 32 bits).
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(12345);
+	unsigned long result = long_long_to_ulong(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	WARNING: This can cause data loss if value.hi != 0.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_long_to_unsigned_long_long                                                       ma.lib/long_long_to_unsigned_long_long
+ 
+   NAME
+	long_long_to_unsigned_long_long -- Convert long_long_t to unsigned_long_long_t. (V1.0)
+
+   SYNOPSIS
+	unsigned_long_long_t result = long_long_to_unsigned_long_long(long_long_t value);
+	 D0		 D0
+	unsigned_long_long_t long_long_to_unsigned_long_long(long_long_t value);
+
+   FUNCTION
+	Convert a long_long_t value to unsigned_long_long_t. This performs
+	64-bit type conversion for 64-bit integer emulation on AmigaOS
+	with SAS/C.
+
+   INPUTS
+	value - long_long_t value to convert.
+
+   RESULT
+	result - Converted unsigned_long_long_t value.
+
+   EXAMPLE
+	long_long_t x = long_to_long_long(1000);
+	unsigned_long_long_t result = long_long_to_unsigned_long_long(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Negative values are converted to their two's complement representation.
+
+   SEE ALSO
+	long_long_t, unsigned_long_long_t, longlong.h
+
+ 
+ma.lib/long_long_xor                                                       ma.lib/long_long_xor
+ 
+   NAME
+	long_long_xor -- Bitwise XOR of two long_long_t values. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_long_xor(long_long_t a, long_long_t b);
+	 D0		 D0
+	long_long_t long_long_xor(long_long_t a, long_long_t b);
+
+   FUNCTION
+	Perform bitwise XOR operation on two long_long_t values.
+	This performs complete 64-bit bitwise XOR for 64-bit integer
+	emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	a - First long_long_t value.
+	b - Second long_long_t value.
+
+   RESULT
+	result - Bitwise XOR of a and b.
+
+   EXAMPLE
+	long_long_t a = long_to_long_long(0xFF00);
+	long_long_t b = long_to_long_long(0x0FF0);
+	long_long_t result = long_long_xor(a, b);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performs bitwise XOR on both high and low 32-bit parts.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/long_to_long_long                                                       ma.lib/long_to_long_long
+ 
+   NAME
+	long_to_long_long -- Convert long to long_long_t. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = long_to_long_long(long value);
+	 D0		 D0
+	long_long_t long_to_long_long(long value);
+
+   FUNCTION
+	Convert a long value to long_long_t structure. This is a helper
+	function for 64-bit integer emulation on AmigaOS with SAS/C.
+	This implementation provides complete 64-bit integer arithmetic.
+
+   INPUTS
+	value - Long value to convert.
+
+   RESULT
+	result - long_long_t structure containing the converted value.
+
+   EXAMPLE
+	long x = 12345;
+	long_long_t result = long_to_long_long(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Part of 64-bit integer emulation for SAS/C.
+
+   SEE ALSO
+	long_long_t, longlong.h
+
+ 
+ma.lib/lrint                                                       ma.lib/lrint
+ 
+   NAME
+	lrint -- Return x rounded to nearest long integer. (V1.0)
+
+   SYNOPSIS
+	long result = lrint(double x);
+	 D0		 D0
+	long lrint(double x);
+
+   FUNCTION
+	Compute the nearest long integer value to x according to the current
+	rounding mode. This rounds x to the nearest long integer using the
+	prevailing rounding mode. This implementation uses high-precision
+	algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Nearest long integer to x. Returns 0 if x is Â±0, returns
+	 NaN if x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	long result = lrint(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != lrint(x).
+
+   SEE ALSO
+	round(), rint(), nearbyint(), math.h
+
+ 
+ma.lib/lrintf                                                       ma.lib/lrintf
+ 
+   NAME
+	lrintf -- Round float to nearest long integer. (V1.0)
+
+   SYNOPSIS
+	long result = lrintf(float x);
+	 D0		 D0
+	long lrintf(float x);
+
+   FUNCTION
+	Round a float value to the nearest long integer. This rounds to the
+	nearest integer using the current rounding mode. This implementation
+	uses the double precision lrint() function.
+
+   INPUTS
+	x - Float value to round.
+
+   RESULT
+	result - Rounded long integer. Returns LONG_MAX or LONG_MIN on overflow.
+
+   EXAMPLE
+	float x = 3.7f;
+	long result = lrintf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision lrint() internally for accuracy.
+
+   SEE ALSO
+	lrint(), llrintf(), rintf(), math.h
+
+ 
+ma.lib/lrintl                                                       ma.lib/lrintl
+ 
+   NAME
+	lrintl -- Round long double to nearest long integer. (V1.0)
+
+   SYNOPSIS
+	long result = lrintl(long double x);
+	 D0		 D0
+	long lrintl(long double x);
+
+   FUNCTION
+	Round a long double value to the nearest long integer. This rounds to the
+	nearest integer using the current rounding mode. This implementation
+	uses the double precision lrint() function.
+
+   INPUTS
+	x - Long double value to round.
+
+   RESULT
+	result - Rounded long integer. Returns LONG_MAX or LONG_MIN on overflow.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long result = lrintl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision lrint() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	lrint(), llrintl(), rintl(), math.h
+
+ 
+ma.lib/lround                                                       ma.lib/lround
+ 
+   NAME
+	lround -- Return x rounded to nearest long integer. (V1.0)
+
+   SYNOPSIS
+	long result = lround(double x);
+	 D0		 D0
+	long lround(double x);
+
+   FUNCTION
+	Compute the nearest long integer value to x. This rounds x to the
+	nearest long integer, with ties rounded away from zero. This
+	implementation uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Nearest long integer to x. Returns 0 if x is Â±0, returns
+	 NaN if x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	long result = lround(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != lround(x).
+
+   SEE ALSO
+	round(), lrint(), nearbyint(), math.h
+
+ 
+ma.lib/lroundf                                                       ma.lib/lroundf
+ 
+   NAME
+	lroundf -- Round float to nearest long integer. (V1.0)
+
+   SYNOPSIS
+	long result = lroundf(float x);
+	 D0		 D0
+	long lroundf(float x);
+
+   FUNCTION
+	Round a float value to the nearest long integer. This rounds to the
+	nearest integer, with halfway cases rounded away from zero.
+	This implementation uses the double precision lround() function.
+
+   INPUTS
+	x - Float value to round.
+
+   RESULT
+	result - Rounded long integer. Returns LONG_MAX or LONG_MIN on overflow.
+
+   EXAMPLE
+	float x = 3.7f;
+	long result = lroundf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision lround() internally for accuracy.
+
+   SEE ALSO
+	lround(), llroundf(), roundf(), math.h
+
+ 
+ma.lib/lroundl                                                       ma.lib/lroundl
+ 
+   NAME
+	lroundl -- Round long double to nearest long integer. (V1.0)
+
+   SYNOPSIS
+	long result = lroundl(long double x);
+	 D0		 D0
+	long lroundl(long double x);
+
+   FUNCTION
+	Round a long double value to the nearest long integer. This rounds to the
+	nearest integer, with halfway cases rounded away from zero.
+	This implementation uses the double precision lround() function.
+
+   INPUTS
+	x - Long double value to round.
+
+   RESULT
+	result - Rounded long integer. Returns LONG_MAX or LONG_MIN on overflow.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long result = lroundl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision lround() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	lround(), llroundl(), roundl(), math.h
+
+ 
+ma.lib/matherr                                                       ma.lib/matherr
+ 
+   NAME
+	matherr -- Math error handler function. (V1.0)
+
+   SYNOPSIS
+	int result = matherr(struct exception *e);
+	 D0		 A0
+	int matherr(struct exception *e);
+
+   FUNCTION
+	Handle math library errors. This function is called when a math
+	function encounters an error condition such as domain error, range
+	error, or overflow. The default implementation allows the system
+	to handle errors normally.
+
+   INPUTS
+	e - Pointer to exception structure containing error details.
+	 Contains type, name, arg1, arg2, retval, and other fields.
+
+   RESULT
+	result - 0 to use default error handling, non-zero to suppress
+	 default error handling and use custom behavior.
+
+   EXAMPLE
+	
+	int matherr(struct exception *e) {
+	 if (e->type == DOMAIN) {
+	 printf("Domain error in %s\n", e->name);
+	 e->retval = 0.0;
+	 return 1;
+	 }
+	 return 0;
+	}
+
+   NOTES
+	This function is C89 compliant. Applications can override this
+	function to provide custom error handling.
+
+   SEE ALSO
+	math.h, errno.h
+
+ 
+ma.lib/modf                                                       ma.lib/modf
+ 
+   NAME
+	modf -- Return fractional part and store integral part. (V1.0)
+
+   SYNOPSIS
+	double result = modf(double x, double *iptr);
+	 D0		 D0
+	double modf(double x, double *iptr);
+
+   FUNCTION
+	Break x into integral and fractional parts. The fractional part
+	is returned and the integral part is stored in *iptr. This
+	implementation uses floor() for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+	iptr - Pointer to double to store integral part.
+
+   RESULT
+	result - Fractional part of x. Returns NaN if x is NaN, returns
+	 x if x is Â±0 or Â±Infinity.
+
+   EXAMPLE
+	double x = 3.14159;
+	double intpart;
+	double frac = modf(x, &intpart);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	The integral part is stored in the double pointed to by iptr.
+
+   SEE ALSO
+	floor(), ceil(), trunc(), math.h
+
+ 
+ma.lib/nan                                                       ma.lib/nan
+ 
+   NAME
+	nan -- Return NaN (Not a Number). (V1.0)
+
+   SYNOPSIS
+	double result = nan(const char *tagp);
+	 D0		 A0
+	double nan(const char *tagp);
+
+   FUNCTION
+	Generate a NaN (Not a Number) value. The tagp parameter is ignored
+	in this implementation but is provided for C99 compatibility.
+	This function is useful for testing NaN handling in code.
+
+   INPUTS
+	tagp - Tag string (ignored in this implementation).
+
+   RESULT
+	result - NaN value. Always returns the same NaN representation.
+
+   EXAMPLE
+	double nan_val = nan("test");
+	if (isnan(nan_val)) {
+	 printf("Generated NaN\n");
+	}
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	The tagp parameter is ignored for compatibility.
+
+   SEE ALSO
+	isnan(), isinf(), math.h
+
+ 
+ma.lib/nearbyint                                                       ma.lib/nearbyint
+ 
+   NAME
+	nearbyint -- Return x rounded to nearest integer. (V1.0)
+
+   SYNOPSIS
+	double result = nearbyint(double x);
+	 D0		 D0
+	double nearbyint(double x);
+
+   FUNCTION
+	Compute the nearest integer value to x according to the current
+	rounding mode. This rounds x to the nearest integer using the
+	prevailing rounding mode. This implementation uses high-precision
+	algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Nearest integer to x. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	double result = nearbyint(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != nearbyint(x).
+
+   SEE ALSO
+	round(), rint(), floor(), ceil(), math.h
+
+ 
+ma.lib/nearbyintf                                                       ma.lib/nearbyintf
+ 
+   NAME
+	nearbyintf -- Round float to nearest integer. (V1.0)
+
+   SYNOPSIS
+	float result = nearbyintf(float x);
+	 D0		 D0
+	float nearbyintf(float x);
+
+   FUNCTION
+	Round a float value to the nearest integer. This rounds to the
+	nearest integer using the current rounding mode. This implementation
+	uses the double precision nearbyint() function.
+
+   INPUTS
+	x - Float value to round.
+
+   RESULT
+	result - Rounded float value. Returns NaN if x is NaN,
+	 returns x if x is Â±Infinity.
+
+   EXAMPLE
+	float x = 3.7f;
+	float result = nearbyintf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision nearbyint() internally for accuracy.
+
+   SEE ALSO
+	nearbyint(), roundf(), rintf(), math.h
+
+ 
+ma.lib/nearbyintl                                                       ma.lib/nearbyintl
+ 
+   NAME
+	nearbyintl -- Round long double to nearest integer. (V1.0)
+
+   SYNOPSIS
+	long double result = nearbyintl(long double x);
+	 D0		 D0
+	long double nearbyintl(long double x);
+
+   FUNCTION
+	Round a long double value to the nearest integer. This rounds to the
+	nearest integer using the current rounding mode. This implementation
+	uses the double precision nearbyint() function.
+
+   INPUTS
+	x - Long double value to round.
+
+   RESULT
+	result - Rounded long double value. Returns NaN if x is NaN,
+	 returns x if x is Â±Infinity.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long double result = nearbyintl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision nearbyint() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	nearbyint(), roundl(), rintl(), math.h
+
+ 
+ma.lib/nextafter                                                       ma.lib/nextafter
+ 
+   NAME
+	nextafter -- Return next representable value toward y. (V1.0)
+
+   SYNOPSIS
+	double result = nextafter(double x, double y);
+	 D0		 D0
+	double nextafter(double x, double y);
+
+   FUNCTION
+	Compute the next representable floating-point value after x in the
+	direction toward y. This is useful for finding the next or previous
+	representable value. This implementation uses high-precision algorithms
+	from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Starting value.
+	y - Direction value.
+
+   RESULT
+	result - Next representable value after x toward y. Returns y if x
+	 equals y, returns NaN if either argument is NaN.
+
+   EXAMPLE
+	double x = 1.0, y = 2.0;
+	double result = nextafter(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is useful for finding adjacent representable values.
+
+   SEE ALSO
+	nexttoward(), math.h
+
+ 
+ma.lib/nextafterf                                                       ma.lib/nextafterf
+ 
+   NAME
+	nextafterf -- Next representable float toward another. (V1.0)
+
+   SYNOPSIS
+	float result = nextafterf(float x, float y);
+	 D0		 D0
+	float nextafterf(float x, float y);
+
+   FUNCTION
+	Return the next representable float value after x in the
+	direction toward y. This is useful for implementing floating-point
+	algorithms that need to step through representable values.
+	This implementation uses high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Starting float value.
+	y - Target float value (direction).
+
+   RESULT
+	result - Next representable float value toward y.
+
+   EXAMPLE
+	float x = 1.0f;
+	float y = 2.0f;
+	float result = nextafterf(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses direct bit manipulation for optimal performance.
+
+   SEE ALSO
+	nextafter(), nexttowardf(), math.h
+
+ 
+ma.lib/nextafterl                                                       ma.lib/nextafterl
+ 
+   NAME
+	nextafterl -- Next representable long double toward another. (V1.0)
+
+   SYNOPSIS
+	long double result = nextafterl(long double x, long double y);
+	 D0		 D0
+	long double nextafterl(long double x, long double y);
+
+   FUNCTION
+	Return the next representable long double value after x in the
+	direction toward y. This is useful for implementing floating-point
+	algorithms that need to step through representable values.
+	This implementation uses the double precision nextafter() function.
+
+   INPUTS
+	x - Starting long double value.
+	y - Target long double value (direction).
+
+   RESULT
+	result - Next representable long double value toward y.
+
+   EXAMPLE
+	long double x = 1.0L;
+	long double y = 2.0L;
+	long double result = nextafterl(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision nextafter() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	nextafter(), nexttowardl(), math.h
+
+ 
+ma.lib/nexttoward                                                       ma.lib/nexttoward
+ 
+   NAME
+	nexttoward -- Return next representable value toward y. (V1.0)
+
+   SYNOPSIS
+	double result = nexttoward(double x, long double y);
+	 D0		 D0
+	double nexttoward(double x, long double y);
+
+   FUNCTION
+	Compute the next representable floating-point value after x in the
+	direction toward y. This is useful for finding the next or previous
+	representable value. This implementation uses high-precision algorithms
+	for maximum accuracy.
+
+   INPUTS
+	x - Starting value.
+	y - Direction value.
+
+   RESULT
+	result - Next representable value after x toward y. Returns x if x
+	 equals y, returns NaN if either argument is NaN.
+
+   EXAMPLE
+	double x = 1.0;
+	long double y = 2.0L;
+	double result = nexttoward(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is useful for finding adjacent representable values.
+
+   SEE ALSO
+	nextafter(), math.h
+
+ 
+ma.lib/nexttowardf                                                       ma.lib/nexttowardf
+ 
+   NAME
+	nexttowardf -- Next representable float toward long double. (V1.0)
+
+   SYNOPSIS
+	float result = nexttowardf(float x, long double y);
+	 D0		 D0
+	float nexttowardf(float x, long double y);
+
+   FUNCTION
+	Return the next representable float value after x in the
+	direction toward y. This is useful for implementing floating-point
+	algorithms that need to step through representable values.
+	This implementation uses the double precision nexttoward() function.
+
+   INPUTS
+	x - Starting float value.
+	y - Target long double value (direction).
+
+   RESULT
+	result - Next representable float value toward y.
+
+   EXAMPLE
+	float x = 1.0f;
+	long double y = 2.0L;
+	float result = nexttowardf(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision nexttoward() internally for accuracy.
+
+   SEE ALSO
+	nexttoward(), nextafterf(), math.h
+
+ 
+ma.lib/nexttowardl                                                       ma.lib/nexttowardl
+ 
+   NAME
+	nexttowardl -- Next representable long double toward another. (V1.0)
+
+   SYNOPSIS
+	long double result = nexttowardl(long double x, long double y);
+	 D0		 D0
+	long double nexttowardl(long double x, long double y);
+
+   FUNCTION
+	Return the next representable long double value after x in the
+	direction toward y. This is useful for implementing floating-point
+	algorithms that need to step through representable values.
+	This implementation uses the double precision nexttoward() function.
+
+   INPUTS
+	x - Starting long double value.
+	y - Target long double value (direction).
+
+   RESULT
+	result - Next representable long double value toward y.
+
+   EXAMPLE
+	long double x = 1.0L;
+	long double y = 2.0L;
+	long double result = nexttowardl(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision nexttoward() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	nexttoward(), nextafterl(), math.h
+
+ 
+ma.lib/pow                                                       ma.lib/pow
+ 
+   NAME
+	pow -- Return x raised to the power of y. (V1.0)
+
+   SYNOPSIS
+	double result = pow(double x, double y);
+	 D0		 D0
+	double pow(double x, double y);
+
+   FUNCTION
+	Compute x raised to the power of y. This is equivalent to x^y.
+	This implementation uses high-precision algorithms from fdlibm for
+	maximum accuracy.
+
+   INPUTS
+	x - Base value.
+	y - Exponent value.
+
+   RESULT
+	result - x^y. Returns +Infinity for large positive results, +0.0 for
+	 large negative results, NaN for invalid combinations.
+
+   EXAMPLE
+	double x = 2.0, y = 3.0;
+	double result = pow(x, y);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	sqrt(), cbrt(), exp(), log(), math.h
+
+ 
+ma.lib/remainder                                                       ma.lib/remainder
+ 
+   NAME
+	remainder -- Return IEEE remainder of x/y. (V1.0)
+
+   SYNOPSIS
+	double result = remainder(double x, double y);
+	 D0		 D0
+	double remainder(double x, double y);
+
+   FUNCTION
+	Compute the IEEE remainder of x/y. The remainder is x - n*y where n
+	is the integer nearest to x/y. In case of a tie, n is chosen to be
+	even. The result is always in the range [-|y|/2, |y|/2].
+
+   INPUTS
+	x - Dividend value.
+	y - Divisor value. Must be non-zero for valid result.
+
+   RESULT
+	result - IEEE remainder of x/y. Returns NaN if y is 0 or if either
+	 argument is NaN, returns x if y is Â±Infinity.
+
+   EXAMPLE
+	double x = 5.0, y = 2.0;
+	double rem = remainder(x, y);
+
+   NOTES
+	This function is C99 compliant and provides IEEE 754 accuracy.
+	Uses round-to-even for tie cases as required by IEEE 754.
+
+   SEE ALSO
+	fmod(), remquo(), rint(), math.h
+
+ 
+ma.lib/remquo                                                       ma.lib/remquo
+ 
+   NAME
+	remquo -- Return remainder and quotient of x/y. (V1.0)
+
+   SYNOPSIS
+	double result = remquo(double x, double y, int *quo);
+	 D0		 D0
+	double remquo(double x, double y, int *quo);
+
+   FUNCTION
+	Compute the remainder of x/y and store the quotient in *quo. The
+	remainder has the same sign as x and magnitude less than |y|. The
+	quotient is stored in the integer pointed to by quo.
+
+   INPUTS
+	x - Numerator value.
+	y - Denominator value.
+	quo - Pointer to integer to store quotient.
+
+   RESULT
+	result - Remainder of x/y. Returns NaN if y is 0 or if either
+	 argument is NaN, returns x if y is Â±Infinity.
+
+   EXAMPLE
+	double x = 5.0, y = 2.0;
+	int q;
+	double result = remquo(x, y, &q);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	The quotient is stored in the integer pointed to by quo.
+
+   SEE ALSO
+	remainder(), fmod(), math.h
+
+ 
+ma.lib/rint                                                       ma.lib/rint
+ 
+   NAME
+	rint -- Round to nearest integer using current rounding mode. (V1.0)
+
+   SYNOPSIS
+	double result = rint(double x);
+	 D0		 D0
+	double rint(double x);
+
+   FUNCTION
+	Round x to the nearest integer value using the current rounding mode.
+	In case of a tie (fraction exactly 0.5), rounds to the even integer.
+	This is the default rounding mode for IEEE 754.
+
+   INPUTS
+	x - Input value to round.
+
+   RESULT
+	result - Nearest integer to x. Returns NaN if x is NaN, returns x
+	 if x is Â±Infinity, returns Â±0.0 if x is Â±0.0.
+
+   EXAMPLE
+	double value = 2.5;
+	double rounded = rint(value);
+
+   NOTES
+	This function is C99 compliant and provides IEEE 754 accuracy.
+	Uses round-to-even (banker's rounding) for tie cases.
+
+   SEE ALSO
+	round(), nearbyint(), floor(), ceil(), math.h
+
+ 
+ma.lib/round                                                       ma.lib/round
+ 
+   NAME
+	round -- Return x rounded to nearest integer. (V1.0)
+
+   SYNOPSIS
+	double result = round(double x);
+	 D0		 D0
+	double round(double x);
+
+   FUNCTION
+	Compute the nearest integer value to x. This rounds x to the nearest
+	integer, with ties rounded away from zero. This implementation uses
+	high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Nearest integer to x. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	double result = round(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != round(x).
+
+   SEE ALSO
+	floor(), ceil(), trunc(), math.h
+
+ 
+ma.lib/roundf                                                       ma.lib/roundf
+ 
+   NAME
+	roundf -- Round float to nearest integer. (V1.0)
+
+   SYNOPSIS
+	float result = roundf(float x);
+	 D0		 D0
+	float result = roundf(float x);
+
+   FUNCTION
+	Round a float value to the nearest integer. This rounds to the
+	nearest integer, with halfway cases rounded away from zero.
+	This implementation uses the double precision round() function.
+
+   INPUTS
+	x - Float value to round.
+
+   RESULT
+	result - Rounded float value. Returns NaN if x is NaN,
+	 returns x if x is Â±Infinity.
+
+   EXAMPLE
+	float x = 3.7f;
+	float result = roundf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision round() internally for accuracy.
+
+   SEE ALSO
+	round(), truncf(), floorf(), ceilf(), math.h
+
+ 
+ma.lib/roundl                                                       ma.lib/roundl
+ 
+   NAME
+	roundl -- Round long double to nearest integer. (V1.0)
+
+   SYNOPSIS
+	long double result = roundl(long double x);
+	 D0		 D0
+	long double roundl(long double x);
+
+   FUNCTION
+	Round a long double value to the nearest integer. This rounds to the
+	nearest integer, with halfway cases rounded away from zero.
+	This implementation uses the double precision round() function.
+
+   INPUTS
+	x - Long double value to round.
+
+   RESULT
+	result - Rounded long double value. Returns NaN if x is NaN,
+	 returns x if x is Â±Infinity.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long double result = roundl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision round() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	round(), truncl(), floorl(), ceill(), math.h
+
+ 
+ma.lib/scalb                                                       ma.lib/scalb
+ 
+   NAME
+	scalb -- Return x * 2^fn. (V1.0)
+
+   SYNOPSIS
+	double result = scalb(double x, double fn);
+	 D0		 D0
+	double scalb(double x, double fn);
+
+   FUNCTION
+	Compute x * 2^fn. This scales x by a power of 2. This implementation
+	uses high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value.
+	fn - Exponent value.
+
+   RESULT
+	result - x * 2^fn. Returns NaN if either argument is NaN, returns
+	 Â±Infinity for large results, returns Â±0 for small results.
+
+   EXAMPLE
+	double x = 3.0, fn = 2.0;
+	double result = scalb(x, fn);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to ERANGE on overflow or underflow.
+
+   SEE ALSO
+	scalbn(), ldexp(), math.h
+
+ 
+ma.lib/scalbln                                                       ma.lib/scalbln
+ 
+   NAME
+	scalbln -- Return x * 2^n. (V1.0)
+
+   SYNOPSIS
+	double result = scalbln(double x, long n);
+	 D0		 D0
+	double scalbln(double x, long n);
+
+   FUNCTION
+	Compute x * 2^n. This scales x by a power of 2. This implementation
+	uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value.
+	n - Exponent value.
+
+   RESULT
+	result - x * 2^n. Returns NaN if x is NaN, returns Â±Infinity for
+	 large results, returns Â±0 for small results.
+
+   EXAMPLE
+	double x = 3.0;
+	long n = 2;
+	double result = scalbln(x, n);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to scalbn(x, n) when n is in range.
+
+   SEE ALSO
+	scalbn(), scalb(), ldexp(), math.h
+
+ 
+ma.lib/scalblnf                                                       ma.lib/scalblnf
+ 
+   NAME
+	scalblnf -- Scale float by 2^n (long int). (V1.0)
+
+   SYNOPSIS
+	float result = scalblnf(float x, long n);
+	 D0		 D0
+	float scalblnf(float x, long n);
+
+   FUNCTION
+	Scale a float value by 2^n using exponent manipulation.
+	This is more efficient than multiplication for powers of 2.
+	This implementation uses the double precision scalbln() function.
+
+   INPUTS
+	x - Float value to scale.
+	n - Power of 2 to scale by (long int).
+
+   RESULT
+	result - x * 2^n. Returns NaN if x is NaN, returns x if x is Â±Infinity.
+
+   EXAMPLE
+	float x = 3.0f;
+	float result = scalblnf(x, 2L);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision scalbln() internally for accuracy.
+
+   SEE ALSO
+	scalbln(), scalbnf(), ldexpf(), math.h
+
+ 
+ma.lib/scalblnl                                                       ma.lib/scalblnl
+ 
+   NAME
+	scalblnl -- Scale long double by 2^n (long int). (V1.0)
+
+   SYNOPSIS
+	long double result = scalblnl(long double x, long n);
+	 D0		 D0
+	long double scalblnl(long double x, long n);
+
+   FUNCTION
+	Scale a long double value by 2^n using exponent manipulation.
+	This is more efficient than multiplication for powers of 2.
+	This implementation uses the double precision scalbln() function.
+
+   INPUTS
+	x - Long double value to scale.
+	n - Power of 2 to scale by (long int).
+
+   RESULT
+	result - x * 2^n. Returns NaN if x is NaN, returns x if x is Â±Infinity.
+
+   EXAMPLE
+	long double x = 3.0L;
+	long double result = scalblnl(x, 2L);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision scalbln() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	scalbln(), scalbnl(), ldexpl(), math.h
+
+ 
+ma.lib/scalbn                                                       ma.lib/scalbn
+ 
+   NAME
+	scalbn -- Return x * 2^n. (V1.0)
+
+   SYNOPSIS
+	double result = scalbn(double x, int n);
+	 D0		 D0
+	double scalbn(double x, int n);
+
+   FUNCTION
+	Compute x * 2^n. This scales x by a power of 2. This implementation
+	uses high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value.
+	n - Exponent value.
+
+   RESULT
+	result - x * 2^n. Returns NaN if x is NaN, returns Â±Infinity for
+	 large results, returns Â±0 for small results.
+
+   EXAMPLE
+	double x = 3.0;
+	int n = 2;
+	double result = scalbn(x, n);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to ldexp(x, n).
+
+   SEE ALSO
+	scalb(), ldexp(), math.h
+
+ 
+ma.lib/scalbnf                                                       ma.lib/scalbnf
+ 
+   NAME
+	scalbnf -- Scale float by 2^n. (V1.0)
+
+   SYNOPSIS
+	float result = scalbnf(float x, int n);
+	 D0		 D0
+	float scalbnf(float x, int n);
+
+   FUNCTION
+	Scale a float value by 2^n using exponent manipulation.
+	This is more efficient than multiplication for powers of 2.
+	This implementation uses high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Float value to scale.
+	n - Power of 2 to scale by.
+
+   RESULT
+	result - x * 2^n. Returns NaN if x is NaN, returns x if x is Â±Infinity.
+
+   EXAMPLE
+	float x = 3.0f;
+	float result = scalbnf(x, 2);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses direct bit manipulation for optimal performance.
+
+   SEE ALSO
+	scalbn(), scalblnf(), ldexpf(), math.h
+
+ 
+ma.lib/scalbnl                                                       ma.lib/scalbnl
+ 
+   NAME
+	scalbnl -- Scale long double by 2^n. (V1.0)
+
+   SYNOPSIS
+	long double result = scalbnl(long double x, int n);
+	 D0		 D0
+	long double scalbnl(long double x, int n);
+
+   FUNCTION
+	Scale a long double value by 2^n using exponent manipulation.
+	This is more efficient than multiplication for powers of 2.
+	This implementation uses the double precision scalbn() function.
+
+   INPUTS
+	x - Long double value to scale.
+	n - Power of 2 to scale by.
+
+   RESULT
+	result - x * 2^n. Returns NaN if x is NaN, returns x if x is Â±Infinity.
+
+   EXAMPLE
+	long double x = 3.0L;
+	long double result = scalbnl(x, 2);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision scalbn() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	scalbn(), scalblnl(), ldexp(), math.h
+
+ 
+ma.lib/signbit                                                       ma.lib/signbit
+ 
+   NAME
+	signbit -- Test if value is negative. (V1.0)
+
+   SYNOPSIS
+	int result = signbit(double x);
+	 D0		 D0
+	int signbit(double x);
+
+   FUNCTION
+	Test if x is negative by checking the sign bit. This returns 1 if x
+	is negative (including negative zero), 0 otherwise. This implementation
+	uses high-precision algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - 1 if x is negative, 0 if x is positive or zero.
+
+   EXAMPLE
+	double x = -3.14;
+	int result = signbit(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This properly handles negative zero.
+
+   SEE ALSO
+	copysign(), fabs(), math.h
+
+ 
+ma.lib/significand                                                       ma.lib/significand
+ 
+   NAME
+	significand -- Return significand of x. (V1.0)
+
+   SYNOPSIS
+	double result = significand(double x);
+	 D0		 D0
+	double significand(double x);
+
+   FUNCTION
+	Compute the significand of x. The significand is the fractional part
+	of the floating-point number, normalized to the range [1, 2). This
+	implementation uses scalb(x, -ilogb(x)) for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Significand of x. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.14159;
+	double result = significand(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	This is equivalent to scalb(x, -ilogb(x)).
+
+   SEE ALSO
+	scalb(), ilogb(), math.h
+
+ 
+ma.lib/sin                                                       ma.lib/sin
+ 
+   NAME
+	sin -- Return sine of x. (V1.0)
+
+   SYNOPSIS
+	double result = sin(double x);
+	 D0		 D0
+	double sin(double x);
+
+   FUNCTION
+	Compute the sine of x. This returns the sine of x in radians.
+	This implementation uses high-precision algorithms from fdlibm
+	for maximum accuracy.
+
+   INPUTS
+	x - Input value in radians. Range is [-â, +â].
+
+   RESULT
+	result - Sine of x. Returns NaN if x is NaN, returns NaN if x is
+	 Â±Infinity, returns x if x is Â±0.
+
+   EXAMPLE
+	double x = M_PI / 2.0;
+	double result = sin(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses range reduction to [-ð/4, ð/4] for optimal accuracy.
+
+   SEE ALSO
+	cos(), tan(), asin(), math.h
+
+ 
+ma.lib/sin                                                       ma.lib/sin
+ 
+   NAME
+	sin -- Return sine function of x. (V1.0)
+
+   SYNOPSIS
+	double result = sin(double x);
+	 D0		 D0
+	double sin(double x);
+
+   FUNCTION
+	Compute the sine of x, where x is in radians. The sine function
+	returns values in the range [-1, 1]. This implementation uses
+	high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value in radians. Range is approximately [-2^63, 2^63].
+
+   RESULT
+	result - Sine of x, in the range [-1, 1]. Returns NaN if x is NaN,
+	 returns x if x is Â±0, returns NaN if x is Â±Infinity.
+
+   EXAMPLE
+	double angle = M_PI / 4.0;
+	double sine = sin(angle);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Performance is optimized for the Amiga platform.
+
+   SEE ALSO
+	cos(), tan(), asin(), math.h
+
+ 
+ma.lib/sinh                                                       ma.lib/sinh
+ 
+   NAME
+	sinh -- Return hyperbolic sine of x. (V1.0)
+
+   SYNOPSIS
+	double result = sinh(double x);
+	 D0		 D0
+	double sinh(double x);
+
+   FUNCTION
+	Compute the hyperbolic sine of x. The hyperbolic sine is defined as
+	(e^x - e^(-x)) / 2. This implementation uses high-precision algorithms
+	from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is approximately [-710, 710] for finite results.
+
+   RESULT
+	result - Hyperbolic sine of x. Returns +Infinity for large positive x,
+	 -Infinity for large negative x, returns x if x is Â±0, returns
+	 NaN if x is NaN.
+
+   EXAMPLE
+	double x = 1.0;
+	double result = sinh(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	cosh(), tanh(), asinh(), exp(), math.h
+
+ 
+ma.lib/sqrt                                                       ma.lib/sqrt
+ 
+   NAME
+	sqrt -- Return square root of x. (V1.0)
+
+   SYNOPSIS
+	double result = sqrt(double x);
+	 D0		 D0
+	double sqrt(double x);
+
+   FUNCTION
+	Compute the square root of x. For x >= 0, returns the non-negative
+	square root. For x < 0, returns NaN and sets errno to EDOM.
+	This implementation uses high-precision algorithms from fdlibm.
+
+   INPUTS
+	x - Input value. Must be non-negative for valid result.
+
+   RESULT
+	result - Square root of x if x >= 0, NaN if x < 0. Returns +0.0
+	 if x is +0.0, returns +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double value = 16.0;
+	double root = sqrt(value);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM for negative arguments.
+
+   SEE ALSO
+	cbrt(), pow(), hypot(), math.h
+
+ 
+ma.lib/strtoull                                                       ma.lib/strtoull
+ 
+   NAME
+	strtoull -- Convert string to unsigned_long_long_t. (V1.0)
+
+   SYNOPSIS
+	unsigned_long_long_t result = strtoull(const char *str, char **endptr, int base);
+	 D0		 A0
+	unsigned_long_long_t strtoull(const char *str, char **endptr, int base);
+
+   FUNCTION
+	Convert a string to unsigned_long_long_t value with specified base.
+	This is equivalent to strtoull() but returns unsigned_long_long_t
+	for 64-bit integer emulation on AmigaOS with SAS/C.
+
+   INPUTS
+	str - String to convert.
+	endptr - Pointer to store end of conversion.
+	base - Numeric base (2-36, or 0 for auto-detect).
+
+   RESULT
+	result - Converted unsigned_long_long_t value. Returns 0 on error.
+
+   EXAMPLE
+	const char *str = "1234567890";
+	char *end;
+	unsigned_long_long_t result = strtoull(str, &end, 10);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to ERANGE on overflow.
+
+   SEE ALSO
+	unsigned_long_long_t, longlong.h
+
+ 
+ma.lib/tan                                                       ma.lib/tan
+ 
+   NAME
+	tan -- Return tangent function of x. (V1.0)
+
+   SYNOPSIS
+	double result = tan(double x);
+	 D0		 D0
+	double tan(double x);
+
+   FUNCTION
+	Compute the tangent of x, where x is in radians. The tangent function
+	returns values in the range [-â, +â]. This implementation uses
+	high-precision algorithms from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value in radians. Range is approximately [-2^63, 2^63].
+
+   RESULT
+	result - Tangent of x. Returns NaN if x is NaN, returns x if x is Â±0,
+	 returns NaN if x is Â±Infinity.
+
+   EXAMPLE
+	double angle = M_PI / 4.0;
+	double tangent = tan(angle);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	sin(), cos(), atan(), math.h
+
+ 
+ma.lib/tanh                                                       ma.lib/tanh
+ 
+   NAME
+	tanh -- Return hyperbolic tangent of x. (V1.0)
+
+   SYNOPSIS
+	double result = tanh(double x);
+	 D0		 D0
+	double tanh(double x);
+
+   FUNCTION
+	Compute the hyperbolic tangent of x. The hyperbolic tangent is defined
+	as sinh(x) / cosh(x). This implementation uses high-precision algorithms
+	from fdlibm for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - Hyperbolic tangent of x, in the range [-1, 1]. Returns x if
+	 x is Â±0, returns Â±1 for large |x|, returns NaN if x is NaN.
+
+   EXAMPLE
+	double x = 1.0;
+	double result = tanh(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+
+   SEE ALSO
+	sinh(), cosh(), atanh(), math.h
+
+ 
+ma.lib/tgamma                                                       ma.lib/tgamma
+ 
+   NAME
+	tgamma -- Return true gamma function of x. (V1.0)
+
+   SYNOPSIS
+	double result = tgamma(double x);
+	 D0		 D0
+	double tgamma(double x);
+
+   FUNCTION
+	Compute the true gamma function of x. The gamma function is a
+	generalization of the factorial function to real and complex numbers.
+	For positive integers n, tgamma(n) = (n-1)!
+
+   INPUTS
+	x - Input value. Must be positive for valid result.
+
+   RESULT
+	result - Gamma function of x. Returns +Infinity if x is 0 or negative
+	 integer, NaN if x is NaN, +Infinity if x is +Infinity.
+
+   EXAMPLE
+	double x = 5.0;
+	double gamma = tgamma(x);
+
+   NOTES
+	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+	Uses high-precision algorithms from fdlibm.
+
+   SEE ALSO
+	lgamma(), gamma(), lgamma_r(), math.h
+
+ 
+ma.lib/trunc                                                       ma.lib/trunc
+ 
+   NAME
+	trunc -- Return x rounded toward zero to integral value. (V1.0)
+
+   SYNOPSIS
+	double result = trunc(double x);
+	 D0		 D0
+	double trunc(double x);
+
+   FUNCTION
+	Compute the integral value of x rounded toward zero. This truncates
+	the fractional part of x. This implementation uses high-precision
+	algorithms for maximum accuracy.
+
+   INPUTS
+	x - Input value. Range is [-â, +â].
+
+   RESULT
+	result - x rounded toward zero. Returns x if x is Â±0, returns NaN if
+	 x is NaN, returns Â±Infinity if x is Â±Infinity.
+
+   EXAMPLE
+	double x = 3.7;
+	double result = trunc(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Raises inexact flag if x != trunc(x).
+
+   SEE ALSO
+	floor(), ceil(), round(), math.h
+
+ 
+ma.lib/truncf                                                       ma.lib/truncf
+ 
+   NAME
+	truncf -- Truncate float toward zero. (V1.0)
+
+   SYNOPSIS
+	float result = truncf(float x);
+	 D0		 D0
+	float truncf(float x);
+
+   FUNCTION
+	Truncate a float value toward zero. This removes the
+	fractional part and returns the integer part. This implementation
+	uses the double precision trunc() function.
+
+   INPUTS
+	x - Float value to truncate.
+
+   RESULT
+	result - Truncated float value. Returns NaN if x is NaN,
+	 returns x if x is Â±Infinity.
+
+   EXAMPLE
+	float x = 3.7f;
+	float result = truncf(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision trunc() internally for accuracy.
+
+   SEE ALSO
+	trunc(), floorf(), ceilf(), roundf(), math.h
+
+ 
+ma.lib/truncl                                                       ma.lib/truncl
+ 
+   NAME
+	truncl -- Truncate long double toward zero. (V1.0)
+
+   SYNOPSIS
+	long double result = truncl(long double x);
+	 D0		 D0
+	long double truncl(long double x);
+
+   FUNCTION
+	Truncate a long double value toward zero. This removes the
+	fractional part and returns the integer part. This implementation
+	uses the double precision trunc() function.
+
+   INPUTS
+	x - Long double value to truncate.
+
+   RESULT
+	result - Truncated long double value. Returns NaN if x is NaN,
+	 returns x if x is Â±Infinity.
+
+   EXAMPLE
+	long double x = 3.7L;
+	long double result = truncl(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Uses double precision trunc() internally since SAS/C maps long double to double.
+
+   SEE ALSO
+	trunc(), floorl(), ceill(), roundl(), math.h
+
+ 
+ma.lib/unsigned_long_long_to_long_long                                                       ma.lib/unsigned_long_long_to_long_long
+ 
+   NAME
+	unsigned_long_long_to_long_long -- Convert unsigned_long_long_t to long_long_t. (V1.0)
+
+   SYNOPSIS
+	long_long_t result = unsigned_long_long_to_long_long(unsigned_long_long_t value);
+	 D0		 D0
+	long_long_t unsigned_long_long_to_long_long(unsigned_long_long_t value);
+
+   FUNCTION
+	Convert an unsigned_long_long_t value to long_long_t. This performs
+	64-bit type conversion for 64-bit integer emulation on AmigaOS
+	with SAS/C.
+
+   INPUTS
+	value - unsigned_long_long_t value to convert.
+
+   RESULT
+	result - Converted long_long_t value.
+
+   EXAMPLE
+	unsigned_long_long_t x = {0, 1000};
+	long_long_t result = unsigned_long_long_to_long_long(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Values > LONG_LONG_MAX are converted to their two's complement representation.
+
+   SEE ALSO
+	long_long_t, unsigned_long_long_t, longlong.h
+
+ 
+ma.lib/y0                                                       ma.lib/y0
+ 
+   NAME
+	y0 -- Return Bessel function of second kind, order 0. (V1.0)
+
+   SYNOPSIS
+	double result = y0(double x);
+	 D0		 D0
+	double y0(double x);
+
+   FUNCTION
+	Compute the Bessel function of the second kind of order zero.
+	This function is used in various mathematical and physical applications,
+	including wave propagation and signal processing.
+
+   INPUTS
+	x - Input value. Must be positive for valid result.
+
+   RESULT
+	result - Bessel function Y0(x). Returns -Infinity if x is 0.0,
+	 returns 0.0 for large x, returns NaN if x is negative or NaN.
+
+   EXAMPLE
+	double x = 2.0;
+	double bessel = y0(x);
+
+   NOTES
+	This function is POSIX.1 compliant and provides IEEE 754 accuracy.
+	Uses high-precision algorithms from fdlibm.
+
+   SEE ALSO
+	y1(), yn(), j0(), j1(), jn(), math.h
+
+ 
+ma.lib/y1                                                       ma.lib/y1
+ 
+   NAME
+	y1 -- Return Bessel function of second kind, order 1. (V1.0)
+
+   SYNOPSIS
+	double result = y1(double x);
+	 D0		 D0
+	double y1(double x);
+
+   FUNCTION
+	Compute the Bessel function of the second kind of order 1.
+	This function is used in various mathematical and physical
+	applications. This implementation uses series and asymptotic
+	expansions for maximum accuracy.
+
+   INPUTS
+	x - Input value. Must be > 0 for valid result.
+
+   RESULT
+	result - Bessel function Yâ(x). Returns -Infinity if x is 0,
+	 returns NaN if x <= 0, returns 0 for large x.
+
+   EXAMPLE
+	double x = 2.0;
+	double result = y1(x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM if x <= 0.
+
+   SEE ALSO
+	y0(), yn(), j0(), j1(), math.h
+
+ 
+ma.lib/yn                                                       ma.lib/yn
+ 
+   NAME
+	yn -- Return Bessel function of second kind, order n. (V1.0)
+
+   SYNOPSIS
+	double result = yn(int n, double x);
+	 D0		 D0
+	double yn(int n, double x);
+
+   FUNCTION
+	Compute the Bessel function of the second kind of order n.
+	This function is used in various mathematical and physical
+	applications. This implementation uses high-precision algorithms
+	from fdlibm for maximum accuracy.
+
+   INPUTS
+	n - Order of the Bessel function.
+	x - Input value. Must be > 0 for valid result.
+
+   RESULT
+	result - Bessel function Y_n(x). Returns NaN if x <= 0, returns
+	 -Infinity if n = 0 and x is 0.
+
+   EXAMPLE
+	int n = 2;
+	double x = 1.0;
+	double result = yn(n, x);
+
+   NOTES
+	This function is C89 compliant and provides IEEE 754 accuracy.
+	Sets errno to EDOM if x <= 0.
+
+   SEE ALSO
+	jn(), y0(), y1(), math.h
+
+ 

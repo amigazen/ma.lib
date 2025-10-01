@@ -18,6 +18,9 @@
 #error Wrong compiler (SAS/C required)
 #endif
 
+/* Include longlong support for C89 compatibility */
+#include "internal/longlong.h"
+
 /* Ensure we have the basic math constants */
 #ifndef M_E
 #define M_E            2.7182818284590452354   /* e */
@@ -59,6 +62,43 @@
 #define M_SQRT1_2      0.70710678118654752440  /* 1/sqrt(2) */
 #endif
 
+/* Additional useful mathematical constants */
+#ifndef M_SQRT3
+#define M_SQRT3        1.73205080756887729353  /* sqrt(3) */
+#endif
+#ifndef M_SQRT5
+#define M_SQRT5        2.23606797749978969641  /* sqrt(5) */
+#endif
+#ifndef M_PHI
+#define M_PHI          1.61803398874989484820  /* golden ratio (1+sqrt(5))/2 */
+#endif
+#ifndef M_EULER
+#define M_EULER        0.57721566490153286061  /* Euler-Mascheroni constant */
+#endif
+#ifndef M_LNPI
+#define M_LNPI         1.14472988584940017414  /* ln(pi) */
+#endif
+#ifndef M_LN2PI
+#define M_LN2PI        1.83787706640934548356  /* ln(2*pi) */
+#endif
+#ifndef M_GAMMA
+#define M_GAMMA        0.57721566490153286061  /* Euler-Mascheroni constant (alias) */
+#endif
+
+/* C99 Math constants */
+#ifndef INFINITY
+#define INFINITY       (1.0/0.0)
+#endif
+
+#ifndef NAN
+#define NAN            (0.0/0.0)
+#endif
+
+/* C89 required constants */
+#ifndef HUGE_VAL
+#define HUGE_VAL       (1.0/0.0)
+#endif
+
 /* C99 Classification macros */
 #ifndef FP_NAN
 #define FP_NAN         0
@@ -78,7 +118,7 @@
 #endif
 
 #ifndef signbit
-#define signbit(x)     ((x) < 0.0)
+int signbit(double x);
 #endif
 
 /* C99 Comparison macros */
@@ -114,11 +154,20 @@ double atanh(double x);
 /* C99 Function declarations - Advanced Exponential/Logarithmic */
 double expm1(double x);
 double log1p(double x);
+double exp2(double x);
+double log2(double x);
 
 /* C99 Function declarations - Rounding and Remainder */
 double rint(double x);
 double remainder(double x, double y);
 double remquo(double x, double y, int *quo);
+double trunc(double x);
+double round(double x);
+long lround(double x);
+long_long_t llround(double x);
+double nearbyint(double x);
+long lrint(double x);
+long_long_t llrint(double x);
 
 /* C99 Function declarations - Power and Root */
 double cbrt(double x);
@@ -127,7 +176,9 @@ double hypot(double x, double y);
 /* C99 Function declarations - Floating-Point Manipulation */
 double copysign(double x, double y);
 double nextafter(double x, double y);
+double nexttoward(double x, long double y);
 double scalbn(double x, int n);
+double scalbln(double x, long n);
 double scalb(double x, double n);
 double logb(double x);
 int ilogb(double x);
@@ -174,14 +225,25 @@ float asinhf(float x);
 float atanhf(float x);
 float expm1f(float x);
 float log1pf(float x);
+float exp2f(float x);
+float log2f(float x);
 float rintf(float x);
 float remainderf(float x, float y);
 float remquof(float x, float y, int *quo);
+float truncf(float x);
+float roundf(float x);
+long lroundf(float x);
+long_long_t llroundf(float x);
+float nearbyintf(float x);
+long lrintf(float x);
+long_long_t llrintf(float x);
 float cbrtf(float x);
 float hypotf(float x, float y);
 float copysignf(float x, float y);
 float nextafterf(float x, float y);
+float nexttowardf(float x, long double y);
 float scalbnf(float x, int n);
+float scalblnf(float x, long n);
 float scalbf(float x, float n);
 float logbf(float x);
 int ilogbf(float x);
@@ -213,14 +275,25 @@ long double asinhl(long double x);
 long double atanhl(long double x);
 long double expm1l(long double x);
 long double log1pl(long double x);
+long double exp2l(long double x);
+long double log2l(long double x);
 long double rintl(long double x);
 long double remainderl(long double x, long double y);
 long double remquol(long double x, long double y, int *quo);
+long double truncl(long double x);
+long double roundl(long double x);
+long lroundl(long double x);
+long_long_t llroundl(long double x);
+long double nearbyintl(long double x);
+long lrintl(long double x);
+long_long_t llrintl(long double x);
 long double cbrtl(long double x);
 long double hypotl(long double x, long double y);
 long double copysignl(long double x, long double y);
 long double nextafterl(long double x, long double y);
+long double nexttowardl(long double x, long double y);
 long double scalbnl(long double x, int n);
+long double scalblnl(long double x, long n);
 long double scalbl(long double x, long double n);
 long double logbl(long double x);
 int ilogbl(long double x);

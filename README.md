@@ -1,6 +1,6 @@
 # ma.lib 
 
-This is ma.lib, a standard C99 math library for Amiga for use with SAS/C
+This is ma.lib, a standard C89, C99 and POSIX math library for Amiga for use with SAS/C
 
 ## [amigazen project](http://www.amigazen.com)
 
@@ -62,7 +62,7 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 - **maffp.lib** - Uses Amiga FFP math libraries
 - **maieee.lib** - Uses Amiga IEEE math libraries
 
-### C89 Standard Functions (Complete)
+### C89 Standard Functions
 - **Trigonometric**: `sin()`, `cos()`, `tan()`, `asin()`, `acos()`, `atan()`, `atan2()`
 - **Hyperbolic**: `sinh()`, `cosh()`, `tanh()`
 - **Exponential/Logarithmic**: `exp()`, `log()`, `log10()`
@@ -83,7 +83,7 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 - **Gamma Functions**: `tgamma()`, `lgamma()`, `gamma()`, `gamma_r()`, `lgamma_r()`
 - **Bessel Functions**: `j0()`, `j1()`, `jn()`, `y0()`, `y1()`, `yn()`
 
-### C99 Complex Numbers (Complete Implementation)
+### C99 Complex Numbers
 - **Basic Operations**: `cabs()`, `carg()`, `creal()`, `cimag()`, `conj()`, `cproj()`
 - **Trigonometric**: `cacos()`, `casin()`, `catan()`, `ccos()`, `csin()`, `ctan()`
 - **Hyperbolic**: `cacosh()`, `casinh()`, `catanh()`, `ccosh()`, `csinh()`, `ctanh()`
@@ -116,20 +116,10 @@ ma.lib provides all the same build variants as SAS/C's scm.lib:
 - **C++ Complex Support** - Wraps SAS/C's native C++ complex number classes
 
 ### Library Compatibility
-- **Co-exists with scm.lib** - ma.lib can be used alongside SAS/C's scm.lib or standalone, as implements a complete libm
+- **Co-exists with scm.lib** - ma.lib can be used alongside SAS/C's scm.lib or standalone
 - **Linker Order Control** - Order libraries in linker command to control function precedence:
   - `ma.lib scm.lib` - Use ma.lib functions in preference, fallback to scm.lib only for functions not part of C99/POSIX standards
   - `scm.lib ma.lib` - Use scm.lib functions in preference, fallback to ma.lib to provide additional C99 functions
-
-## Usage
-
-### Basic Usage
-```c
-#include <math.h>
-#include <complex.h>
-
-double result = sqrt(2.0);  // Uses ma.lib implementation
-```
 
 ### Linker Command Examples
 ```bash
@@ -139,7 +129,7 @@ sc LINK TO program program.c LIB ma.lib scm.lib
 # Use scm.lib functions when available, fallback to ma.lib  
 sc LINK TO program program.c LIB scm.lib ma.lib
 
-# Use only ma.lib (recommended for new projects)
+# Use only ma.lib
 sc LINK TO program program.c LIB ma.lib
 ```
 
