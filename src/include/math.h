@@ -113,6 +113,59 @@
 #define isfinite(x)    ((x) == (x) && (x) != (x) / 0.0)
 #endif
 
+/* Math constants */
+#ifndef MAXFLOAT
+#define MAXFLOAT    ((float)3.40282346638528860e+38)
+#endif
+
+/* Global variables for gamma functions */
+extern int signgam;
+
+/* Math error handling (SVID/LSB compatibility) */
+/* Use SAS/C's struct __exception if available, otherwise define our own */
+#ifndef _MATH_H
+/* SAS/C math.h not included, define our own exception structure */
+struct exception {
+    int type;
+    char *name;
+    double arg1;
+    double arg2;
+    double retval;
+};
+#else
+/* SAS/C math.h is included, use their struct __exception as exception */
+#define exception __exception
+#endif
+
+/* Math error types - use SAS/C's definitions if available */
+#ifndef _MATH_H
+/* SAS/C math.h not included, define our own constants */
+#ifndef DOMAIN
+#define DOMAIN      1
+#endif
+#ifndef SING
+#define SING        2
+#endif
+#ifndef OVERFLOW
+#define OVERFLOW    3
+#endif
+#ifndef UNDERFLOW
+#define UNDERFLOW   4
+#endif
+#ifndef TLOSS
+#define TLOSS       5
+#endif
+#ifndef PLOSS
+#define PLOSS       6
+#endif
+#else
+/* SAS/C math.h is included, use their definitions */
+/* DOMAIN, SING, etc. are already defined by SAS/C when _STRICT_ANSI is not defined */
+#endif
+
+/* Math error handler function */
+int matherr(struct exception *e);
+
 #ifndef isnormal
 #define isnormal(x)    (isfinite(x) && (x) != 0.0)
 #endif

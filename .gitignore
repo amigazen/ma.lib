@@ -1,4 +1,7 @@
 *.o
+*.dnbo
+*.nbo
+*.do
 *.lnk
 *.map
 output.txt

@@ -139,7 +139,10 @@
 
 /*
  * Math error handling structure
+ * Use SAS/C's struct __exception if available, otherwise define our own
  */
+#ifndef _MATH_H
+/* SAS/C math.h not included, define our own exception structure */
 struct exception {
     int type;
     char *name;
@@ -147,10 +150,16 @@ struct exception {
     double arg2;
     double retval;
 };
+#else
+/* SAS/C math.h is included, use their struct __exception as exception */
+#define exception __exception
+#endif
 
 /*
- * Error types - only define if not already defined
+ * Error types - use SAS/C's definitions if available
  */
+#ifndef _MATH_H
+/* SAS/C math.h not included, define our own constants */
 #ifndef DOMAIN
 #define DOMAIN          1
 #endif
@@ -168,6 +177,10 @@ struct exception {
 #endif
 #ifndef PLOSS
 #define PLOSS           6
+#endif
+#else
+/* SAS/C math.h is included, use their definitions */
+/* DOMAIN, SING, etc. are already defined by SAS/C when _STRICT_ANSI is not defined */
 #endif
 
 #define MAX_ERRORS      8
